@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdf8fa;
+  --foreground: #1e1523;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* Prevent iOS tap highlight flash on interactive elements */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  /* Allow normal touch scrolling by default */
+  touch-action: pan-y;
+}
+
+/*
+ * FIX: Body scroll lock when a modal is open.
+ * Using position:fixed + width:100% prevents iOS "rubber band" scroll
+ * from escaping the modal and causing the body to move.
+ * The overflow-hidden class alone is insufficient on iOS Safari.
+ */
+body.overflow-hidden {
+  overflow: hidden !important;
+  /* Prevents touch scroll on the body without breaking modal inner scroll */
+  touch-action: none;
+}
+
+/* Prevent mobile auto-zoom on input focus — iOS requires >= 16px font-size */
+@media (max-width: 640px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Glassmorphism custom helpers */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(243, 232, 255, 0.9);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(243, 232, 255, 0.8);
+}
+
+/*
+ * FIX: Modal backdrop scroll on iOS Safari.
+ * The modal outer container uses overflow-y-auto for content taller than the
+ * viewport. On iOS, overflow scroll on a fixed element requires these rules.
+ */
+.modal-scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* ====================================================
+   CUSTOM REACT TOASTIFY COSMETIC-TECH THEME
+   ==================================================== */
+
+/*
+ * FIX: The ToastContainer itself must NOT intercept touch events.
+ * pointer-events: none on the container means only the visible toast
+ * elements (which have pointer-events: auto) can be interacted with.
+ * Without this, the invisible toast container div covers the full screen
+ * and swallows every tap, making all buttons unresponsive on mobile.
+ */
+.Toastify__toast-container {
+  z-index: 400 !important;
+  padding: 12px !important;
+  width: min(100% - 24px, 420px) !important;
+  pointer-events: none !important;
+}
+
+.Toastify__toast {
+  pointer-events: auto !important;
+  border-radius: 16px !important;
+  padding: 14px 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(88, 28, 135, 0.12), 0 8px 10px -6px rgba(88, 28, 135, 0.06) !important;
+  font-family: inherit !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 12px !important;
+  touch-action: manipulation !important;
+}
+
+.Toastify__close-button {
+  align-self: center !important;
+  opacity: 0.8 !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+}
+
+/* Toast Success (Lavender / Soft Purple) */
+.Toastify__toast--success {
+  background: #f5eeff !important;
+  color: #3b0764 !important;
+  border: 1px solid #e9d5ff !important;
+}
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: #9333ea !important;
+}
+.Toastify__toast--success .Toastify__progress-bar {
+  background: linear-gradient(to right, #ec4899, #8b5cf6) !important;
+}
+
+/* Toast Error (Soft Rose / Burgundy) */
+.Toastify__toast--error {
+  background: #fff1f2 !important;
+  color: #881337 !important;
+  border: 1px solid #fecdd3 !important;
+}
+.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: #e11d48 !important;
+}
+.Toastify__toast--error .Toastify__progress-bar {
+  background: #e11d48 !important;
+}
+
+/* Toast Warning (Soft Cream / Warm Amber) */
+.Toastify__toast--warning {
+  background: #fffbeb !important;
+  color: #78350f !important;
+  border: 1px solid #fde68a !important;
+}
+.Toastify__toast--warning .Toastify__toast-icon svg {
+  fill: #d97706 !important;
+}
+.Toastify__toast--warning .Toastify__progress-bar {
+  background: #d97706 !important;
+}
+
+/* Toast Info (Soft Indigo / Lavender) */
+.Toastify__toast--info {
+  background: #eff6ff !important;
+  color: #1e1b4b !important;
+  border: 1px solid #bfdbfe !important;
+}
+.Toastify__toast--info .Toastify__toast-icon svg {
+  fill: #4f46e5 !important;
+}
+.Toastify__toast--info .Toastify__progress-bar {
+  background: #4f46e5 !important;
+}
