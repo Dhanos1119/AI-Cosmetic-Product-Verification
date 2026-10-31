@@ -32,7 +32,9 @@ export default function Home() {
   // Upload & AI Analysis State
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [productUrl, setProductUrl] = useState<string>("");
   const [aiAnalysisResult, setAiAnalysisResult] = useState<AiAnalysisResult | null>(null);
+  const [analysisError, setAnalysisError] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [hasVerified, setHasVerified] = useState(false);
 
@@ -62,6 +64,7 @@ export default function Home() {
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
     setAiAnalysisResult(null);
+    setAnalysisError(null);
     setHasVerified(false);
   };
 
@@ -72,6 +75,7 @@ export default function Home() {
     setSelectedFile(null);
     setPreviewUrl(null);
     setAiAnalysisResult(null);
+    setAnalysisError(null);
     setHasVerified(false);
   };
 
@@ -122,21 +126,25 @@ export default function Home() {
     console.log("File size:", selectedFile.size);
 
     setIsAnalyzing(true);
-    toast.info("Sending image to FastAPI AI Service (port 8001)...", {
+    setAnalysisError(null);
+    toast.info("Uploading image to CosmeticVerify Gateway (Port 5000)...", {
       toastId: "analyzing-toast",
     });
 
     try {
-      // Dynamic AI Service Host: resolves to 192.168.1.27 on mobile devices and localhost on PC
-      const host = typeof window !== "undefined" ? window.location.hostname : "192.168.1.27";
-      const aiServiceUrl = `http://${host}:8001/api/analyze`;
+      // Dynamic Host Resolution: resolves to current hostname (localhost or local network IP)
+      const host = typeof window !== "undefined" ? window.location.hostname : "localhost";
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || `http://${host}:5000/api/upload`;
 
-      // Build FormData using field name "file"
+      // Build FormData using field name "file" and optional "product_url"
       const formData = new FormData();
       formData.append("file", selectedFile);
+      if (productUrl.trim()) {
+        formData.append("product_url", productUrl.trim());
+      }
 
-      // Fetch request without manual Content-Type header
-      const response = await fetch(aiServiceUrl, {
+      // Fetch request to Express Backend Gateway (:5000) -> FastAPI AI Service (:8001) -> PostgreSQL
+      const response = await fetch(backendUrl, {
         method: "POST",
         body: formData,
       });
@@ -144,14 +152,14 @@ export default function Home() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.message || data.detail || "FastAPI AI service analysis failed.");
+        throw new Error(data.message || data.detail || "Cosmetic verification service failed.");
       }
 
-      console.log("FastAPI AI Analysis Response:", data);
+      console.log("Verified Multi-Tier Analysis Response:", data);
       setAiAnalysisResult(data);
       setIsAnalyzing(false);
       setHasVerified(true);
-      toast.success("AI analysis completed successfully!", {
+      toast.success("AI Analysis & PostgreSQL Persistence Completed!", {
         toastId: "verify-success",
       });
 
@@ -163,16 +171,21 @@ export default function Home() {
       }, 100);
     } catch (err: any) {
       setIsAnalyzing(false);
-      console.error("FastAPI AI Service Error:", err);
-      toast.error(err.message || "Unable to connect to AI Service at port 8001.", {
+      const errorMsg = err.message || "Unable to connect to Backend Gateway at port 5000.";
+      setAnalysisError(errorMsg);
+      console.error("CosmeticVerify Gateway Error:", err);
+      toast.error(errorMsg, {
         toastId: "upload-error-toast",
       });
     }
   };
 
+
   const handleResetVerification = () => {
     setHasVerified(false);
     setAiAnalysisResult(null);
+    setAnalysisError(null);
+    setProductUrl("");
     handleFileRemove();
     const workspaceEl = document.getElementById("verification-workspace");
     if (workspaceEl) {
@@ -243,7 +256,10 @@ export default function Home() {
           user={user}
           selectedFile={selectedFile}
           previewUrl={previewUrl}
+          productUrl={productUrl}
+          onProductUrlChange={setProductUrl}
           aiAnalysisResult={aiAnalysisResult}
+          analysisError={analysisError}
           isAnalyzing={isAnalyzing}
           hasVerified={hasVerified}
           onFileSelect={handleFileSelect}

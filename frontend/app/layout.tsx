@@ -13,7 +13,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata: Metadata =
+ {
   title: "CosmeticVerify | AI Cosmetic Product Verification & Marketplace Trust",
   description: "Upload a cosmetic product image and discover product details, review trust, and reliable marketplace recommendations.",
   keywords: ["Cosmetics Verification", "Beauty AI", "Product Trust", "Marketplace Recommendation", "CosmeticVerify"],

@@ -1,6 +1,6 @@
 "use client";
 
-import { Lock, LogIn, UserPlus, Camera, ShieldCheck, Sparkles, Loader2, Info, CheckCircle2 } from "lucide-react";
+import { Lock, LogIn, UserPlus, Camera, ShieldCheck, Sparkles, Loader2, Info, CheckCircle2, AlertCircle, Globe } from "lucide-react";
 import ImageUploader from "./ImageUploader";
 import VerificationResult, { AiAnalysisResult } from "./VerificationResult";
 
@@ -8,7 +8,10 @@ interface VerificationWorkspaceProps {
   user: { email: string; name: string } | null;
   selectedFile: File | null;
   previewUrl: string | null;
+  productUrl: string;
+  onProductUrlChange: (url: string) => void;
   aiAnalysisResult: AiAnalysisResult | null;
+  analysisError?: string | null;
   isAnalyzing: boolean;
   hasVerified: boolean;
   onFileSelect: (file: File) => void;
@@ -24,7 +27,10 @@ export default function VerificationWorkspace({
   user,
   selectedFile,
   previewUrl,
+  productUrl,
+  onProductUrlChange,
   aiAnalysisResult,
+  analysisError,
   isAnalyzing,
   hasVerified,
   onFileSelect,
@@ -139,6 +145,30 @@ export default function VerificationWorkspace({
                 onOpenCamera={onOpenCamera}
               />
 
+              {/* Optional Direct Marketplace Product URL Input */}
+              <div className="mt-6 pt-5 border-t border-purple-100 space-y-2">
+                <label htmlFor="marketplace-product-url" className="flex items-center gap-2 text-xs font-bold text-slate-800">
+                  <Globe className="w-4 h-4 text-purple-600" />
+                  <span>Direct Marketplace Product URL (Optional)</span>
+                  <span className="text-[10px] font-normal text-purple-800 bg-purple-100 px-2 py-0.5 rounded-full border border-purple-200">
+                    Amazon, Daraz, or Temu
+                  </span>
+                </label>
+                <div className="relative">
+                  <input
+                    type="url"
+                    id="marketplace-product-url"
+                    value={productUrl}
+                    onChange={(e) => onProductUrlChange(e.target.value)}
+                    placeholder="e.g. https://www.daraz.lk/products/... or https://www.amazon.com/dp/..."
+                    className="w-full px-4 py-3 text-xs bg-white border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-slate-900 placeholder-slate-400"
+                  />
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  Supplying an exact marketplace product link enables direct listing extraction and review collection if platform search is blocked by anti-bot controls.
+                </p>
+              </div>
+
               {/* Start Verification Action Button */}
               <div className="mt-8 pt-6 border-t border-purple-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
@@ -172,6 +202,24 @@ export default function VerificationWorkspace({
                 <span>Note: Image is sent directly to FastAPI AI service at port 8001. Image dimensions & integrity are inspected in real time.</span>
               </div>
             </div>
+
+            {/* Error Banner State (Backend / AI Service Exception) */}
+            {analysisError && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-950 text-xs sm:text-sm flex items-start gap-3 shadow-sm animate-fadeIn">
+                <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                <div className="space-y-1">
+                  <h4 className="font-extrabold text-red-900">
+                    Cosmetic Verification Service Exception
+                  </h4>
+                  <p className="text-red-800 text-xs leading-relaxed">
+                    {analysisError}
+                  </p>
+                  <p className="text-[11px] text-red-700 italic pt-1">
+                    Please ensure Express Backend Gateway (port 5000) and FastAPI AI Service (port 8001) are active.
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Verification Results Display Container */}
             {hasVerified && (
