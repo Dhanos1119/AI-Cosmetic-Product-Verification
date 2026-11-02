@@ -1,0 +1,26 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+python-multipart>=0.0.9
+pillow>=10.2.0
+opencv-python>=4.9.0.80
+numpy>=1.26.4
+pandas>=2.2.1
+requests>=2.31.0
+beautifulsoup4>=4.12.3
+python-dotenv>=1.0.1
+transformers>=4.40.0
+sqlalchemy>=2.0.28
+alembic>=1.13.1
+psycopg2-binary>=2.9.9
+
+# OCR engines
+easyocr>=1.7.2
+rapidocr-onnxruntime>=1.2.3
+pytesseract>=0.3.13
+
+# Deep learning (CLIP model)
+torch>=2.14.0
+
+# ML / Sentiment model
+scikit-learn>=1.9.1
+joblib>=1.6.0
