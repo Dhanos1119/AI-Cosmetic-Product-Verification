@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import VerificationWorkspace from "../components/VerificationWorkspace";
@@ -38,14 +38,43 @@ export default function Home() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [hasVerified, setHasVerified] = useState(false);
 
-  // Clean up Object URL on unmount or file change
+  // In-flight request cancellation reference
+  const abortControllerRef = useRef<AbortController | null>(null);
+
+  // Restore authenticated session from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedUser = localStorage.getItem("cosmetic_verify_user");
+      if (savedUser) {
+        setUser(JSON.parse(savedUser));
+      }
+    } catch (e) {
+      console.warn("Session restore notice:", e);
+    }
+  }, []);
+
+  // Clean up Object URL and any active requests on unmount
   useEffect(() => {
     return () => {
       if (previewUrl && previewUrl.startsWith("blob:")) {
         URL.revokeObjectURL(previewUrl);
       }
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+        abortControllerRef.current = null;
+      }
     };
   }, [previewUrl]);
+
+  // Cancel any active verification request
+  const handleCancelVerification = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort("User cancelled verification");
+      abortControllerRef.current = null;
+    }
+    setIsAnalyzing(false);
+    toast.info("Verification cancelled.", { toastId: "cancelled-toast" });
+  };
 
   // Handlers for File Selection (Logged-in only)
   const handleFileSelect = (file: File) => {
@@ -57,6 +86,12 @@ export default function Home() {
       return;
     }
 
+    // Cancel any previous in-flight request when a new image is chosen
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort("New image selected");
+      abortControllerRef.current = null;
+    }
+
     if (previewUrl && previewUrl.startsWith("blob:")) {
       URL.revokeObjectURL(previewUrl);
     }
@@ -66,9 +101,15 @@ export default function Home() {
     setAiAnalysisResult(null);
     setAnalysisError(null);
     setHasVerified(false);
+    setIsAnalyzing(false);
   };
 
   const handleFileRemove = () => {
+    // Cancel any ongoing analysis if the file is removed
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort("Image removed");
+      abortControllerRef.current = null;
+    }
     if (previewUrl && previewUrl.startsWith("blob:")) {
       URL.revokeObjectURL(previewUrl);
     }
@@ -77,6 +118,7 @@ export default function Home() {
     setAiAnalysisResult(null);
     setAnalysisError(null);
     setHasVerified(false);
+    setIsAnalyzing(false);
   };
 
   // Open Camera Trigger (Protected)
@@ -91,14 +133,14 @@ export default function Home() {
     setIsCameraModalOpen(true);
   };
 
-  // Start Verification Trigger (Sends image to FastAPI AI Service on Port 8001)
+  // Start Verification Trigger (Sends image to FastAPI AI Service via Backend Gateway)
   const handleStartVerification = async (e?: React.MouseEvent) => {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
     }
 
-    if (isAnalyzing) return; // Guard against double triggers
+    if (isAnalyzing) return; // Guard against duplicate submissions
 
     if (!user) {
       toast.info("Please sign in or create an account to start verification.", {
@@ -119,47 +161,63 @@ export default function Home() {
       return;
     }
 
-    // Diagnostic logs before sending request
-    console.log("Selected file:", selectedFile);
-    console.log("File name:", selectedFile.name);
-    console.log("File type:", selectedFile.type);
-    console.log("File size:", selectedFile.size);
+    // Cancel any existing request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort("New request started");
+    }
+
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
+    // 25-second client-side timeout safety
+    const timeoutId = setTimeout(() => {
+      if (abortControllerRef.current === controller) {
+        controller.abort("Verification request timed out. Please try again.");
+      }
+    }, 25000);
 
     setIsAnalyzing(true);
     setAnalysisError(null);
-    toast.info("Uploading image to CosmeticVerify Gateway (Port 5000)...", {
-      toastId: "analyzing-toast",
-    });
 
     try {
-      // Dynamic Host Resolution: resolves to current hostname (localhost or local network IP)
       const host = typeof window !== "undefined" ? window.location.hostname : "localhost";
       const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || `http://${host}:5000/api/upload`;
 
-      // Build FormData using field name "file" and optional "product_url"
       const formData = new FormData();
       formData.append("file", selectedFile);
       if (productUrl.trim()) {
         formData.append("product_url", productUrl.trim());
       }
 
-      // Fetch request to Express Backend Gateway (:5000) -> FastAPI AI Service (:8001) -> PostgreSQL
       const response = await fetch(backendUrl, {
         method: "POST",
         body: formData,
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
+
       const data = await response.json();
+
+      // Handle non-cosmetic rejection response
+      if (data.status === "rejected_non_cosmetic" || data.message?.includes("Non-cosmetic")) {
+        setAiAnalysisResult(null);
+        setHasVerified(false);
+        const nonCosmeticMsg = data.message || "Non-cosmetic image detected.";
+        setAnalysisError(nonCosmeticMsg);
+        toast.warn(nonCosmeticMsg, {
+          toastId: "non-cosmetic-toast",
+        });
+        return;
+      }
 
       if (!response.ok || !data.success) {
         throw new Error(data.message || data.detail || "Cosmetic verification service failed.");
       }
 
-      console.log("Verified Multi-Tier Analysis Response:", data);
       setAiAnalysisResult(data);
-      setIsAnalyzing(false);
       setHasVerified(true);
-      toast.success("AI Analysis & PostgreSQL Persistence Completed!", {
+      toast.success("Verification complete! Check your results below.", {
         toastId: "verify-success",
       });
 
@@ -170,13 +228,30 @@ export default function Home() {
         }
       }, 100);
     } catch (err: any) {
-      setIsAnalyzing(false);
-      const errorMsg = err.message || "Unable to connect to Backend Gateway at port 5000.";
+      clearTimeout(timeoutId);
+
+      if (err.name === "AbortError" || controller.signal.aborted) {
+        const reason = controller.signal.reason || "Verification was cancelled.";
+        console.log("Verification aborted:", reason);
+        if (typeof reason === "string" && reason.includes("timed out")) {
+          setAnalysisError("The verification request timed out. Please check your image and try again.");
+          toast.error("Verification timed out.", { toastId: "timeout-toast" });
+        }
+        return;
+      }
+
+      const errorMsg = err.message || "Unable to connect to verification service. Please try again.";
       setAnalysisError(errorMsg);
       console.error("CosmeticVerify Gateway Error:", err);
       toast.error(errorMsg, {
         toastId: "upload-error-toast",
       });
+    } finally {
+      clearTimeout(timeoutId);
+      if (abortControllerRef.current === controller) {
+        abortControllerRef.current = null;
+      }
+      setIsAnalyzing(false);
     }
   };
 
@@ -196,13 +271,17 @@ export default function Home() {
   const handleLoginSuccess = (loggedInUser: { email: string; name: string }) => {
     setUser(loggedInUser);
     setAuthModalState("closed");
-    toast.success("Welcome back! You are signed in.", {
-      toastId: "login-welcome-toast",
-    });
+    // Note: The single "Login successful!" toast is displayed by LoginModal to prevent duplicate notifications.
   };
 
   const handleConfirmLogout = () => {
     setUser(null);
+    try {
+      localStorage.removeItem("cosmetic_verify_user");
+      localStorage.removeItem("cosmetic_verify_token");
+    } catch (e) {
+      console.warn("Storage clear notice:", e);
+    }
     setIsLogoutConfirmOpen(false);
     handleFileRemove();
     toast.info("You have been signed out.", {
@@ -218,7 +297,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fdf8fa] selection:bg-pink-200 selection:text-pink-900 overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-[#0B0B12] text-[#F8FAFC] selection:bg-purple-900/60 selection:text-pink-300 overflow-x-hidden">
       {/* Header Navigation */}
       <Header
         user={user}
@@ -266,6 +345,7 @@ export default function Home() {
           onFileRemove={handleFileRemove}
           onOpenCamera={handleOpenCamera}
           onStartVerification={handleStartVerification}
+          onCancelVerification={handleCancelVerification}
           onResetVerification={handleResetVerification}
           onOpenLogin={() => setAuthModalState("login")}
           onOpenSignup={() => setAuthModalState("signup")}

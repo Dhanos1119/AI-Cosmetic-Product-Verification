@@ -63,22 +63,22 @@ export default function Features({ onSelectFeature }: FeaturesProps) {
         return Store;
       default:
         return Scan;
-    }
+      }
   };
 
   return (
-    <section id="features" className="py-16 md:py-24">
+    <section id="features" className="py-16 md:py-24 bg-[#0B0B12] text-[#F8FAFC]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-3 mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-100/80 border border-pink-200 text-pink-900 text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#191925] border border-[#303047] text-[#EC4899] text-xs font-semibold uppercase tracking-wider">
             <span>System Capabilities</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
             Comprehensive Cosmetic Verification
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-base">
-            Intelligent modules designed to ensure cosmetic authenticity and protect beauty shoppers online.
+          <p className="text-[#A1A1B5] max-w-2xl mx-auto text-base">
+            Intelligent modules designed to ensure cosmetic packaging identity and protect beauty shoppers online.
           </p>
         </div>
 
@@ -89,39 +89,39 @@ export default function Features({ onSelectFeature }: FeaturesProps) {
             return (
               <div
                 key={item.id}
-                className="glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:shadow-xl hover:shadow-purple-900/5 hover:-translate-y-1 transition-all duration-300 border border-purple-100"
+                className="rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:shadow-2xl hover:border-[#A855F7]/50 hover:-translate-y-1 transition-all duration-300 border border-[#303047] bg-[#191925]"
               >
                 <div className="space-y-5">
                   {/* Icon & Badge Header */}
                   <div className="flex items-center justify-between">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-purple-500/20">
+                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EC4899] via-[#A855F7] to-[#8B5CF6] flex items-center justify-center text-white shadow-md shadow-purple-950/40">
                       <IconComponent className="w-7 h-7" />
                     </div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white border border-purple-150 text-purple-900 shadow-2xs">
+                    <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#202033] border border-[#303047] text-[#A855F7] shadow-xs">
                       {item.badge}
                     </span>
                   </div>
 
                   {/* Title & Description */}
                   <div className="space-y-2.5">
-                    <h3 className="text-xl font-bold text-slate-900 leading-snug">
+                    <h3 className="text-xl font-bold text-[#F8FAFC] leading-snug">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                    <p className="text-sm text-[#A1A1B5] leading-relaxed font-normal">
                       {item.description}
                     </p>
                   </div>
                 </div>
 
                 {/* Learn More Action Button */}
-                <div className="mt-6 pt-4 border-t border-purple-100/60">
+                <div className="mt-6 pt-4 border-t border-[#303047]">
                   <button
                     type="button"
                     onClick={() => onSelectFeature(item)}
-                    className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-950 text-xs font-bold transition-colors group touch-manipulation min-h-[44px] cursor-pointer"
+                    className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#12121C] hover:bg-[#202033] border border-[#303047] text-[#F8FAFC] text-xs font-bold transition-colors group touch-manipulation min-h-[44px] cursor-pointer"
                   >
                     <span>Learn More</span>
-                    <ArrowRight className="w-4 h-4 text-purple-600 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="w-4 h-4 text-[#A855F7] group-hover:translate-x-0.5 transition-transform" />
                   </button>
                 </div>
               </div>

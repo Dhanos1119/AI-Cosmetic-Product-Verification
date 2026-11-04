@@ -3,7 +3,7 @@ from fastapi import APIRouter, File, UploadFile, HTTPException, Depends, status,
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from database.connection import get_db
-from app.services.image_service import validate_and_inspect_image
+from app.services.image_service import validate_and_inspect_image, resize_image_if_needed
 from app.services.ocr_service import extract_text_from_image
 from app.services.product_service import analyze_product_authenticity
 from app.schemas.response import AnalysisResponse, ErrorResponse
@@ -20,7 +20,7 @@ ALLOWED_CONTENT_TYPES = {"image/jpeg", "image/jpg", "image/png", "image/webp"}
         500: {"model": ErrorResponse, "description": "Internal Server Error"}
     }
 )
-async def analyze_image(
+def analyze_image(
     file: UploadFile = File(...),
     product_url: Optional[str] = Form(None),
     db: Session = Depends(get_db)
@@ -54,14 +54,17 @@ async def analyze_image(
         )
 
     try:
-        # Read uploaded file bytes asynchronously
-        file_bytes = await file.read()
+        # Read uploaded file bytes synchronously (prevents AnyIO event loop block)
+        file_bytes = file.file.read()
 
         if not file_bytes or len(file_bytes) == 0:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Uploaded file is empty (0 bytes)."
             )
+
+        # Safely resize oversized images to prevent slow transfer & inference latency
+        file_bytes = resize_image_if_needed(file_bytes, max_dim=1600)
 
         # 1. Inspect and validate image using Pillow & OpenCV
         img_info = validate_and_inspect_image(file_bytes, file.filename)
@@ -80,13 +83,17 @@ async def analyze_image(
 
         # 3.1 Non-cosmetic rejection response
         if product_result.get("status") == "rejected_non_cosmetic":
+            rejection_msg = product_result.get("message") or "Non-cosmetic image detected."
             return JSONResponse(
                 status_code=status.HTTP_200_OK,
                 content={
                     "status": "rejected_non_cosmetic",
-                    "message": "Please upload a cosmetic product image.",
+                    "message": rejection_msg,
                     "success": False,
                     "filename": img_info["filename"],
+                    "product_detection": "Non-cosmetic / uncertain",
+                    "marketplace_listings": [],
+                    "platform_comparison": [],
                     "screening_details": product_result.get("clip_result", {}).get("screening_details")
                 }
             )
@@ -111,6 +118,9 @@ async def analyze_image(
             "authenticity_prediction": product_result["authenticity_prediction"],
             "authenticity_result": product_result.get("authenticity_result"),
             "product_identity": product_result.get("product_identity"),
+            "is_confirmed": product_result.get("is_confirmed", False),
+            "identity_status": product_result.get("identity_status", "Unconfirmed Product Identity"),
+            "visual_similarity_disclaimer": product_result.get("visual_similarity_disclaimer", "Visual similarity indicates packaging shape and aesthetic resemblance to reference catalog images; it does not confirm or prove product authenticity."),
             "marketplace_listings": product_result.get("marketplace_listings", []),
             "platform_comparison": product_result.get("platform_comparison", []),
             "db_persisted": product_result.get("db_persisted", False)

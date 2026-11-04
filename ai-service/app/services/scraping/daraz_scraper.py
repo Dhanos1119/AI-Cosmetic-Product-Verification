@@ -10,6 +10,8 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
 from typing import List
+from urllib3.util import Retry
+from requests.adapters import HTTPAdapter
 from app.services.scraping.schemas import RawMarketplaceItem
 from app.services.scraping.url_scraper import fetch_daraz_reviews_and_ratings
 
@@ -21,6 +23,14 @@ HEADERS = {
 }
 
 DARAZ_CHALLENGE_MARKERS = ("x5secdata", "/_____tmd_____/punish", "punish?x5secdata", "nocaptcha")
+
+def _get_fast_session():
+    """Session configured with zero retries so unreachable/sandboxed networks fail in ms rather than minutes."""
+    s = requests.Session()
+    adapter = HTTPAdapter(max_retries=Retry(total=0, connect=0, read=0, status=0))
+    s.mount("https://", adapter)
+    s.mount("http://", adapter)
+    return s
 
 
 def scrape_daraz_products(query: str, max_results: int = 3) -> List[RawMarketplaceItem]:
@@ -44,7 +54,8 @@ def scrape_daraz_products(query: str, max_results: int = 3) -> List[RawMarketpla
     ajax_url = f"https://www.daraz.lk/catalog/?q={quote_plus(clean_query)}&ajax=true"
 
     try:
-        resp = requests.get(ajax_url, headers=HEADERS, timeout=10)
+        session = _get_fast_session()
+        resp = session.get(ajax_url, headers=HEADERS, timeout=(3.0, 4.0))
 
         # 1. Anti-bot status checks
         if resp.status_code in [403, 503, 429]:
@@ -104,7 +115,7 @@ def scrape_daraz_products(query: str, max_results: int = 3) -> List[RawMarketpla
                     # Fetch real customer reviews from public endpoint if item_id and url exist
                     card_reviews = []
                     if item_id and item_url:
-                        avg_r, rate_c, rev_c, revs = fetch_daraz_reviews_and_ratings(item_id, item_url, timeout=5)
+                        avg_r, rate_c, rev_c, revs = fetch_daraz_reviews_and_ratings(item_id, item_url, timeout=2)
                         if revs:
                             card_reviews = revs
                         if avg_r > 0:

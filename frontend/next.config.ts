@@ -22,6 +22,10 @@ const nextConfig: NextConfig = {
   devIndicators: {
     position: "bottom-right",
   },
+  experimental: {
+    cpus: 1,
+    workerThreads: false,
+  },
 };
 
 export default nextConfig;

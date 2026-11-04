@@ -61,6 +61,14 @@ class ReviewResultDetails(BaseModel):
     synthetic_benchmark: Optional[Dict[str, Any]] = None
     suspicious_review_risk: Optional[Dict[str, Any]] = None
     analyzed_reviews: Optional[List[Dict[str, Any]]] = None
+    is_simulated: Optional[bool] = False
+    simulation_title: Optional[str] = None
+    simulation_disclosure: Optional[str] = None
+    credibility_assessment_label: Optional[str] = None
+    positive_themes: Optional[List[str]] = []
+    negative_themes: Optional[List[str]] = []
+    sentiment_stats: Optional[Dict[str, Any]] = None
+    simulated_reviews: Optional[List[Dict[str, Any]]] = []
 
 class AuthenticityResultDetails(BaseModel):
     status: str
@@ -96,6 +104,9 @@ class AnalysisResponse(BaseModel):
     authenticity_prediction: str
     authenticity_result: Optional[AuthenticityResultDetails] = None
     product_identity: Optional[ProductIdentity] = None
+    is_confirmed: Optional[bool] = None
+    identity_status: Optional[str] = None
+    visual_similarity_disclaimer: Optional[str] = None
     marketplace_listings: Optional[List[MarketplaceListing]] = []
     platform_comparison: Optional[List[PlatformComparisonScore]] = []
     db_persisted: Optional[bool] = None

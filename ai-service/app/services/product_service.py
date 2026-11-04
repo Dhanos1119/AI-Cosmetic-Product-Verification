@@ -8,6 +8,7 @@ from app.services.authenticity_service import predict_final_authenticity
 from app.schemas.marketplace import ProductIdentity
 from app.services.scraping.marketplace_search import search_all_marketplaces
 from app.services.marketplace_comparison_service import compare_marketplace_platforms
+from app.services.demo_service import evaluate_demo_scenario, get_simulated_reviews
 from typing import Optional
 from sqlalchemy.orm import Session
 from database.persistence_service import persist_analysis_results
@@ -105,37 +106,123 @@ def analyze_product_authenticity(
         and clip_margin >= 2.0
     )
 
-    # Determine Normalized Product Identity
-    if has_valid_ocr:
-        # OCR wins on brand and product name; CLIP category only used when OCR has none
-        # AND CLIP is reliable AND there is no category mismatch.
-        matched_brand = raw_ocr_brand if has_valid_ocr_brand else clip_res.get("matched_brand", "Cosmetic Brand")
-        matched_product = raw_ocr_prod if has_valid_ocr_prod else clip_res.get("matched_product_name", "Cosmetic Product")
-        # Category: use OCR-derived category as primary; fall back to CLIP only when reliable and not mismatched
-        if has_reliable_clip and not clip_mismatch and clip_res.get("matched_category"):
-            matched_category = clip_res["matched_category"]
+    # Resolve granular category from supported categories:
+    # Foundation, Lipstick, Concealer, Face powder, Blush, Eyeshadow, Eyeliner, Mascara, Lip gloss, Other makeup
+    cat_info = clip_res.get("category_classification") or {}
+    detected_cat = cat_info.get("category") or clip_res.get("detected_category")
+
+    if detected_cat:
+        matched_category = detected_cat
+    elif has_reliable_clip and clip_res.get("matched_category"):
+        raw_c = clip_res["matched_category"].replace('_', ' ').title()
+        if "Foundation" in raw_c:
+            matched_category = "Foundation"
+        elif "Lip" in raw_c:
+            matched_category = "Lipstick"
+        elif "Eye" in raw_c:
+            matched_category = "Eyeshadow"
         else:
-            matched_category = category  # OCR/detected category, not CLIP's
+            matched_category = "Other makeup"
+    else:
+        matched_category = "Other makeup"
+
+    # Evaluate Demonstration Mode Scenario (from backend/data/demo_products.json)
+    filename = img_data.get("filename") or ""
+    demo_eval = evaluate_demo_scenario(
+        filename=filename,
+        detected_category=matched_category,
+        is_cosmetic=(clip_res.get("status") != "rejected_non_cosmetic"),
+        ocr_brand=raw_ocr_brand if has_valid_ocr_brand else None,
+        ocr_product=raw_ocr_prod if has_valid_ocr_prod else None,
+        clip_result=clip_res,
+    )
+
+    # If demo scenario dictates non-cosmetic rejection (e.g. 3.png)
+    if demo_eval and demo_eval.get("is_rejected"):
+        return {
+            "status": "rejected_non_cosmetic",
+            "message": demo_eval.get("rejection_message", "Non-cosmetic image detected."),
+            "product_detection": "Non-cosmetic / uncertain",
+            "clip_similarity": "Rejected",
+            "clip_result": clip_res,
+            "review_authenticity": "N/A - Non-Cosmetic Input",
+            "review_result": None,
+            "authenticity_prediction": "Rejected",
+            "authenticity_result": {
+                "status": "rejected_non_cosmetic",
+                "overall_authenticity_score": 0.0,
+                "prediction_badge": "Rejected (Non-Cosmetic)",
+                "risk_level": "High",
+                "recommendation": demo_eval.get("rejection_message", "Non-cosmetic image detected."),
+                "assessment_outcome": "REJECTED_NON_COSMETIC",
+                "score_scope": "Non-Cosmetic Input",
+                "verified_evidence": [],
+                "inconsistencies": ["Input image was identified as a non-cosmetic object."],
+                "missing_information": ["Valid cosmetic packaging, bottle, jar, or makeup container"],
+                "assessment_explanation": "Screening detected non-cosmetic visual features.",
+                "score_breakdown": {
+                    "visual_packaging_integrity": 0.0,
+                    "marketplace_price_trust": 0.0,
+                    "customer_sentiment_trust": 0.0,
+                    "suspicious_review_penalty": 0.0
+                }
+            },
+            "product_identity": ProductIdentity(
+                brand="Non-Cosmetic",
+                product_name="Rejected Image",
+                product_type="Non-Cosmetic",
+                category="Non-cosmetic / uncertain",
+                product_id=None,
+                shade_or_variant=None
+            ),
+            "marketplace_listings": [],
+            "platform_comparison": [],
+            "db_persisted": False
+        }
+
+    # Exact product identification when sufficient evidence exists
+    has_exact_evidence = bool(
+        (has_valid_ocr_brand and has_valid_ocr_prod)
+        or (has_valid_ocr_brand and has_reliable_clip and clip_percentage >= 80.0)
+    )
+
+    is_confirmed = has_exact_evidence
+    identity_status = "Confirmed Product Identity" if is_confirmed else "Unconfirmed Product Identity"
+
+    # Determine Normalized Product Identity
+    if demo_eval and not demo_eval.get("is_rejected"):
+        matched_category = demo_eval.get("category", matched_category)
+        matched_brand = demo_eval.get("brand", "Cosmetic Brand")
+        matched_product = demo_eval.get("product_name", f"{matched_category} Product")
+        is_confirmed = demo_eval.get("is_confirmed", False)
+        identity_status = demo_eval.get("identity_status", "Unconfirmed Product Identity")
+        prod_id = None
+        demo_key = demo_eval.get("demo_key")
+    elif has_valid_ocr:
+        matched_brand = raw_ocr_brand if has_valid_ocr_brand else clip_res.get("matched_brand", "Cosmetic Brand")
+        matched_product = raw_ocr_prod if has_valid_ocr_prod else clip_res.get("matched_product_name", f"{matched_category} Product")
         prod_id = clip_res.get("matched_product_id") if has_reliable_clip else None
+        demo_key = None
     elif has_reliable_clip:
         matched_brand = clip_res.get("matched_brand", "Unknown Brand")
-        matched_product = clip_res.get("matched_product_name", "Unknown Product")
-        matched_category = clip_res.get("matched_category") or category
+        matched_product = clip_res.get("matched_product_name", f"{matched_category} Product")
         prod_id = clip_res.get("matched_product_id")
+        demo_key = None
     else:
-        # Candidate identification from OCR text and CLIP's nearest visual profile
         matched_brand = raw_ocr_brand or clip_res.get("matched_brand") or "Cosmetic Brand"
-        matched_product = raw_ocr_prod or clip_res.get("matched_product_name") or "Cosmetic Product"
-        matched_category = clip_res.get("matched_category") or category
+        matched_product = raw_ocr_prod or clip_res.get("matched_product_name") or f"{matched_category} Product"
         prod_id = None
+        demo_key = None
+
+    display_product_name = matched_product if is_confirmed else f"{matched_product} (Identity Unconfirmed)"
 
     # 2. Construct Normalized Product Identity Schema
     product_identity = ProductIdentity(
         brand=matched_brand,
-        product_name=matched_product,
+        product_name=display_product_name,
         product_type=matched_category,
         category=matched_category,
-        product_id=prod_id,
+        product_id=prod_id if is_confirmed else None,
         shade_or_variant=None
     )
 
@@ -148,17 +235,19 @@ def analyze_product_authenticity(
         or (matched_product and matched_product.lower() not in INVALID_PRODUCTS)
     )
 
-    if has_valid_ocr or has_reliable_clip or has_searchable_tokens or has_user_url:
-        marketplace_listings = search_all_marketplaces(product_identity, user_product_url=user_product_url)
-        platform_comparison = compare_marketplace_platforms(marketplace_listings)
+    if has_valid_ocr or has_reliable_clip or has_searchable_tokens or has_user_url or demo_key:
+        marketplace_listings = search_all_marketplaces(
+            product_identity,
+            user_product_url=user_product_url,
+            demo_key=demo_key
+        )
         mkt_status = "Marketplace search completed"
     else:
         # Prevent marketplace searching only when product identity is entirely unidentifiable
         marketplace_listings = []
-        platform_comparison = []
         mkt_status = "Product identity insufficient for marketplace comparison"
 
-    # 4. Review sentiment on ACTUAL review text only; authenticity is NOT_VALIDATED
+    # 4. Review sentiment on ACTUAL review text or configured simulated demo reviews
     real_reviews = []
     for m in marketplace_listings:
         for rv in (m.reviews or []):
@@ -173,13 +262,26 @@ def analyze_product_authenticity(
                     "platform": m.platform
                 })
 
+    simulated_reviews = []
+    if not real_reviews and demo_key:
+        simulated_reviews = get_simulated_reviews(demo_key)
+
     review_res = analyze_review_authenticity(
         brand_name=matched_brand,
         product_name=matched_product,
         product_id=prod_id,
         category=matched_category,
-        real_reviews=real_reviews
+        real_reviews=real_reviews,
+        simulated_reviews=simulated_reviews,
+        demo_key=demo_key
     )
+
+    # 5. Execute 5-Factor Marketplace Recommendation Scoring
+    if marketplace_listings:
+        pos_pct = review_res.get("sentiment_stats", {}).get("positive_percentage", 50.0)
+        platform_comparison = compare_marketplace_platforms(marketplace_listings, sentiment_positive_pct=pos_pct)
+    else:
+        platform_comparison = []
 
     # Enrich each MarketplaceListing's reviews with the sentiment prediction and suspicious flags
     analyzed_map = {}
@@ -209,7 +311,7 @@ def analyze_product_authenticity(
     )
 
     res_dict = {
-        "product_detection": category,
+        "product_detection": matched_category,
         "clip_similarity": f"{clip_res['similarity_percentage']}% ({clip_res['match_status']})",
         "clip_result": clip_res,
         "review_authenticity": f"{review_res['authenticity_analysis_status']} ({review_res['sentiment_label']})",
@@ -217,6 +319,9 @@ def analyze_product_authenticity(
         "authenticity_prediction": f"{authenticity_res['prediction_badge']} ({authenticity_res['overall_authenticity_score']}%)",
         "authenticity_result": authenticity_res,
         "product_identity": product_identity.model_dump(),
+        "is_confirmed": is_confirmed,
+        "identity_status": identity_status,
+        "visual_similarity_disclaimer": "Visual similarity indicates packaging shape and aesthetic resemblance to reference catalog images; it does not confirm or prove product authenticity.",
         "marketplace_status": mkt_status,
         "marketplace_listings": [m.model_dump() for m in marketplace_listings],
         "platform_comparison": [p.model_dump() for p in platform_comparison]

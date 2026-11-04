@@ -72,7 +72,7 @@ export default function ForgotPasswordModal({ isOpen, onClose, onBackToLogin }: 
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4 bg-slate-900/70 backdrop-blur-md overflow-y-auto animate-fadeIn pointer-events-auto modal-scroll-container"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4 bg-[#0B0B12]/80 backdrop-blur-md overflow-y-auto animate-fadeIn pointer-events-auto modal-scroll-container"
       role="dialog"
       aria-modal="true"
       aria-labelledby="forgot-modal-title"
@@ -81,33 +81,33 @@ export default function ForgotPasswordModal({ isOpen, onClose, onBackToLogin }: 
       }}
     >
       <div
-        className="relative w-full bg-white rounded-3xl shadow-2xl border border-purple-100 overflow-hidden my-auto text-slate-900 focus:outline-none z-[210] pointer-events-auto"
+        className="relative w-full bg-[#191925] rounded-3xl shadow-2xl border border-[#303047] overflow-hidden my-auto text-[#F8FAFC] focus:outline-none z-[210] pointer-events-auto"
         style={{ width: "min(100% - 24px, 460px)", maxHeight: "calc(100dvh - 24px)" }}
       >
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-purple-950 via-purple-900 to-indigo-950 text-white p-5 sm:p-7 relative shrink-0">
+        <div className="bg-gradient-to-r from-[#12121C] via-[#191925] to-[#202033] border-b border-[#303047] text-[#F8FAFC] p-5 sm:p-7 relative shrink-0">
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-4 right-4 text-purple-200 hover:text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400 touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer z-10"
+            className="absolute top-4 right-4 text-[#A1A1B5] hover:text-[#F8FAFC] bg-[#202033] hover:bg-[#303047] p-2.5 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#A855F7] touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center cursor-pointer z-10"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
 
           <div className="flex items-center gap-2.5 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-pink-500/20 border border-pink-400/30 flex items-center justify-center text-pink-300">
+            <div className="w-9 h-9 rounded-xl bg-[#EC4899]/15 border border-[#EC4899]/30 flex items-center justify-center text-[#EC4899]">
               <ShieldCheck className="w-5 h-5" />
             </div>
-            <span className="text-xl font-bold text-white tracking-tight">
-              Cosmetic<span className="text-pink-400">Verify</span>
+            <span className="text-xl font-bold text-[#F8FAFC] tracking-tight">
+              Cosmetic<span className="text-[#EC4899]">Verify</span>
             </span>
           </div>
 
-          <h2 id="forgot-modal-title" className="text-xl sm:text-2xl font-extrabold text-white mt-1">
+          <h2 id="forgot-modal-title" className="text-xl sm:text-2xl font-extrabold text-[#F8FAFC] mt-1">
             Reset Password
           </h2>
-          <p className="text-xs text-purple-200 mt-1 leading-relaxed">
+          <p className="text-xs text-[#A1A1B5] mt-1 leading-relaxed">
             Enter your email address and we will generate a password reset link.
           </p>
         </div>
@@ -116,11 +116,11 @@ export default function ForgotPasswordModal({ isOpen, onClose, onBackToLogin }: 
         <form onSubmit={handleSubmit} className="p-5 sm:p-7 space-y-5 overflow-y-auto" style={{ maxHeight: "calc(100dvh - 140px)" }}>
           {/* Email Input */}
           <div className="space-y-1.5">
-            <label htmlFor="forgot-email" className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+            <label htmlFor="forgot-email" className="block text-xs font-bold text-[#A1A1B5] uppercase tracking-wider">
               Email Address
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#A1A1B5]/60">
                 <Mail className="w-4 h-4" />
               </div>
               <input
@@ -134,16 +134,16 @@ export default function ForgotPasswordModal({ isOpen, onClose, onBackToLogin }: 
                   if (emailError) setEmailError(null);
                 }}
                 placeholder="name@example.com"
-                className={`w-full pl-10 pr-4 py-3 bg-slate-50 border ${
-                  emailError ? "border-rose-500 bg-rose-50/40" : "border-slate-200"
-                } rounded-xl text-slate-900 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-white transition-all`}
+                className={`w-full pl-10 pr-4 py-3 bg-[#12121C] border ${
+                  emailError ? "border-[#F87171] bg-[#F87171]/10" : "border-[#303047]"
+                } rounded-xl text-[#F8FAFC] placeholder-[#A1A1B5]/40 text-sm sm:text-base focus:outline-none focus:ring-1 focus:ring-[#A855F7] focus:border-[#A855F7] transition-all`}
                 aria-invalid={!!emailError}
                 aria-describedby={emailError ? "forgot-email-error" : undefined}
                 required
               />
             </div>
             {emailError && (
-              <p id="forgot-email-error" className="text-xs text-rose-600 font-medium">
+              <p id="forgot-email-error" className="text-xs text-[#F87171] font-medium">
                 {emailError}
               </p>
             )}
@@ -153,7 +153,7 @@ export default function ForgotPasswordModal({ isOpen, onClose, onBackToLogin }: 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3.5 px-4 text-sm font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-95 disabled:opacity-60 rounded-xl shadow-md min-h-[44px] touch-manipulation flex items-center justify-center gap-2 transition-all cursor-pointer"
+            className="w-full py-3.5 px-4 text-sm font-bold text-white bg-gradient-to-r from-[#EC4899] via-[#A855F7] to-[#8B5CF6] hover:opacity-95 disabled:opacity-60 rounded-xl shadow-lg shadow-purple-950/40 min-h-[44px] touch-manipulation flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
             {isLoading ? (
               <>
@@ -166,13 +166,13 @@ export default function ForgotPasswordModal({ isOpen, onClose, onBackToLogin }: 
           </button>
 
           {/* Back to Login */}
-          <div className="text-center pt-3 border-t border-slate-100">
+          <div className="text-center pt-3 border-t border-[#303047]">
             <button
               type="button"
               onClick={onBackToLogin}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-900 hover:underline min-h-[44px] touch-manipulation cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#EC4899] hover:underline min-h-[44px] touch-manipulation cursor-pointer"
             >
-              <ArrowLeft className="w-4 h-4 text-purple-600" />
+              <ArrowLeft className="w-4 h-4 text-[#A855F7]" />
               <span>Back to Sign In</span>
             </button>
           </div>

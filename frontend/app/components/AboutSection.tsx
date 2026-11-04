@@ -14,7 +14,7 @@ export default function AboutSection() {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-purple-100/90 border border-purple-200 text-purple-950 text-xs font-semibold uppercase tracking-wider">
                 <BookOpen className="w-3.5 h-3.5 text-purple-700" />
-                <span>Academic Project Overview</span>
+                <span>Platform Overview</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-snug">
@@ -22,7 +22,7 @@ export default function AboutSection() {
               </h2>
 
               <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-                CosmeticVerify is developed as part of the <strong className="text-slate-900 font-semibold">Semester 6 Data Management Project</strong>. The system addresses growing market concerns regarding counterfeit cosmetics, manipulated online product images, and deceptive seller reviews.
+                <strong className="text-slate-900 font-semibold">CosmeticVerify</strong> is an independent AI-powered cosmetic product verification and trustworthy marketplace recommendation platform. The system addresses growing market concerns regarding counterfeit cosmetics, manipulated online product images, and deceptive seller reviews.
               </p>
 
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
@@ -69,8 +69,8 @@ export default function AboutSection() {
                     <span className="font-semibold text-white text-right">AI Cosmetic Product Verification</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-purple-800/60">
-                    <span className="text-purple-300">Course / Module:</span>
-                    <span className="font-semibold text-white">Semester 6 Data Management</span>
+                    <span className="text-purple-300">Deployment:</span>
+                    <span className="font-semibold text-white">Independent Cloud Service</span>
                   </div>
                   <div className="flex justify-between py-1 border-b border-purple-800/60">
                     <span className="text-purple-300">Interface Version:</span>

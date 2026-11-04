@@ -1,6 +1,22 @@
 "use client";
 
-import { Lock, LogIn, UserPlus, Camera, ShieldCheck, Sparkles, Loader2, Info, CheckCircle2, AlertCircle, Globe } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  Lock,
+  LogIn,
+  UserPlus,
+  ShieldCheck,
+  Sparkles,
+  Loader2,
+  AlertCircle,
+  Sparkle,
+  XCircle,
+  Scan,
+  Cpu,
+  Layers,
+  Store,
+  CheckCircle2,
+} from "lucide-react";
 import ImageUploader from "./ImageUploader";
 import VerificationResult, { AiAnalysisResult } from "./VerificationResult";
 
@@ -8,8 +24,8 @@ interface VerificationWorkspaceProps {
   user: { email: string; name: string } | null;
   selectedFile: File | null;
   previewUrl: string | null;
-  productUrl: string;
-  onProductUrlChange: (url: string) => void;
+  productUrl?: string;
+  onProductUrlChange?: (url: string) => void;
   aiAnalysisResult: AiAnalysisResult | null;
   analysisError?: string | null;
   isAnalyzing: boolean;
@@ -18,17 +34,24 @@ interface VerificationWorkspaceProps {
   onFileRemove: () => void;
   onOpenCamera: () => void;
   onStartVerification: (e?: React.MouseEvent) => void;
+  onCancelVerification?: () => void;
   onResetVerification: () => void;
   onOpenLogin: () => void;
   onOpenSignup: () => void;
 }
 
+const PROCESSING_STAGES = [
+  { id: "prep", label: "Image validation & dimension downscaling", icon: Scan },
+  { id: "ocr", label: "Optical Character Recognition & brand extraction", icon: Cpu },
+  { id: "clip", label: "CLIP visual embedding & cosmetic category identification", icon: Layers },
+  { id: "market", label: "Marketplace catalog cross-referencing", icon: Store },
+  { id: "auth", label: "Multi-tier authenticity & credibility synthesis", icon: CheckCircle2 },
+];
+
 export default function VerificationWorkspace({
   user,
   selectedFile,
   previewUrl,
-  productUrl,
-  onProductUrlChange,
   aiAnalysisResult,
   analysisError,
   isAnalyzing,
@@ -37,46 +60,61 @@ export default function VerificationWorkspace({
   onFileRemove,
   onOpenCamera,
   onStartVerification,
+  onCancelVerification,
   onResetVerification,
   onOpenLogin,
   onOpenSignup,
 }: VerificationWorkspaceProps) {
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+
+  // Honest elapsed seconds timer during analysis (no fake cycling messages)
+  useEffect(() => {
+    if (!isAnalyzing) {
+      setElapsedSeconds(0);
+      return;
+    }
+    const timer = setInterval(() => {
+      setElapsedSeconds((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [isAnalyzing]);
+
   return (
     <section
       id="verification-workspace"
-      className="py-16 md:py-24 bg-gradient-to-b from-transparent via-purple-50/40 to-transparent"
+      className="py-16 md:py-24 bg-[#0B0B12] text-[#F8FAFC]"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Section Heading */}
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100/90 border border-purple-200 text-purple-950 text-xs font-semibold uppercase tracking-wider">
-            <Camera className="w-3.5 h-3.5 text-purple-700" />
-            <span>Cosmetic Verification Workspace</span>
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#191925] border border-[#303047] text-[#EC4899] text-xs font-semibold uppercase tracking-wider">
+            <Sparkle className="w-3.5 h-3.5 text-[#EC4899] fill-[#EC4899]" />
+            <span>AI Product Verification</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Product Verification Workspace
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
+            Verify Your Cosmetic Product
           </h2>
-          <p className="text-slate-600 max-w-xl mx-auto text-base">
-            Upload or capture a cosmetic container photo to perform identity verification and marketplace trust analysis.
+          <p className="text-[#A1A1B5] max-w-xl mx-auto text-base leading-relaxed">
+            Upload or capture a photo of your cosmetic product to verify its packaging identity, compare marketplace listings, and inspect customer sentiment.
           </p>
         </div>
 
-        {/* LOGGED-OUT STATE: Locked Overlay Callout Card */}
+        {/* LOGGED-OUT STATE: Dark Callout Card */}
         {!user ? (
-          <div className="glass-card rounded-3xl p-8 sm:p-12 shadow-xl shadow-purple-900/5 border border-purple-200 text-center space-y-6">
-            <div className="w-16 h-16 rounded-full bg-purple-100 border border-purple-200 text-purple-700 flex items-center justify-center mx-auto shadow-inner">
-              <Lock className="w-8 h-8 text-purple-600" />
+          <div className="rounded-3xl p-8 sm:p-12 shadow-2xl border border-[#303047] text-center space-y-6 bg-[#191925]">
+            <div className="w-16 h-16 rounded-full bg-[#202033] border border-[#303047] text-[#A855F7] flex items-center justify-center mx-auto shadow-inner">
+              <Lock className="w-8 h-8 text-[#A855F7]" />
             </div>
 
             <div className="space-y-2 max-w-md mx-auto">
-              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-purple-100 text-purple-900 rounded-full border border-purple-200">
+              <span className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-[#202033] text-[#A855F7] rounded-full border border-[#303047]">
                 Sign In Required
               </span>
-              <h3 className="text-2xl font-bold text-slate-900 pt-1">
-                Access Cosmetic Verification
+              <h3 className="text-2xl font-bold text-[#F8FAFC] pt-1">
+                Access Product Verification
               </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Please sign in or create an account to upload product images, use camera scanning, and run authenticity checks.
+              <p className="text-sm text-[#A1A1B5] leading-relaxed">
+                Please sign in or create a free account to upload product photos, scan with your camera, and view marketplace analysis.
               </p>
             </div>
 
@@ -85,58 +123,27 @@ export default function VerificationWorkspace({
               <button
                 type="button"
                 onClick={onOpenLogin}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-95 rounded-xl shadow-md touch-manipulation min-h-[44px] cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-[#EC4899] via-[#A855F7] to-[#8B5CF6] hover:opacity-95 rounded-xl shadow-lg shadow-purple-950/40 touch-manipulation min-h-[44px] cursor-pointer transition-all"
               >
                 <LogIn className="w-4 h-4" />
-                <span>Sign In to Access Workspace</span>
+                <span>Sign In to Verify</span>
               </button>
 
               <button
                 type="button"
                 onClick={onOpenSignup}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-purple-950 bg-white hover:bg-purple-50 border border-purple-200 rounded-xl shadow-2xs touch-manipulation min-h-[44px] cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-[#F8FAFC] bg-[#12121C] hover:bg-[#202033] border border-[#303047] rounded-xl shadow-xs touch-manipulation min-h-[44px] cursor-pointer transition-all"
               >
-                <UserPlus className="w-4 h-4 text-purple-600" />
-                <span>Create Account</span>
+                <UserPlus className="w-4 h-4 text-[#A855F7]" />
+                <span>Create Free Account</span>
               </button>
-            </div>
-
-            {/* Blurred Mock Preview Box */}
-            <div className="pt-6 border-t border-purple-100 pointer-events-none opacity-50 select-none">
-              <div className="p-6 border-2 border-dashed border-purple-200 rounded-2xl bg-slate-50 flex items-center justify-center gap-2 text-xs text-slate-400">
-                <ShieldCheck className="w-5 h-5 text-purple-400" />
-                <span>Image uploader & camera scanner locked until authenticated</span>
-              </div>
             </div>
           </div>
         ) : (
-          /* LOGGED-IN STATE: Active Workspace Container */
+          /* LOGGED-IN STATE: Professional Dark Verification Workspace */
           <div className="space-y-6">
-            {/* Logged-In User Banner */}
-            <div className="p-4 bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white rounded-2xl shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-pink-500/20 border border-pink-400/30 flex items-center justify-center text-pink-300 font-bold shrink-0">
-                  {user.name ? user.name[0].toUpperCase() : "D"}
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-bold text-white">{user.name || "Demo User"}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-300 bg-emerald-950 px-2 py-0.5 rounded-md border border-emerald-700/60 flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                      <span>Workspace Ready</span>
-                    </span>
-                  </div>
-                  <p className="text-xs text-purple-200">{user.email}</p>
-                </div>
-              </div>
-
-              <div className="text-xs text-pink-200 bg-purple-950/60 px-3 py-1.5 rounded-xl border border-purple-800/80">
-                Demo Auth Mode Active
-              </div>
-            </div>
-
             {/* Active Upload Card */}
-            <div className="glass-card rounded-3xl p-6 sm:p-10 shadow-xl shadow-purple-900/5 border border-purple-150">
+            <div className="rounded-3xl p-6 sm:p-10 shadow-2xl border border-[#303047] bg-[#191925]">
               <ImageUploader
                 selectedFile={selectedFile}
                 previewUrl={previewUrl}
@@ -145,83 +152,115 @@ export default function VerificationWorkspace({
                 onOpenCamera={onOpenCamera}
               />
 
-              {/* Optional Direct Marketplace Product URL Input */}
-              <div className="mt-6 pt-5 border-t border-purple-100 space-y-2">
-                <label htmlFor="marketplace-product-url" className="flex items-center gap-2 text-xs font-bold text-slate-800">
-                  <Globe className="w-4 h-4 text-purple-600" />
-                  <span>Direct Marketplace Product URL (Optional)</span>
-                  <span className="text-[10px] font-normal text-purple-800 bg-purple-100 px-2 py-0.5 rounded-full border border-purple-200">
-                    Amazon, Daraz, or Temu
-                  </span>
-                </label>
-                <div className="relative">
-                  <input
-                    type="url"
-                    id="marketplace-product-url"
-                    value={productUrl}
-                    onChange={(e) => onProductUrlChange(e.target.value)}
-                    placeholder="e.g. https://www.daraz.lk/products/... or https://www.amazon.com/dp/..."
-                    className="w-full px-4 py-3 text-xs bg-white border border-purple-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-slate-900 placeholder-slate-400"
-                  />
-                </div>
-                <p className="text-[11px] text-slate-500">
-                  Supplying an exact marketplace product link enables direct listing extraction and review collection if platform search is blocked by anti-bot controls.
-                </p>
-              </div>
+              {/* Processing Stages Indicator (Displayed honestly during in-flight analysis) */}
+              {isAnalyzing && (
+                <div className="mt-6 p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-4 animate-fadeIn">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5">
+                      <Loader2 className="w-5 h-5 text-[#A855F7] animate-spin" />
+                      <span className="text-sm font-bold text-[#F8FAFC]">
+                        AI Verification Pipeline Active
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono text-[#A1A1B5] bg-[#202033] px-2.5 py-1 rounded-md border border-[#303047]">
+                      {elapsedSeconds}s elapsed
+                    </span>
+                  </div>
 
-              {/* Start Verification Action Button */}
-              <div className="mt-8 pt-6 border-t border-purple-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                  <ShieldCheck className="w-4 h-4 text-purple-600 shrink-0" />
-                  <span>JPG, JPEG, PNG, WEBP • Max 10 MB</span>
-                </div>
+                  <div className="space-y-2">
+                    {PROCESSING_STAGES.map((stage, idx) => {
+                      const StageIcon = stage.icon;
+                      return (
+                        <div
+                          key={stage.id}
+                          className="flex items-center gap-3 text-xs text-[#A1A1B5] py-1 px-2 rounded-lg bg-[#191925]/60"
+                        >
+                          <StageIcon className="w-3.5 h-3.5 text-[#A855F7] shrink-0" />
+                          <span className="font-medium text-[#F8FAFC]/90">
+                            Stage {idx + 1}:
+                          </span>
+                          <span className="truncate">{stage.label}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
 
-                <button
-                  type="button"
-                  onClick={onStartVerification}
-                  disabled={isAnalyzing}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 hover:opacity-95 disabled:opacity-60 rounded-2xl shadow-lg shadow-purple-500/20 active:scale-95 transition-all duration-200 touch-manipulation min-h-[48px] cursor-pointer"
-                >
-                  {isAnalyzing ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>Sending to AI Service (Port 8001)...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-5 h-5 text-pink-200" />
-                      <span>Start AI Verification</span>
-                    </>
+                  {onCancelVerification && (
+                    <div className="pt-2 flex justify-end">
+                      <button
+                        type="button"
+                        onClick={onCancelVerification}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-[#F87171] hover:bg-[#F87171]/10 border border-[#F87171]/30 transition-colors cursor-pointer"
+                      >
+                        <XCircle className="w-3.5 h-3.5" />
+                        <span>Cancel Request</span>
+                      </button>
+                    </div>
                   )}
-                </button>
-              </div>
+                </div>
+              )}
 
-              {/* Model Integration Notice */}
-              <div className="mt-4 p-3 bg-purple-50/80 rounded-xl text-xs text-purple-900 flex items-center gap-2">
-                <Info className="w-4 h-4 text-purple-600 shrink-0" />
-                <span>Note: Image is sent directly to FastAPI AI service at port 8001. Image dimensions & integrity are inspected in real time.</span>
+              {/* Action Footer */}
+              <div className="mt-8 pt-6 border-t border-[#303047] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2 text-xs text-[#A1A1B5] font-medium">
+                  <ShieldCheck className="w-4 h-4 text-[#A855F7] shrink-0" />
+                  <span>JPG, PNG, WEBP • Max 15 MB • Auto-optimized</span>
+                </div>
+
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                  {isAnalyzing && onCancelVerification && (
+                    <button
+                      type="button"
+                      onClick={onCancelVerification}
+                      className="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 text-sm font-semibold text-[#F87171] bg-[#12121C] hover:bg-[#202033] border border-[#F87171]/30 rounded-xl transition-all cursor-pointer"
+                    >
+                      <span>Cancel</span>
+                    </button>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={onStartVerification}
+                    disabled={isAnalyzing}
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-[#EC4899] via-[#A855F7] to-[#8B5CF6] hover:opacity-95 disabled:opacity-60 rounded-2xl shadow-lg shadow-purple-900/30 active:scale-95 transition-all duration-200 touch-manipulation min-h-[48px] cursor-pointer"
+                  >
+                    {isAnalyzing ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Processing Image...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-5 h-5 text-pink-200" />
+                        <span>Verify Product</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Error Banner State (Backend / AI Service Exception) */}
+            {/* Error & Non-Cosmetic Rejection Banner */}
             {analysisError && (
-              <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-950 text-xs sm:text-sm flex items-start gap-3 shadow-sm animate-fadeIn">
-                <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+              <div className="p-4 bg-[#202033] border border-[#F87171]/40 rounded-2xl text-[#F8FAFC] text-xs sm:text-sm flex items-start gap-3 shadow-lg animate-fadeIn">
+                <AlertCircle className="w-5 h-5 text-[#F87171] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <h4 className="font-extrabold text-red-900">
-                    Cosmetic Verification Service Exception
+                  <h4 className="font-bold text-[#F87171]">
+                    {analysisError.includes("Non-cosmetic") ? "Non-Cosmetic Image Detected" : "Verification Could Not Be Completed"}
                   </h4>
-                  <p className="text-red-800 text-xs leading-relaxed">
+                  <p className="text-[#F8FAFC] text-sm font-semibold">
                     {analysisError}
                   </p>
-                  <p className="text-[11px] text-red-700 italic pt-1">
-                    Please ensure Express Backend Gateway (port 5000) and FastAPI AI Service (port 8001) are active.
+                  <p className="text-[11px] text-[#A1A1B5] pt-0.5 leading-relaxed">
+                    {analysisError.includes("Non-cosmetic")
+                      ? "CosmeticVerify only inspects cosmetic and beauty products (makeup, skincare, beauty packaging). Please upload a valid cosmetic product photo."
+                      : "Please ensure the image is clear and try again in a moment."}
                   </p>
                 </div>
               </div>
             )}
 
-            {/* Verification Results Display Container */}
+            {/* Verification Results Container */}
             {hasVerified && (
               <div id="verification-results-container" className="pt-4">
                 <VerificationResult

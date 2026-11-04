@@ -15,9 +15,12 @@ def analyze_review_authenticity(
     product_id: str = None,
     category: str = None,
     real_reviews: Optional[List[Dict[str, Any]]] = None,
+    simulated_reviews: Optional[List[Dict[str, Any]]] = None,
+    demo_key: Optional[str] = None,
 ) -> dict:
     """
-    Returns the review section: real-text sentiment (if any) and authenticity status NOT_VALIDATED.
+    Returns the review section: real-text sentiment (if any), simulated reviews when applicable,
+    and authenticity status NOT_VALIDATED.
     """
     return analyze_product_reviews(
         product_id=product_id,
@@ -25,4 +28,6 @@ def analyze_review_authenticity(
         product_name=product_name,
         category=category,
         real_reviews=real_reviews,
+        simulated_reviews=simulated_reviews,
+        demo_key=demo_key,
     )

@@ -8,12 +8,22 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus
 from typing import List
+from urllib3.util import Retry
+from requests.adapters import HTTPAdapter
 from app.services.scraping.schemas import RawMarketplaceItem
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
 }
+
+def _get_fast_session():
+    """Session configured with zero retries so unreachable/sandboxed networks fail in ms rather than minutes."""
+    s = requests.Session()
+    adapter = HTTPAdapter(max_retries=Retry(total=0, connect=0, read=0, status=0))
+    s.mount("https://", adapter)
+    s.mount("http://", adapter)
+    return s
 
 def scrape_temu_products(query: str, max_results: int = 3) -> List[RawMarketplaceItem]:
     """
@@ -23,7 +33,8 @@ def scrape_temu_products(query: str, max_results: int = 3) -> List[RawMarketplac
     url = f"https://www.temu.com/search_result.html?search_key={quote_plus(query)}"
     
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=8)
+        session = _get_fast_session()
+        resp = session.get(url, headers=HEADERS, timeout=(3.0, 4.0))
         if resp.status_code in [403, 503, 429]:
             return [RawMarketplaceItem(
                 platform="Temu",

@@ -12,6 +12,69 @@ interface ImageUploaderProps {
   onOpenCamera: () => void;
 }
 
+/**
+ * Client-side downscaling of oversized images using an HTML5 offscreen canvas.
+ * Reduces 10MB+ high-resolution camera photos to <= 1600px width/height while preserving aspect ratio.
+ */
+async function safelyResizeImage(file: File, maxDim: number = 1600): Promise<File> {
+  return new Promise((resolve) => {
+    // If SVG or already small, return original
+    if (file.size < 1.5 * 1024 * 1024 && file.type === "image/jpeg") {
+      return resolve(file);
+    }
+
+    const img = new Image();
+    const objectUrl = URL.createObjectURL(file);
+
+    img.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+      const { naturalWidth: width, naturalHeight: height } = img;
+
+      // If dimensions are within maxDim, preserve file
+      if (width <= maxDim && height <= maxDim) {
+        return resolve(file);
+      }
+
+      const scale = maxDim / Math.max(width, height);
+      const newWidth = Math.max(1, Math.round(width * scale));
+      const newHeight = Math.max(1, Math.round(height * scale));
+
+      const canvas = document.createElement("canvas");
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+      const ctx = canvas.getContext("2d");
+
+      if (!ctx) {
+        return resolve(file);
+      }
+
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(img, 0, 0, newWidth, newHeight);
+
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) return resolve(file);
+          const resizedFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+            type: "image/jpeg",
+            lastModified: Date.now(),
+          });
+          resolve(resizedFile);
+        },
+        "image/jpeg",
+        0.92
+      );
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      resolve(file);
+    };
+
+    img.src = objectUrl;
+  });
+}
+
 export default function ImageUploader({
   selectedFile,
   previewUrl,
@@ -20,33 +83,52 @@ export default function ImageUploader({
   onOpenCamera,
 }: ImageUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
+  const [isOptimizing, setIsOptimizing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const MAX_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB limit
+  const MAX_SIZE_BYTES = 15 * 1024 * 1024; // 15 MB limit
 
-  const handleValidateAndSelect = (file: File) => {
+  const handleValidateAndSelect = async (file: File) => {
     // Validate type
-    const validTypes = ["image/jpeg", "image/jpg", "image/png"];
-    if (!validTypes.includes(file.type.toLowerCase())) {
-      toast.error("Only image files (JPG, JPEG, PNG) are allowed.", {
+    const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+    const fileType = file.type.toLowerCase();
+    const fileName = file.name.toLowerCase();
+    const isValidFormat =
+      validTypes.includes(fileType) ||
+      fileName.endsWith(".jpg") ||
+      fileName.endsWith(".jpeg") ||
+      fileName.endsWith(".png") ||
+      fileName.endsWith(".webp");
+
+    if (!isValidFormat) {
+      toast.error("Only image files (JPG, JPEG, PNG, WEBP) are allowed.", {
         toastId: "invalid-format-toast",
       });
       return;
     }
 
-    // Validate size (10MB limit)
+    // Validate size (15MB limit)
     if (file.size > MAX_SIZE_BYTES) {
       const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
-      toast.error(`File size exceeds 10 MB limit (${sizeMB} MB uploaded).`, {
+      toast.error(`File size exceeds 15 MB limit (${sizeMB} MB uploaded).`, {
         toastId: "file-size-toast",
       });
       return;
     }
 
-    onFileSelect(file);
-    toast.success("Product image loaded successfully.", {
-      toastId: "image-loaded-toast",
-    });
+    // Safely downscale oversized photo in background for high-speed AI inference
+    try {
+      setIsOptimizing(true);
+      const optimizedFile = await safelyResizeImage(file, 1600);
+      setIsOptimizing(false);
+      onFileSelect(optimizedFile);
+      toast.success("Product image ready for verification.", {
+        toastId: "image-loaded-toast",
+      });
+    } catch {
+      setIsOptimizing(false);
+      onFileSelect(file);
+    }
   };
 
   const handleDrag = (e: DragEvent<HTMLDivElement>) => {
@@ -89,7 +171,7 @@ export default function ImageUploader({
         ref={fileInputRef}
         type="file"
         id="cosmetic-file-upload-input"
-        accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+        accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
         className="hidden"
         onChange={handleChange}
       />
@@ -104,8 +186,8 @@ export default function ImageUploader({
           onClick={() => fileInputRef.current?.click()}
           className={`relative border-2 border-dashed rounded-3xl p-8 sm:p-12 text-center cursor-pointer transition-all duration-200 touch-manipulation ${
             dragActive
-              ? "border-pink-500 bg-pink-50/70 scale-[1.01]"
-              : "border-purple-200 hover:border-purple-400 bg-white/70 hover:bg-purple-50/40"
+              ? "border-[#EC4899] bg-[#202033] scale-[1.01]"
+              : "border-[#303047] hover:border-[#A855F7] bg-[#191925]/90 hover:bg-[#202033]/90"
           }`}
           tabIndex={0}
           role="button"
@@ -119,16 +201,16 @@ export default function ImageUploader({
         >
           <div className="flex flex-col items-center justify-center space-y-5">
             {/* Upload Icon Circle */}
-            <div className="w-20 h-20 rounded-3xl bg-gradient-to-tr from-pink-100 via-purple-100 to-indigo-100 flex items-center justify-center text-purple-700 shadow-xs">
-              <Upload className="w-9 h-9 text-pink-600" />
+            <div className="w-20 h-20 rounded-3xl bg-[#12121C] border border-[#303047] flex items-center justify-center shadow-md">
+              <Upload className="w-9 h-9 text-[#EC4899]" />
             </div>
 
             {/* Title & Instructions */}
             <div className="space-y-1">
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
-                Upload a cosmetic product image
+              <h3 className="text-xl sm:text-2xl font-bold text-[#F8FAFC]">
+                Upload cosmetic packaging photo
               </h3>
-              <p className="text-sm text-slate-500 font-medium max-w-sm mx-auto">
+              <p className="text-sm text-[#A1A1B5] font-medium max-w-sm mx-auto">
                 Drag and drop your file here, click to browse, or use your device camera
               </p>
             </div>
@@ -141,9 +223,9 @@ export default function ImageUploader({
                   e.stopPropagation();
                   onOpenCamera();
                 }}
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold text-purple-900 bg-purple-100/90 hover:bg-purple-200 border border-purple-200/80 rounded-xl transition-colors shadow-2xs touch-manipulation min-h-[44px] cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold text-[#F8FAFC] bg-[#12121C] hover:bg-[#202033] border border-[#303047] rounded-xl transition-colors shadow-sm touch-manipulation min-h-[44px] cursor-pointer"
               >
-                <Camera className="w-4 h-4 text-purple-700" />
+                <Camera className="w-4 h-4 text-[#A855F7]" />
                 <span>Use Device Camera</span>
               </button>
 
@@ -153,7 +235,7 @@ export default function ImageUploader({
                   e.stopPropagation();
                   fileInputRef.current?.click();
                 }}
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold text-white bg-purple-900 hover:bg-purple-950 rounded-xl transition-colors shadow-2xs touch-manipulation min-h-[44px] cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold text-white bg-gradient-to-r from-[#EC4899] to-[#A855F7] hover:opacity-95 rounded-xl transition-all shadow-md touch-manipulation min-h-[44px] cursor-pointer"
               >
                 <Upload className="w-4 h-4" />
                 <span>Browse File</span>
@@ -161,18 +243,18 @@ export default function ImageUploader({
             </div>
 
             {/* Supported formats */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-medium text-slate-600">
-              <ImageIcon className="w-3.5 h-3.5 text-purple-600" />
-              <span>JPG, JPEG, PNG (Max file size: 10 MB)</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#12121C] border border-[#303047] text-xs font-medium text-[#A1A1B5]">
+              <ImageIcon className="w-3.5 h-3.5 text-[#A855F7]" />
+              <span>JPG, JPEG, PNG, WEBP (Max file size: 15 MB)</span>
             </div>
           </div>
         </div>
       ) : (
         /* Selected File Card */
-        <div className="p-6 bg-purple-50/60 rounded-3xl border border-purple-200 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+        <div className="p-6 bg-[#191925] rounded-3xl border border-[#303047] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-5 w-full sm:w-auto">
             {previewUrl && (
-              <div className="w-24 h-24 rounded-2xl overflow-hidden bg-white border border-purple-200 shrink-0 shadow-xs relative">
+              <div className="w-24 h-24 rounded-2xl overflow-hidden bg-[#12121C] border border-[#303047] shrink-0 shadow-md relative">
                 <img
                   src={previewUrl}
                   alt="Selected product preview"
@@ -182,15 +264,15 @@ export default function ImageUploader({
             )}
             <div className="space-y-1.5 overflow-hidden">
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
-                  Image Ready
+                <CheckCircle className="w-4 h-4 text-[#22C55E] shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-md border border-[#22C55E]/30">
+                  {isOptimizing ? "Optimizing..." : "Image Ready"}
                 </span>
               </div>
-              <p className="font-bold text-slate-900 truncate max-w-xs sm:max-w-md text-base">
+              <p className="font-bold text-[#F8FAFC] truncate max-w-xs sm:max-w-md text-base">
                 {selectedFile.name}
               </p>
-              <p className="text-xs text-slate-500 font-medium">
+              <p className="text-xs text-[#A1A1B5] font-medium">
                 {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • {selectedFile.type.split("/")[1]?.toUpperCase() || "IMAGE"}
               </p>
             </div>
@@ -200,7 +282,7 @@ export default function ImageUploader({
             <button
               type="button"
               onClick={onOpenCamera}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs font-semibold text-purple-900 bg-purple-100 hover:bg-purple-200 border border-purple-200 rounded-xl transition-colors touch-manipulation min-h-[44px] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs font-semibold text-[#A855F7] bg-[#202033] hover:bg-[#12121C] border border-[#303047] rounded-xl transition-colors touch-manipulation min-h-[44px] cursor-pointer"
             >
               <Camera className="w-3.5 h-3.5" />
               <span>Camera</span>
@@ -209,7 +291,7 @@ export default function ImageUploader({
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 rounded-xl transition-colors touch-manipulation min-h-[44px] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-[#F8FAFC] bg-[#202033] hover:bg-[#12121C] border border-[#303047] rounded-xl transition-colors touch-manipulation min-h-[44px] cursor-pointer"
             >
               <span>Change Image</span>
             </button>
@@ -217,7 +299,7 @@ export default function ImageUploader({
             <button
               type="button"
               onClick={handleRemove}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition-colors touch-manipulation min-h-[44px] cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 text-xs font-semibold text-[#F87171] bg-[#12121C] hover:bg-[#202033] border border-[#303047] rounded-xl transition-colors touch-manipulation min-h-[44px] cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
               <span>Remove</span>

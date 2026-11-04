@@ -92,13 +92,18 @@ _MODEL_ID = "openai/clip-vit-base-patch32"
 def _get_clip_model_and_processor():
     """
     Lazy-loads OpenAI CLIP ViT-B/32 model and processor singletons.
+    Prioritizes local cached weights to prevent blocking network calls.
     """
     global _CLIP_MODEL, _CLIP_PROCESSOR
     if _CLIP_MODEL is None or _CLIP_PROCESSOR is None:
         from transformers import CLIPModel, CLIPProcessor
         print(f"Loading Genuine OpenAI CLIP Model ({_MODEL_ID})...")
-        _CLIP_MODEL = CLIPModel.from_pretrained(_MODEL_ID)
-        _CLIP_PROCESSOR = CLIPProcessor.from_pretrained(_MODEL_ID)
+        try:
+            _CLIP_MODEL = CLIPModel.from_pretrained(_MODEL_ID, local_files_only=True)
+            _CLIP_PROCESSOR = CLIPProcessor.from_pretrained(_MODEL_ID, local_files_only=True)
+        except Exception:
+            _CLIP_MODEL = CLIPModel.from_pretrained(_MODEL_ID)
+            _CLIP_PROCESSOR = CLIPProcessor.from_pretrained(_MODEL_ID)
         _CLIP_MODEL.eval()
     return _CLIP_MODEL, _CLIP_PROCESSOR
 
@@ -214,6 +219,157 @@ def screen_cosmetic_image(
         "is_ambiguous": False,
         "message": "Cosmetic visual verification passed.",
         "metrics": metrics
+    }
+
+SUPPORTED_CATEGORIES = [
+    "Foundation",
+    "Lipstick",
+    "Concealer",
+    "Face powder",
+    "Blush",
+    "Eyeshadow",
+    "Eyeliner",
+    "Mascara",
+    "Lip gloss",
+    "Other makeup",
+    "Non-cosmetic / uncertain",
+]
+
+_CATEGORY_PROMPTS = [
+    "a photo of foundation cosmetic packaging or liquid makeup bottle",
+    "a photo of lipstick cosmetic tube bullet makeup",
+    "a photo of concealer cosmetic tube wand or liquid corrector",
+    "a photo of face powder compact or setting powder loose jar",
+    "a photo of blush cheek powder makeup compact",
+    "a photo of eyeshadow eye shadow palette with powder colors",
+    "a photo of eyeliner pencil or liquid eyeliner pen cosmetic",
+    "a photo of mascara cosmetic tube with lash applicator brush",
+    "a photo of lip gloss shiny wand tube cosmetic",
+    "a photo of other makeup cosmetic beauty packaging",
+]
+
+_CATEGORY_NAMES = [
+    "Foundation",
+    "Lipstick",
+    "Concealer",
+    "Face powder",
+    "Blush",
+    "Eyeshadow",
+    "Eyeliner",
+    "Mascara",
+    "Lip gloss",
+    "Other makeup",
+]
+
+_CATEGORY_TEXT_FEATURES = None
+
+def _get_category_text_features():
+    """Lazy-loads and caches normalized text embeddings for the 10 cosmetic categories."""
+    global _CATEGORY_TEXT_FEATURES
+    if _CATEGORY_TEXT_FEATURES is not None:
+        return _CATEGORY_TEXT_FEATURES
+    model, processor = _get_clip_model_and_processor()
+    inp = processor(text=_CATEGORY_PROMPTS, return_tensors="pt", padding=True)
+    with torch.no_grad():
+        out = model.get_text_features(**inp)
+        feat = out.pooler_output if hasattr(out, 'pooler_output') and out.pooler_output is not None else (out.text_embeds if hasattr(out, 'text_embeds') else (out if isinstance(out, torch.Tensor) else out[0]))
+        feat = feat / feat.norm(dim=-1, keepdim=True)
+    _CATEGORY_TEXT_FEATURES = feat.cpu().numpy().astype(np.float32)
+    return _CATEGORY_TEXT_FEATURES
+
+CATEGORY_KEYWORDS_MAP = {
+    "Foundation": ["foundation", "fit me", "coverage foundation", "liquid foundation", "bb cream", "cc cream", "complexion"],
+    "Lipstick": ["lipstick", "lippie", "lip colour", "lip color", "rouge", "matte lipstick", "satin lipstick"],
+    "Concealer": ["concealer", "stretch concealer", "spot concealer", "correct and cover", "corrector", "skinstick", "onebase", "camouflage"],
+    "Face powder": ["powder", "setting powder", "pressed powder", "loose powder", "compact makeup", "translucent powder", "mineral powder", "blur powder", "finishing powder"],
+    "Blush": ["blush", "blusher", "cheek", "cheek color", "cheek colour", "rouge powder", "mosaic blush"],
+    "Eyeshadow": ["eyeshadow", "eye shadow", "shadow palette", "liquid eye shadow", "eye color", "pigment palette"],
+    "Eyeliner": ["eyeliner", "eye liner", "liquid liner", "gel liner", "kohl", "pencil liner", "eye brow liner", "brow liner"],
+    "Mascara": ["mascara", "volumising mascara", "lash", "lashes", "waterproof mascara"],
+    "Lip gloss": ["lip gloss", "lipgloss", "glossy lip", "lip shine", "lip oil", "lip tint"],
+    "Other makeup": ["bronzer", "bronzing", "contour", "highlighter", "nail polish", "makeup", "tint", "primer"]
+}
+
+def classify_cosmetic_category(
+    query_vec: np.ndarray,
+    ocr_text: str = "",
+    catalog_category: str = None,
+    is_rejected: bool = False
+) -> dict:
+    """
+    Classifies the input product image into one of the supported categories:
+    Foundation, Lipstick, Concealer, Face powder, Blush, Eyeshadow, Eyeliner,
+    Mascara, Lip gloss, Other makeup, Non-cosmetic / uncertain.
+
+    Combines zero-shot CLIP visual embeddings, OCR extracted label tokens,
+    and reference catalog compatibility.
+    Computes confidence level and prediction score margin between top-1 and top-2 categories.
+    """
+    if is_rejected:
+        return {
+            "category": "Non-cosmetic / uncertain",
+            "confidence": "Rejected",
+            "confidence_score": 0.0,
+            "prediction_margin": 0.0,
+            "evidence": ["Image screening flagged non-cosmetic visual features."],
+            "all_scores": {}
+        }
+
+    cat_feats = _get_category_text_features()  # shape: (10, 512)
+    raw_sims = np.dot(cat_feats, query_vec)    # shape: (10,)
+
+    combined_scores = {}
+    ocr_lower = (ocr_text or "").lower()
+
+    for idx, name in enumerate(_CATEGORY_NAMES):
+        score = float(raw_sims[idx])
+
+        # OCR keyword boost (+0.25)
+        keywords = CATEGORY_KEYWORDS_MAP.get(name, [])
+        ocr_match = any(kw in ocr_lower for kw in keywords)
+        if ocr_match:
+            score += 0.25
+
+        # Catalog category compatibility boost (+0.12)
+        if catalog_category:
+            cat_norm = catalog_category.replace('_', ' ').lower()
+            if name.lower() in cat_norm or cat_norm in name.lower():
+                score += 0.12
+
+        combined_scores[name] = round(score, 4)
+
+    # Sort descending
+    sorted_cats = sorted(combined_scores.items(), key=lambda x: x[1], reverse=True)
+    top_cat, top_score = sorted_cats[0]
+    second_cat, second_score = sorted_cats[1] if len(sorted_cats) > 1 else (None, 0.0)
+
+    margin = round((top_score - second_score) * 100, 2)
+
+    # Determine confidence
+    has_ocr_confirmation = any(kw in ocr_lower for kw in CATEGORY_KEYWORDS_MAP.get(top_cat, []))
+    if has_ocr_confirmation or (margin >= 8.0 and top_score >= 0.50):
+        confidence = "High"
+    elif margin >= 3.0 or top_score >= 0.45:
+        confidence = "Moderate"
+    elif top_score < 0.35 and margin < 2.0:
+        top_cat = "Other makeup"
+        confidence = "Low"
+    else:
+        confidence = "Low"
+
+    evidence = []
+    if has_ocr_confirmation:
+        evidence.append(f"OCR label keywords confirmed '{top_cat}' form factor.")
+    evidence.append(f"CLIP visual category similarity: {round(top_score * 100, 1)}% (margin: {margin}% over {second_cat}).")
+
+    return {
+        "category": top_cat,
+        "confidence": confidence,
+        "confidence_score": round(top_score, 4),
+        "prediction_margin": margin,
+        "runner_up_category": second_cat,
+        "evidence": evidence,
+        "all_scores": combined_scores
     }
 
 def get_dataset_info() -> dict:
@@ -641,12 +797,22 @@ def compute_clip_similarity(
                 match_status = "Low-Confidence / Unverified Match"
                 confidence_level = "Low"
 
+        # 8. Category Classification across supported categories
+        cat_classification = classify_cosmetic_category(
+            query_vec=query_vec,
+            ocr_text=f"{brand_name or ''} {ocr_category or ''}",
+            catalog_category=best_match["category"] if best_match else None,
+            is_rejected=False
+        )
+
         return {
             "status": "completed",
             "matched_product_id": best_match["product_id"] if best_match else None,
             "matched_product_name": best_match["product_name"] if best_match else "Unknown Product",
             "matched_brand": best_match["brand"] if best_match else "Unknown Brand",
             "matched_category": best_match["category"] if best_match else None,
+            "detected_category": cat_classification.get("category", "Other makeup"),
+            "category_classification": cat_classification,
             "matched_folder": best_match["folder_name"] if best_match else None,
             "similarity_score": round(similarity_score, 4),
             "similarity_percentage": similarity_percentage,

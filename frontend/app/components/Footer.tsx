@@ -23,7 +23,7 @@ export default function Footer() {
               AI Cosmetic Product Verification and Trustworthy Marketplace Recommendation System.
             </p>
             <div className="inline-block px-3 py-1 rounded-md bg-purple-950/80 border border-purple-800/60 text-purple-300 text-xs font-semibold">
-              Semester 6 Data Management Project
+              Independent AI Product Verification Platform
             </div>
           </div>
 
@@ -76,7 +76,7 @@ export default function Footer() {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <p>© {currentYear} CosmeticVerify. All rights reserved.</p>
           <div className="flex items-center gap-1">
-            <span>Built for Semester 6 Data Management</span>
+            <span>AI Cosmetic Product Verification System</span>
           </div>
         </div>
       </div>

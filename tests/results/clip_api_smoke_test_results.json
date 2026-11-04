@@ -1,0 +1,448 @@
+{
+  "test_timestamp": "2026-10-31 00:45:58",
+  "model_name": "OpenAI CLIP ViT-B/32 Vision Transformer (Hugging Face)",
+  "endpoint_tested": "POST /api/analyze",
+  "total_images_tested": 7,
+  "correct_predictions": 7,
+  "failed_predictions": 0,
+  "accuracy_percentage": 100.0,
+  "results": [
+    {
+      "test_index": 1,
+      "image_filename": "P001_0001.jpg",
+      "relative_path": "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0001.jpg",
+      "expected_product_id": "P001",
+      "predicted_product_id": "P001",
+      "is_correct": true,
+      "similarity_score": 0.99,
+      "similarity_percentage": 99.0,
+      "match_status": "Low-Confidence / Catalog Mismatch",
+      "confidence_level": "Low",
+      "processing_time_seconds": 14.206,
+      "ocr_extracted_raw_text": [
+        "COLOURPOP",
+        "COLOURPOP",
+        "FRESHKISS",
+        "COLOURPOP",
+        "FRESHKIS",
+        "GLOSSYLIPBALN",
+        "FRESHKIS",
+        "GLOSSYLIPBA",
+        "02026POKEMON/NINTENDO/CREATURES/GAMEFREAK."
+      ],
+      "ocr_brand_name": "Colourpop",
+      "ocr_product_name": "FRESHKISS FRESHKIS GLOSSYLIPBALN FRESHKIS",
+      "top_5_product_matches": [
+        {
+          "rank": 1,
+          "product_id": "P001",
+          "brand": "colourpop",
+          "product_name": "Lippie Pencil",
+          "category": "Lip_Products",
+          "similarity_percentage": 99.0
+        },
+        {
+          "rank": 2,
+          "product_id": "P002",
+          "brand": "sally b's skin yummies",
+          "product_name": "B Glossy Lip Gloss",
+          "category": "Lip_Products",
+          "similarity_percentage": 69.4
+        },
+        {
+          "rank": 3,
+          "product_id": "P015",
+          "brand": "lotus cosmetics usa",
+          "product_name": "Mascara",
+          "category": "Eye_Products",
+          "similarity_percentage": 66.4
+        },
+        {
+          "rank": 4,
+          "product_id": "P017",
+          "brand": "c'est moi",
+          "product_name": "Muse Mascara",
+          "category": "Eye_Products",
+          "similarity_percentage": 64.9
+        },
+        {
+          "rank": 5,
+          "product_id": "P011",
+          "brand": "fenty",
+          "product_name": "MATCH STIX - Matte Skinstick",
+          "category": "Foundation_Base",
+          "similarity_percentage": 64.0
+        }
+      ]
+    },
+    {
+      "test_index": 2,
+      "image_filename": "P005_0001.jpg",
+      "relative_path": "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0001.jpg",
+      "expected_product_id": "P005",
+      "predicted_product_id": "P005",
+      "is_correct": true,
+      "similarity_score": 1.0,
+      "similarity_percentage": 100.0,
+      "match_status": "High-Confidence Product Match",
+      "confidence_level": "High",
+      "processing_time_seconds": 4.16,
+      "ocr_extracted_raw_text": [],
+      "ocr_brand_name": "No Text Detected",
+      "ocr_product_name": "Unidentified Product",
+      "top_5_product_matches": [
+        {
+          "rank": 1,
+          "product_id": "P005",
+          "brand": "marienatie",
+          "product_name": "Lipstick",
+          "category": "Lip_Products",
+          "similarity_percentage": 100.0
+        },
+        {
+          "rank": 2,
+          "product_id": "P011",
+          "brand": "fenty",
+          "product_name": "MATCH STIX - Matte Skinstick",
+          "category": "Foundation_Base",
+          "similarity_percentage": 81.6
+        },
+        {
+          "rank": 3,
+          "product_id": "P006",
+          "brand": "coastal classic creation",
+          "product_name": "Conch Lipstick",
+          "category": "Lip_Products",
+          "similarity_percentage": 81.0
+        },
+        {
+          "rank": 4,
+          "product_id": "P001",
+          "brand": "colourpop",
+          "product_name": "Lippie Pencil",
+          "category": "Lip_Products",
+          "similarity_percentage": 79.3
+        },
+        {
+          "rank": 5,
+          "product_id": "P008",
+          "brand": "w3llpeople",
+          "product_name": "Realist Invisible Setting Powder",
+          "category": "Foundation_Base",
+          "similarity_percentage": 77.9
+        }
+      ]
+    },
+    {
+      "test_index": 3,
+      "image_filename": "P010_0001.jpg",
+      "relative_path": "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0001.jpg",
+      "expected_product_id": "P010",
+      "predicted_product_id": "P010",
+      "is_correct": true,
+      "similarity_score": 1.0,
+      "similarity_percentage": 100.0,
+      "match_status": "High-Confidence Product Match",
+      "confidence_level": "High",
+      "processing_time_seconds": 8.088,
+      "ocr_extracted_raw_text": [],
+      "ocr_brand_name": "No Text Detected",
+      "ocr_product_name": "Unidentified Product",
+      "top_5_product_matches": [
+        {
+          "rank": 1,
+          "product_id": "P010",
+          "brand": "glossier",
+          "product_name": "Stretch Concealer",
+          "category": "Foundation_Base",
+          "similarity_percentage": 100.0
+        },
+        {
+          "rank": 2,
+          "product_id": "P023",
+          "brand": "marcelle",
+          "product_name": "Marcelle BB Cream-to-Powder Makeup",
+          "category": "Foundation_Base",
+          "similarity_percentage": 80.3
+        },
+        {
+          "rank": 3,
+          "product_id": "P005",
+          "brand": "marienatie",
+          "product_name": "Lipstick",
+          "category": "Lip_Products",
+          "similarity_percentage": 79.3
+        },
+        {
+          "rank": 4,
+          "product_id": "P028",
+          "brand": "mineral fusion",
+          "product_name": "Mineral Fusion Bronzer Duo",
+          "category": "Other_Makeup",
+          "similarity_percentage": 79.3
+        },
+        {
+          "rank": 5,
+          "product_id": "P020",
+          "brand": "smashbox",
+          "product_name": "24 Hour CC Spot Concealer",
+          "category": "Foundation_Base",
+          "similarity_percentage": 78.9
+        }
+      ]
+    },
+    {
+      "test_index": 4,
+      "image_filename": "P015_0001.jpg",
+      "relative_path": "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0001.jpg",
+      "expected_product_id": "P015",
+      "predicted_product_id": "P015",
+      "is_correct": true,
+      "similarity_score": 0.9101,
+      "similarity_percentage": 91.0,
+      "match_status": "Low-Confidence / Catalog Mismatch",
+      "confidence_level": "Low",
+      "processing_time_seconds": 1.667,
+      "ocr_extracted_raw_text": [
+        "Routino",
+        "Derm",
+        "APAMICELARA",
+        "PURIFIANTA",
+        "Routino",
+        "PURIFYNG IRCELLARWATER",
+        "Derm*",
+        "PIELEMATURAMATURE SKIW",
+        "CITRUSTEMI",
+        "APAMICELARA",
+        "PURIFIANTA",
+        "CITRUSTEN'N",
+        "e1som"
+      ],
+      "ocr_brand_name": "Apamicelara",
+      "ocr_product_name": "Routino Derm PURIFIANTA Routino",
+      "top_5_product_matches": [
+        {
+          "rank": 1,
+          "product_id": "P015",
+          "brand": "lotus cosmetics usa",
+          "product_name": "Mascara",
+          "category": "Eye_Products",
+          "similarity_percentage": 91.0
+        },
+        {
+          "rank": 2,
+          "product_id": "P003",
+          "brand": "penny lane organics",
+          "product_name": "Lip Gloss",
+          "category": "Lip_Products",
+          "similarity_percentage": 73.8
+        },
+        {
+          "rank": 3,
+          "product_id": "P001",
+          "brand": "colourpop",
+          "product_name": "Lippie Pencil",
+          "category": "Lip_Products",
+          "similarity_percentage": 72.1
+        },
+        {
+          "rank": 4,
+          "product_id": "P019",
+          "brand": "iman",
+          "product_name": "CC Correct & Cover Clay Medium Deep",
+          "category": "Foundation_Base",
+          "similarity_percentage": 72.1
+        },
+        {
+          "rank": 5,
+          "product_id": "P010",
+          "brand": "glossier",
+          "product_name": "Stretch Concealer",
+          "category": "Foundation_Base",
+          "similarity_percentage": 71.6
+        }
+      ]
+    },
+    {
+      "test_index": 5,
+      "image_filename": "P020_0001.jpg",
+      "relative_path": "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0001.jpg",
+      "expected_product_id": "P020",
+      "predicted_product_id": "P020",
+      "is_correct": true,
+      "similarity_score": 0.9562,
+      "similarity_percentage": 95.6,
+      "match_status": "Low-Confidence / Catalog Mismatch",
+      "confidence_level": "Low",
+      "processing_time_seconds": 1.59,
+      "ocr_extracted_raw_text": [
+        "inashbox",
+        "24",
+        "HOUR",
+        "CCSPOT",
+        "CONCEALER",
+        "ANTI-CERNES"
+      ],
+      "ocr_brand_name": "Hour",
+      "ocr_product_name": "inashbox 24 CCSPOT CONCEALER",
+      "top_5_product_matches": [
+        {
+          "rank": 1,
+          "product_id": "P020",
+          "brand": "smashbox",
+          "product_name": "24 Hour CC Spot Concealer",
+          "category": "Foundation_Base",
+          "similarity_percentage": 95.6
+        },
+        {
+          "rank": 2,
+          "product_id": "P003",
+          "brand": "penny lane organics",
+          "product_name": "Lip Gloss",
+          "category": "Lip_Products",
+          "similarity_percentage": 77.8
+        },
+        {
+          "rank": 3,
+          "product_id": "P016",
+          "brand": "green people",
+          "product_name": "Volumising Mascara",
+          "category": "Eye_Products",
+          "similarity_percentage": 76.1
+        },
+        {
+          "rank": 4,
+          "product_id": "P011",
+          "brand": "fenty",
+          "product_name": "MATCH STIX - Matte Skinstick",
+          "category": "Foundation_Base",
+          "similarity_percentage": 75.8
+        },
+        {
+          "rank": 5,
+          "product_id": "P002",
+          "brand": "sally b's skin yummies",
+          "product_name": "B Glossy Lip Gloss",
+          "category": "Lip_Products",
+          "similarity_percentage": 74.8
+        }
+      ]
+    },
+    {
+      "test_index": 6,
+      "image_filename": "P025_0001.jpg",
+      "relative_path": "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0001.jpg",
+      "expected_product_id": "P025",
+      "predicted_product_id": "P025",
+      "is_correct": true,
+      "similarity_score": 0.7686,
+      "similarity_percentage": 76.9,
+      "match_status": "Possible Product Match",
+      "confidence_level": "Moderate",
+      "processing_time_seconds": 3.283,
+      "ocr_extracted_raw_text": [],
+      "ocr_brand_name": "No Text Detected",
+      "ocr_product_name": "Unidentified Product",
+      "top_5_product_matches": [
+        {
+          "rank": 1,
+          "product_id": "P025",
+          "brand": "dior",
+          "product_name": "Junon",
+          "category": "Other_Makeup",
+          "similarity_percentage": 76.9
+        },
+        {
+          "rank": 2,
+          "product_id": "P005",
+          "brand": "marienatie",
+          "product_name": "Lipstick",
+          "category": "Lip_Products",
+          "similarity_percentage": 72.3
+        },
+        {
+          "rank": 3,
+          "product_id": "P022",
+          "brand": "physicians formula",
+          "product_name": "Physicians Formula Bronze Booster Glow-Boosting BB Cream",
+          "category": "Other_Makeup",
+          "similarity_percentage": 70.6
+        },
+        {
+          "rank": 4,
+          "product_id": "P011",
+          "brand": "fenty",
+          "product_name": "MATCH STIX - Matte Skinstick",
+          "category": "Foundation_Base",
+          "similarity_percentage": 68.5
+        },
+        {
+          "rank": 5,
+          "product_id": "P026",
+          "brand": "benefit",
+          "product_name": "dallas dusty rose face powder",
+          "category": "Other_Makeup",
+          "similarity_percentage": 65.5
+        }
+      ]
+    },
+    {
+      "test_index": 7,
+      "image_filename": "P030_0001.jpg",
+      "relative_path": "data/image_model_dataset/Other_Makeup/P030_Annabelle_AnnabelleBiggyBronzerHauteGold/P030_0001.jpg",
+      "expected_product_id": "P030",
+      "predicted_product_id": "P030",
+      "is_correct": true,
+      "similarity_score": 1.0,
+      "similarity_percentage": 100.0,
+      "match_status": "High-Confidence Product Match",
+      "confidence_level": "High",
+      "processing_time_seconds": 3.517,
+      "ocr_extracted_raw_text": [],
+      "ocr_brand_name": "No Text Detected",
+      "ocr_product_name": "Unidentified Product",
+      "top_5_product_matches": [
+        {
+          "rank": 1,
+          "product_id": "P030",
+          "brand": "annabelle",
+          "product_name": "Annabelle Biggy Bronzer Haute Gold",
+          "category": "Other_Makeup",
+          "similarity_percentage": 100.0
+        },
+        {
+          "rank": 2,
+          "product_id": "P011",
+          "brand": "fenty",
+          "product_name": "MATCH STIX - Matte Skinstick",
+          "category": "Foundation_Base",
+          "similarity_percentage": 73.5
+        },
+        {
+          "rank": 3,
+          "product_id": "P029",
+          "brand": "nyx",
+          "product_name": "NYX Mosaic Powder Blush Paradise",
+          "category": "Other_Makeup",
+          "similarity_percentage": 69.1
+        },
+        {
+          "rank": 4,
+          "product_id": "P010",
+          "brand": "glossier",
+          "product_name": "Stretch Concealer",
+          "category": "Foundation_Base",
+          "similarity_percentage": 66.6
+        },
+        {
+          "rank": 5,
+          "product_id": "P027",
+          "brand": "stila",
+          "product_name": "Stila Stay All Day Bronzer in Medium",
+          "category": "Other_Makeup",
+          "similarity_percentage": 66.3
+        }
+      ]
+    }
+  ]
+}

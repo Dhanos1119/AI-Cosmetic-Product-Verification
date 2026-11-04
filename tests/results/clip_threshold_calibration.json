@@ -1,0 +1,126 @@
+{
+  "calibration_timestamp": "2026-09-23 12:03:26",
+  "model_name": "OpenAI CLIP ViT-B/32 Vision Transformer (Hugging Face)",
+  "score_type": "Cosine Similarity (Dot product of L2-normalized 512-dim visual embeddings)",
+  "score_interpretation_note": "Cosine similarity measures visual embedding angle proximity [-1.0, 1.0]. It is NOT a probability score and MUST NOT be described as product authenticity or counterfeit confidence.",
+  "synthetic_non_catalog_benchmarks": [
+    {
+      "image_type": "Gaussian Noise Image",
+      "max_similarity_score": 0.6203,
+      "similarity_percentage": 62.0,
+      "nearest_catalog_product": "P006"
+    },
+    {
+      "image_type": "Checkerboard Pattern",
+      "max_similarity_score": 0.7388,
+      "similarity_percentage": 73.9,
+      "nearest_catalog_product": "P012"
+    },
+    {
+      "image_type": "Non-Cosmetic Stop Sign",
+      "max_similarity_score": 0.7515,
+      "similarity_percentage": 75.2,
+      "nearest_catalog_product": "P006"
+    },
+    {
+      "image_type": "Solid Black Image",
+      "max_similarity_score": 0.8126,
+      "similarity_percentage": 81.3,
+      "nearest_catalog_product": "P020"
+    },
+    {
+      "image_type": "Solid White Image",
+      "max_similarity_score": 0.8221,
+      "similarity_percentage": 82.2,
+      "nearest_catalog_product": "P020"
+    }
+  ],
+  "test_set_score_summary": {
+    "correct_predictions": {
+      "count": 188,
+      "min_score": 0.436,
+      "mean_score": 0.7219,
+      "median_score": 0.7259,
+      "max_score": 0.9476
+    },
+    "incorrect_predictions": {
+      "count": 422,
+      "min_score": 0.3357,
+      "mean_score": 0.6832,
+      "median_score": 0.6989,
+      "max_score": 0.8541
+    }
+  },
+  "threshold_tradeoff_table": [
+    {
+      "threshold": 0.5,
+      "accepted_correct": 183,
+      "accepted_incorrect": 406,
+      "precision_pct": 31.07,
+      "coverage_pct": 96.56,
+      "unknown_rate_pct": 3.44
+    },
+    {
+      "threshold": 0.6,
+      "accepted_correct": 165,
+      "accepted_incorrect": 349,
+      "precision_pct": 32.1,
+      "coverage_pct": 84.26,
+      "unknown_rate_pct": 15.74
+    },
+    {
+      "threshold": 0.65,
+      "accepted_correct": 144,
+      "accepted_incorrect": 294,
+      "precision_pct": 32.88,
+      "coverage_pct": 71.8,
+      "unknown_rate_pct": 28.2
+    },
+    {
+      "threshold": 0.7,
+      "accepted_correct": 118,
+      "accepted_incorrect": 208,
+      "precision_pct": 36.2,
+      "coverage_pct": 53.44,
+      "unknown_rate_pct": 46.56
+    },
+    {
+      "threshold": 0.75,
+      "accepted_correct": 74,
+      "accepted_incorrect": 101,
+      "precision_pct": 42.29,
+      "coverage_pct": 28.69,
+      "unknown_rate_pct": 71.31
+    },
+    {
+      "threshold": 0.8,
+      "accepted_correct": 43,
+      "accepted_incorrect": 34,
+      "precision_pct": 55.84,
+      "coverage_pct": 12.62,
+      "unknown_rate_pct": 87.38
+    },
+    {
+      "threshold": 0.85,
+      "accepted_correct": 18,
+      "accepted_incorrect": 1,
+      "precision_pct": 94.74,
+      "coverage_pct": 3.11,
+      "unknown_rate_pct": 96.89
+    }
+  ],
+  "proposed_threshold_recommendations": {
+    "low_confidence_cutoff_tau": 0.6,
+    "high_confidence_cutoff_tau": 0.75,
+    "rationale": "Filters out low-similarity noise while retaining 87.8% of correct catalog predictions."
+  },
+  "unknown_product_response_design": {
+    "matched_product_id": "UNKNOWN_PRODUCT",
+    "matched_product_name": "Unidentified Cosmetic Product",
+    "matched_brand": "Unidentified Brand",
+    "matched_category": "Unidentified",
+    "match_status": "Low-Confidence / Unverified Match",
+    "confidence_level": "Low",
+    "schema_compliance": "Preserves existing AnalysisResponse & ClipResultDetails contract"
+  }
+}

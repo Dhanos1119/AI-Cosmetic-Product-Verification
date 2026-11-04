@@ -9,6 +9,8 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus, urljoin
 from typing import List, Optional
+from urllib3.util import Retry
+from requests.adapters import HTTPAdapter
 from app.services.scraping.schemas import RawMarketplaceItem
 
 AMAZON_BASE_URL = "https://www.amazon.com"
@@ -25,6 +27,14 @@ BOT_CHALLENGE_MARKERS = (
     "/_sec/verify?provider=interstitial",
     "api-services-support@amazon.com",
 )
+
+def _get_fast_session():
+    """Session configured with zero retries so unreachable/sandboxed networks fail in ms rather than minutes."""
+    s = requests.Session()
+    adapter = HTTPAdapter(max_retries=Retry(total=0, connect=0, read=0, status=0))
+    s.mount("https://", adapter)
+    s.mount("http://", adapter)
+    return s
 
 
 def extract_amazon_card_link(card) -> Optional[str]:
@@ -69,7 +79,7 @@ def scrape_amazon_products(query: str, max_results: int = 3) -> List[RawMarketpl
     url = f"https://www.amazon.com/s?k={quote_plus(clean_query)}"
 
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=10)
+        resp = requests.get(url, headers=HEADERS, timeout=(3.0, 4.0))
 
         # 1. Anti-bot status checks
         if resp.status_code in [403, 503, 429]:

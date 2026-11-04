@@ -1,0 +1,367 @@
+{
+  "demo_mode_enabled": true,
+  "timeout_seconds": 10.0,
+  "demonstrations": {
+    "1.png": {
+      "demo_id": "demo-1",
+      "target_file": "1.png",
+      "expected_category": "Foundation",
+      "category_label": "Foundation / Face Makeup",
+      "compatible_categories": [
+        "Foundation",
+        "Face powder",
+        "Concealer",
+        "Other makeup"
+      ],
+      "demonstration_identity": {
+        "brand": "Maybelline",
+        "product_name": "Maybelline Fit Me Matte + Poreless Foundation",
+        "product_type": "Liquid Foundation",
+        "category": "Foundation",
+        "shade_or_variant": "120 Classic Ivory"
+      },
+      "require_evidence_for_exact_match": false,
+      "marketplace_simulated": {
+        "amazon": {
+          "status": "UNAVAILABLE",
+          "message": "Live marketplace data unavailable."
+        },
+        "daraz": {
+          "status": "DEMO",
+          "product_name": "Maybelline Fit Me Matte + Poreless Liquid Foundation - 30ml",
+          "price": 3850.0,
+          "currency": "LKR",
+          "rating": 4.6,
+          "rating_count": 84,
+          "review_count": 84,
+          "seller_name": "Maybelline Flagship Store LK",
+          "product_url": "https://www.daraz.lk/products/maybelline-fit-me-matte-poreless-foundation-i100234.html",
+          "data_source": "Simulated Demo Catalog"
+        },
+        "temu": {
+          "status": "UNAVAILABLE",
+          "message": "Live marketplace data unavailable."
+        }
+      },
+      "simulated_reviews": [
+        {
+          "review_id": "REV-F01",
+          "reviewer_name": "Amanda Chen",
+          "headline": "Great coverage",
+          "review_text": "Medium buildable coverage hides blemishes effortlessly while feeling lightweight on the skin.",
+          "star_rating": 5.0,
+          "predicted_sentiment": "positive",
+          "explanation": "Praises natural buildable coverage and lightweight texture on skin.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F02",
+          "reviewer_name": "Jessica Taylor",
+          "headline": "Natural matte finish",
+          "review_text": "Gives a gorgeous natural matte finish that controls shine throughout the day.",
+          "star_rating": 5.0,
+          "predicted_sentiment": "positive",
+          "explanation": "Commends shine control and matte finish without looking flat.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F03",
+          "reviewer_name": "Rachel Kumar",
+          "headline": "Impressive wear time",
+          "review_text": "Lasts a full 8-hour workday without settling into fine lines or fading.",
+          "star_rating": 4.5,
+          "predicted_sentiment": "positive",
+          "explanation": "Highlights durable 8-hour longevity and resistance to creasing.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F04",
+          "reviewer_name": "Emily Rodriguez",
+          "headline": "Superb value",
+          "review_text": "Incredible quality for the drugstore price, performs just like luxury foundations.",
+          "star_rating": 5.0,
+          "predicted_sentiment": "positive",
+          "explanation": "Praises exceptional value for money comparable to prestige brands.",
+          "credibility_indicators": {
+            "verified_purchase": false,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F05",
+          "reviewer_name": "Samantha Lee",
+          "headline": "Photographs well",
+          "review_text": "Smooth application with a satin-matte blur effect that photographs beautifully.",
+          "star_rating": 4.5,
+          "predicted_sentiment": "positive",
+          "explanation": "Approves of smooth application and flattering camera appearance.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F06",
+          "reviewer_name": "Nicole Davis",
+          "headline": "Average texture",
+          "review_text": "The texture is somewhat thin and watery upon pouring, but blends out okay once applied with a sponge.",
+          "star_rating": 3.0,
+          "predicted_sentiment": "neutral",
+          "explanation": "Mixed sentiment regarding thin consistency but acceptable sponge blending.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F07",
+          "reviewer_name": "Hannah Wright",
+          "headline": "Okay shade match",
+          "review_text": "The shade runs slightly darker than the swatch, but workable when blended with a moist sponge.",
+          "star_rating": 3.0,
+          "predicted_sentiment": "neutral",
+          "explanation": "Notes slight shade discrepancy but manageable with blending technique.",
+          "credibility_indicators": {
+            "verified_purchase": false,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F08",
+          "reviewer_name": "Chloe Bennett",
+          "headline": "Messy packaging without pump",
+          "review_text": "Bottle has no pump dispenser, making it messy to pour and easy to waste product.",
+          "star_rating": 2.0,
+          "predicted_sentiment": "negative",
+          "explanation": "Criticizes lack of pump dispenser resulting in product spillage.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F09",
+          "reviewer_name": "Morgan Bailey",
+          "headline": "Oxidized and patchy",
+          "review_text": "Formula oxidized noticeably orange after two hours and clung to dry flaky patches.",
+          "star_rating": 1.5,
+          "predicted_sentiment": "negative",
+          "explanation": "Reports severe oxidation darkening and poor adherence to dry skin zones.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-F10",
+          "reviewer_name": "Ashley Brooks",
+          "headline": "Caused breakouts",
+          "review_text": "Felt heavy and clogged my pores, causing breakouts after three days of wear.",
+          "star_rating": 2.0,
+          "predicted_sentiment": "negative",
+          "explanation": "Reports pore congestion and skin irritation after repeated application.",
+          "credibility_indicators": {
+            "verified_purchase": false,
+            "pattern": "No obvious pattern detected."
+          }
+        }
+      ]
+    },
+    "2.png": {
+      "demo_id": "demo-2",
+      "target_file": "2.png",
+      "expected_category": "Lipstick",
+      "category_label": "Lipstick",
+      "compatible_categories": [
+        "Lipstick",
+        "Lip gloss",
+        "Other makeup"
+      ],
+      "demonstration_identity": {
+        "brand": "Cosmetic Brand",
+        "product_name": "Lipstick",
+        "product_type": "Lipstick",
+        "category": "Lipstick",
+        "shade_or_variant": null
+      },
+      "require_evidence_for_exact_match": true,
+      "marketplace_simulated": {
+        "amazon": {
+          "status": "UNAVAILABLE",
+          "message": "Live marketplace data unavailable."
+        },
+        "daraz": {
+          "status": "DEMO",
+          "product_name": "Matte Long-Lasting Velvet Lipstick Waterproof",
+          "price": 1450.0,
+          "currency": "LKR",
+          "rating": 4.4,
+          "rating_count": 29,
+          "review_count": 29,
+          "seller_name": "Cosmetics Hub Colombo",
+          "product_url": "https://www.daraz.lk/products/matte-long-lasting-lipstick-i200456.html",
+          "data_source": "Simulated Demo Catalog"
+        },
+        "temu": {
+          "status": "DEMO",
+          "product_name": "Velvet Moisturizing Matte Lipstick Waterproof Long Lasting",
+          "price": 4.49,
+          "currency": "USD",
+          "rating": 4.1,
+          "rating_count": 18,
+          "review_count": 18,
+          "seller_name": "ColorPop Official Store",
+          "product_url": "https://www.temu.com/goods.html?goods_id=702311456",
+          "data_source": "Simulated Demo Catalog"
+        }
+      },
+      "simulated_reviews": [
+        {
+          "review_id": "REV-L01",
+          "reviewer_name": "Maya Patel",
+          "headline": "Stunning pigmentation",
+          "review_text": "Richly pigmented in a single swipe, vibrant colour payoff that looks stunning.",
+          "star_rating": 5.0,
+          "predicted_sentiment": "positive",
+          "explanation": "Praises strong single-swipe pigment density and vibrant colour impact.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L02",
+          "reviewer_name": "Zoe Martinez",
+          "headline": "Silky smooth texture",
+          "review_text": "Creamy velvet texture glides on like silk and feels hydrating on lips.",
+          "star_rating": 5.0,
+          "predicted_sentiment": "positive",
+          "explanation": "Compliments smooth glide and comfortable non-drying hydration.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L03",
+          "reviewer_name": "Grace Kim",
+          "headline": "Perfect colour shade",
+          "review_text": "Flattering nude-pink colour that complements medium skin tones perfectly.",
+          "star_rating": 4.5,
+          "predicted_sentiment": "positive",
+          "explanation": "Praises true-to-swatch shade and flattering undertone compatibility.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L04",
+          "reviewer_name": "Olivia Turner",
+          "headline": "Low transfer formula",
+          "review_text": "Minimal transfer onto coffee mugs, maintains a clean defined lip contour.",
+          "star_rating": 4.5,
+          "predicted_sentiment": "positive",
+          "explanation": "Appreciates smudge resistance and neat lip line retention.",
+          "credibility_indicators": {
+            "verified_purchase": false,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L05",
+          "reviewer_name": "Sophia Anderson",
+          "headline": "Beautiful packaging",
+          "review_text": "Gorgeous sleek magnetic tube with satisfying weight, feels premium and durable.",
+          "star_rating": 5.0,
+          "predicted_sentiment": "positive",
+          "explanation": "Highlights durable aesthetic tube construction and secure magnetic closure.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L06",
+          "reviewer_name": "Bella Scott",
+          "headline": "Okay texture",
+          "review_text": "Texture is decent but feels slightly sticky during the first 10 minutes of wear.",
+          "star_rating": 3.0,
+          "predicted_sentiment": "neutral",
+          "explanation": "Moderate feedback citing initial tackiness before settling down.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L07",
+          "reviewer_name": "Lauren Hughes",
+          "headline": "Decent formula",
+          "review_text": "Formula is okay, somewhat moisturizing but fades evenly after two hours.",
+          "star_rating": 3.0,
+          "predicted_sentiment": "neutral",
+          "explanation": "Neutral impression noting balanced hydration but modest wear time.",
+          "credibility_indicators": {
+            "verified_purchase": false,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L08",
+          "reviewer_name": "Victoria Campbell",
+          "headline": "Fades with meals",
+          "review_text": "Noticeable color fading along inner lips after eating oily food, requires reapplication.",
+          "star_rating": 2.0,
+          "predicted_sentiment": "negative",
+          "explanation": "Notes poor resistance to food oils requiring frequent touch-ups.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L09",
+          "reviewer_name": "Danielle Foster",
+          "headline": "Broken dispenser packaging",
+          "review_text": "Packaging is flimsy plastic and arrived with a cracked twist mechanism.",
+          "star_rating": 1.5,
+          "predicted_sentiment": "negative",
+          "explanation": "Disappointed by defective casing and brittle swivel mechanism.",
+          "credibility_indicators": {
+            "verified_purchase": true,
+            "pattern": "No obvious pattern detected."
+          }
+        },
+        {
+          "review_id": "REV-L10",
+          "reviewer_name": "Amber Peterson",
+          "headline": "Awful and drying",
+          "review_text": "Extremely drying formula that flaked off and chapped my lips badly.",
+          "star_rating": 1.0,
+          "predicted_sentiment": "negative",
+          "explanation": "Reports severe dryness, flaking, and lip chapping.",
+          "credibility_indicators": {
+            "verified_purchase": false,
+            "pattern": "No obvious pattern detected."
+          }
+        }
+      ]
+    },
+    "3.png": {
+      "demo_id": "demo-3",
+      "target_file": "3.png",
+      "is_non_cosmetic": true,
+      "rejection_message": "Non-cosmetic image detected."
+    }
+  }
+}
