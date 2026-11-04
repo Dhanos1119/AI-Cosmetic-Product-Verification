@@ -1,0 +1,11 @@
+{
+  "total_candidates_examined": 159,
+  "confirmed_non_cosmetic": 144,
+  "confirmed_duplicate": 1,
+  "uncertain_manual_review": 12,
+  "quarantine_by_split": {
+    "reference": 92,
+    "test": 53
+  },
+  "output_csv": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\reports\\proposed_image_quarantine.csv"
+}

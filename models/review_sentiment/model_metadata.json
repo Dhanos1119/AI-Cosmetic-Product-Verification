@@ -1,0 +1,82 @@
+{
+  "model_name": "Amazon Beauty Review Sentiment Baseline",
+  "model_version": "1.0.0",
+  "training_date": "2026-10-16 17:21:27 UTC",
+  "dataset_source": "amazon_beauty_reviews_dataset.csv",
+  "dataset_source_path": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\data\\review_dataset\\raw\\amazon_beauty_reviews_dataset.csv",
+  "total_source_rows": 701528,
+  "total_selected_rows": 100000,
+  "train_rows": 80000,
+  "test_rows": 20000,
+  "random_seed": 42,
+  "split_strategy": "random-stratified by sentiment (not grouped by product or reviewer)",
+  "selected_columns": [
+    "review_id",
+    "asin",
+    "parent_asin",
+    "title",
+    "text",
+    "rating",
+    "verified_purchase",
+    "timestamp",
+    "helpful_vote",
+    "sentiment",
+    "source_dataset",
+    "label_type"
+  ],
+  "excluded_columns": [
+    "images",
+    "user_id"
+  ],
+  "label_type": "RATING_DERIVED",
+  "label_generation_rule": {
+    "negative": "rating 1 or 2",
+    "neutral": "rating 3",
+    "positive": "rating 4 or 5"
+  },
+  "vectorizer": {
+    "type": "TfidfVectorizer",
+    "max_features": 15000,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "stop_words": "english",
+    "sublinear_tf": true,
+    "min_df": 3
+  },
+  "classifier": {
+    "type": "LogisticRegression",
+    "C": 1.0,
+    "max_iter": 1000,
+    "solver": "saga",
+    "multiclass": "multinomial (sklearn default for saga)"
+  },
+  "python_version": "3.13.3",
+  "sklearn_version": "1.9.1",
+  "pandas_version": "3.0.5",
+  "numpy_version": "2.5.3",
+  "known_limitations": [
+    "Labels are rating-derived (RATING_DERIVED), NOT independently human-verified ground truth.",
+    "This model predicts rating-derived sentiment (positive/neutral/negative), NOT fake vs genuine reviews.",
+    "The model must NEVER be described as a fake-review detector.",
+    "Split is random-stratified by sentiment. The same ASIN may appear in both train and test sets.",
+    "Exact duplicate rows, (asin,user_id,text) duplicates, and globally identical review texts were removed before sampling to prevent exact-text leakage between train and test.",
+    "No near-duplicate (fuzzy) text detection was applied; near-duplicate overlap between train and test may exist.",
+    "Source timestamps are preserved as-is. The raw format is truncated (e.g. '08:48.9', mm:ss.f), has no date component, and cannot be converted to a calendar date.",
+    "Model is trained on Amazon Beauty category only; domain shift may reduce accuracy on other categories.",
+    "verified_purchase, helpful_vote, and rating are NOT used as model input features.",
+    "verified_purchase=False is NOT treated as evidence of a fake review.",
+    "The authenticity_analysis_status is set to NOT_VALIDATED in the review analysis service."
+  ],
+  "artifacts": {
+    "vectorizer": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\models\\review_sentiment\\tfidf_vectorizer.joblib",
+    "classifier": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\models\\review_sentiment\\sentiment_logistic_regression.joblib",
+    "metadata": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\models\\review_sentiment\\model_metadata.json",
+    "evaluation_report": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\models\\review_sentiment\\evaluation_report.json",
+    "selected_csv": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\data\\review_dataset\\selected\\beauty_reviews_selected_100k.csv",
+    "prepared_csv": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\data\\review_dataset\\processed\\beauty_reviews_prepared_100k.csv",
+    "train_csv": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\data\\review_dataset\\train\\beauty_reviews_train_80k.csv",
+    "test_csv": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\data\\review_dataset\\test\\beauty_reviews_test_20k.csv"
+  }
+}

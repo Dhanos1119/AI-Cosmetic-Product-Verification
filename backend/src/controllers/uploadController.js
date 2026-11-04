@@ -59,12 +59,37 @@ const uploadImage = async (req, res) => {
       formData.append('product_url', req.body.product_url);
     }
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000);
+
     const aiResponse = await fetch(aiServiceUrl, {
       method: 'POST',
       body: formData,
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
 
     const aiData = await aiResponse.json();
+
+    // Handle non-cosmetic rejection response cleanly without 500 error
+    if (aiData.status === "rejected_non_cosmetic") {
+      return res.status(200).json({
+        success: false,
+        status: "rejected_non_cosmetic",
+        message: aiData.message || "Non-cosmetic image detected.",
+        product_detection: "Non-cosmetic / uncertain",
+        marketplace_listings: [],
+        platform_comparison: [],
+        screening_details: aiData.screening_details,
+        backend_storage: {
+          filename: req.file.filename,
+          originalName: req.file.originalname,
+          mimetype: req.file.mimetype,
+          size: req.file.size,
+          fileUrl: `/${relativePath}`
+        }
+      });
+    }
 
     if (!aiResponse.ok || !aiData.success) {
       console.error("FastAPI AI Service Error Response:", aiData);

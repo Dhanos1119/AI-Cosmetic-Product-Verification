@@ -9,6 +9,7 @@ const corsMiddleware = require('./config/corsConfig');
 const healthRoutes = require('./routes/healthRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const marketplaceRoutes = require('./routes/marketplaceRoutes');
+const authRoutes = require('./routes/authRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -28,6 +29,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use('/api/health', healthRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/marketplace', marketplaceRoutes);
+app.use('/api/auth', authRoutes);
 
 // Root route handler
 app.get('/', (req, res) => {
@@ -37,7 +39,11 @@ app.get('/', (req, res) => {
     endpoints: {
       health: "/api/health",
       upload: "/api/upload (POST)",
-      marketplace: "/api/marketplace/scrape-url (POST)"
+      marketplace: "/api/marketplace/scrape-url (POST)",
+      auth: {
+        signup: "/api/auth/signup (POST)",
+        login: "/api/auth/login (POST)"
+      }
     }
   });
 });

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, DragEvent, ChangeEvent } from "react";
-import { Camera, Upload, Image as ImageIcon, X, CheckCircle } from "lucide-react";
+import { Upload, Image as ImageIcon, X, CheckCircle } from "lucide-react";
 import { toast } from "react-toastify";
 
 interface ImageUploaderProps {
@@ -9,7 +9,7 @@ interface ImageUploaderProps {
   previewUrl: string | null;
   onFileSelect: (file: File) => void;
   onFileRemove: () => void;
-  onOpenCamera: () => void;
+  onOpenCamera?: () => void;
 }
 
 /**
@@ -80,7 +80,6 @@ export default function ImageUploader({
   previewUrl,
   onFileSelect,
   onFileRemove,
-  onOpenCamera,
 }: ImageUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
   const [isOptimizing, setIsOptimizing] = useState(false);
@@ -211,31 +210,19 @@ export default function ImageUploader({
                 Upload cosmetic packaging photo
               </h3>
               <p className="text-sm text-[#A1A1B5] font-medium max-w-sm mx-auto">
-                Drag and drop your file here, click to browse, or use your device camera
+                Drag and drop your file here, or click to browse
               </p>
             </div>
 
-            {/* Camera & Browse Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onOpenCamera();
-                }}
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold text-[#F8FAFC] bg-[#12121C] hover:bg-[#202033] border border-[#303047] rounded-xl transition-colors shadow-sm touch-manipulation min-h-[44px] cursor-pointer"
-              >
-                <Camera className="w-4 h-4 text-[#A855F7]" />
-                <span>Use Device Camera</span>
-              </button>
-
+            {/* Browse Action Button */}
+            <div className="pt-2">
               <button
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   fileInputRef.current?.click();
                 }}
-                className="inline-flex items-center gap-2 px-5 py-3 text-xs font-bold text-white bg-gradient-to-r from-[#EC4899] to-[#A855F7] hover:opacity-95 rounded-xl transition-all shadow-md touch-manipulation min-h-[44px] cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-[#EC4899] to-[#A855F7] hover:opacity-95 rounded-xl transition-all shadow-md touch-manipulation min-h-[44px] cursor-pointer"
               >
                 <Upload className="w-4 h-4" />
                 <span>Browse File</span>
@@ -279,15 +266,6 @@ export default function ImageUploader({
           </div>
 
           <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-end">
-            <button
-              type="button"
-              onClick={onOpenCamera}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs font-semibold text-[#A855F7] bg-[#202033] hover:bg-[#12121C] border border-[#303047] rounded-xl transition-colors touch-manipulation min-h-[44px] cursor-pointer"
-            >
-              <Camera className="w-3.5 h-3.5" />
-              <span>Camera</span>
-            </button>
-
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}

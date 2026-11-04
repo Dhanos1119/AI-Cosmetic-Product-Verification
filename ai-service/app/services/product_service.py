@@ -4,6 +4,7 @@ Product Analysis & Verification Service Orchestrator Module
 
 from app.services.clip_service import compute_clip_similarity
 from app.services.review_service import analyze_review_authenticity
+from app.services.review_analysis_service import analyze_platform_reviews
 from app.services.authenticity_service import predict_final_authenticity
 from app.schemas.marketplace import ProductIdentity
 from app.services.scraping.marketplace_search import search_all_marketplaces
@@ -276,10 +277,39 @@ def analyze_product_authenticity(
         demo_key=demo_key
     )
 
-    # 5. Execute 5-Factor Marketplace Recommendation Scoring
+    # 4b. Independent Platform-wise review analysis for Amazon, Daraz LK, Temu
+    platform_review_analyses = {}
+    for target_plat in ["Amazon", "Daraz LK", "Temu"]:
+        plat_reviews = []
+        for m in marketplace_listings:
+            plat_name = m.platform or m.platform_name or ""
+            if target_plat.lower() in plat_name.lower():
+                for rv in (m.reviews or []):
+                    plat_reviews.append({
+                        "text": rv.comment,
+                        "comment": rv.comment,
+                        "rating": rv.rating,
+                        "author": rv.author or "Anonymous",
+                        "date": rv.date,
+                        "verified_purchase": rv.verified_purchase or False,
+                        "platform": target_plat
+                    })
+        platform_review_analyses[target_plat] = analyze_platform_reviews(
+            platform_name=target_plat,
+            reviews=plat_reviews,
+            category=matched_category
+        )
+
+    review_res["platform_review_analyses"] = platform_review_analyses
+
+    # 5. Execute 5-Factor Marketplace Recommendation Scoring using independent platform review data
     if marketplace_listings:
         pos_pct = review_res.get("sentiment_stats", {}).get("positive_percentage", 50.0)
-        platform_comparison = compare_marketplace_platforms(marketplace_listings, sentiment_positive_pct=pos_pct)
+        platform_comparison = compare_marketplace_platforms(
+            marketplace_listings,
+            platform_review_analyses=platform_review_analyses,
+            sentiment_positive_pct=pos_pct
+        )
     else:
         platform_comparison = []
 

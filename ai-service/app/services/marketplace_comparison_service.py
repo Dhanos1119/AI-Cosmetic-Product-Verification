@@ -16,16 +16,43 @@ from app.schemas.marketplace import MarketplaceListing, PlatformComparisonScore,
 
 def calculate_platform_score(
     listing: MarketplaceListing,
+    platform_review_analysis: Optional[dict] = None,
     sentiment_positive_pct: Optional[float] = None,
 ) -> PlatformComparisonScore:
     """
     Computes transparent multi-factor recommendation score for a marketplace listing using verified live data only.
     Formula:
       Total = (Match * 0.35) + (RatingVolume * 0.25) + (SellerTrust * 0.20) + (Price * 0.10) + (Sentiment * 0.10)
-    Handles missing values fairly using neutral baselines rather than automatically zeroing.
-    If listing is unavailable or not verified live data, returns rank 99 with
-    'Recommendation unavailable: insufficient comparable marketplace data.'
+
+    Enforces platform-specific review accuracy:
+      - If Temu data is unavailable, Temu is strictly excluded.
+      - If review data is insufficient, sentiment score is 0.0 (no fabricated sentiment values).
+      - If listing is unavailable or not verified live data, returns rank 99 with
+        'Recommendation unavailable: insufficient comparable marketplace data.'
     """
+    is_temu = "temu" in listing.platform.lower()
+
+    # Rule 1: Temu is excluded from recommendations when its data/reviews cannot be verified
+    if is_temu and (listing.retrieval_status != "Live Data" or not listing.passed_match_threshold):
+        return PlatformComparisonScore(
+            platform=listing.platform,
+            total_score=0.0,
+            rank=99,
+            score_breakdown=ScoreBreakdown(
+                match_confidence_score=0.0,
+                rating_volume_score=0.0,
+                seller_trust_score=0.0,
+                price_score=0.0,
+                review_sentiment_score=0.0,
+                review_trust_score=0.0,
+                rating_score=0.0,
+            ),
+            recommendation_reason="Excluded: Temu marketplace and review data unavailable.",
+            listing=listing,
+            recommendation_type="Recommendation unavailable: insufficient comparable marketplace data.",
+            is_demo=False,
+        )
+
     is_live = (
         listing.retrieval_status in ("Live Data", "LIVE")
         and listing.source_status == "available"
@@ -94,17 +121,27 @@ def calculate_platform_score(
     else:
         seller_trust = 50.0  # Fair neutral baseline when seller name unlisted
 
-    # 4. Price competitiveness (10% weight)
+    # 4. Verified price competitiveness in LKR (10% weight)
     if listing.price and listing.price > 0.0:
         price_score = 85.0
     else:
         price_score = 50.0  # Fair neutral baseline if price unavailable
 
-    # 5. Review sentiment (10% weight)
-    if sentiment_positive_pct is not None and sentiment_positive_pct >= 0.0:
-        sentiment_score = min(100.0, max(0.0, float(sentiment_positive_pct)))
+    # 5. Platform-specific review sentiment (10% weight)
+    if platform_review_analysis is not None:
+        if platform_review_analysis.get("has_reviews"):
+            pos_pct = platform_review_analysis.get("positive_percentage", 0.0)
+            neg_pct = platform_review_analysis.get("negative_percentage", 0.0)
+            # Positive sentiment penalized proportionally by high negative sentiment
+            sentiment_score = max(0.0, min(100.0, float(pos_pct) - (float(neg_pct) * 0.2)))
+        else:
+            # Rule: If platform review information is insufficient, do NOT assign fabricated sentiment score!
+            sentiment_score = 0.0
+    elif sentiment_positive_pct is not None and sentiment_positive_pct > 0.0:
+        sentiment_score = min(100.0, float(sentiment_positive_pct))
     else:
-        sentiment_score = 50.0  # Fair neutral baseline if sentiment unavailable
+        # Fair neutral baseline when sentiment is unmeasured / unspecified
+        sentiment_score = 50.0
 
     # Final Weighted Formula
     total_score = (
@@ -116,16 +153,38 @@ def calculate_platform_score(
     )
     total_score = round(min(100.0, max(0.0, total_score)), 1)
 
+    # If composite score is low or lacks sufficient evidence, do not present as verified recommendation
+    if total_score < 30.0:
+        return PlatformComparisonScore(
+            platform=listing.platform,
+            total_score=0.0,
+            rank=99,
+            score_breakdown=ScoreBreakdown(
+                match_confidence_score=round(match_conf, 1),
+                rating_volume_score=round(rating_volume, 1),
+                seller_trust_score=round(seller_trust, 1),
+                price_score=round(price_score, 1),
+                review_sentiment_score=round(sentiment_score, 1),
+                review_trust_score=round(rating_volume, 1),
+                rating_score=round(rating_comp, 1),
+            ),
+            recommendation_reason="Insufficient verified listing information to form a reliable recommendation.",
+            listing=listing,
+            recommendation_type="Recommendation unavailable: insufficient comparable marketplace data.",
+            is_demo=False,
+        )
+
     # Recommendation category label (strictly Live Data Recommendation)
     rec_type = "Live Data Recommendation"
 
     # Transparent Explanation of Ranking
-    seller_label = f"verified '{listing.seller_name}'" if listing.seller_name else "standard vendor"
-    rating_label = f"{listing.rating:.1f}/5.0 ({listing.review_count or 0} reviews)" if (listing.rating and listing.rating > 0) else "baseline ratings"
+    seller_label = f"verified '{listing.seller_name}'" if listing.seller_name else "vendor"
+    rating_label = f"{listing.rating:.1f}/5.0 ({listing.review_count or 0} reviews)" if (listing.rating and listing.rating > 0) else "unrated"
+    sentiment_label = f"{sentiment_score:.0f}% positive sentiment" if sentiment_score > 0 else "insufficient review sentiment"
     reason = (
         f"Score {total_score}/100: High product match ({match_conf:.0f}%), "
         f"{seller_label} (trust: {seller_trust:.0f}%), {rating_label}, "
-        f"and positive review sentiment ({sentiment_score:.0f}%)."
+        f"and {sentiment_label}."
     )
 
     return PlatformComparisonScore(
@@ -150,23 +209,35 @@ def calculate_platform_score(
 
 def compare_marketplace_platforms(
     listings: List[MarketplaceListing],
+    platform_review_analyses: Optional[dict] = None,
     sentiment_positive_pct: Optional[float] = None,
 ) -> List[PlatformComparisonScore]:
     """
-    Evaluates, scores, and rank-orders all marketplace platform listings.
+    Evaluates, scores, and rank-orders all marketplace platform listings using platform-specific review analysis.
     Only platforms with total_score > 0 are ranked as active recommendations.
-    Unavailable/blocked/rejected platforms are appended at the end with rank=99.
+    Unavailable/blocked/rejected platforms and Temu (when unavailable) are appended at the end with rank=99.
     """
     ranked: List[PlatformComparisonScore] = []
     unranked: List[PlatformComparisonScore] = []
 
     for listing in listings:
-        score_obj = calculate_platform_score(listing, sentiment_positive_pct=sentiment_positive_pct)
-        if score_obj.total_score > 0.0:
+        plat_analysis = None
+        if platform_review_analyses:
+            for k, v in platform_review_analyses.items():
+                if k.lower() in listing.platform.lower() or listing.platform.lower() in k.lower():
+                    plat_analysis = v
+                    break
+
+        score_obj = calculate_platform_score(
+            listing,
+            platform_review_analysis=plat_analysis,
+            sentiment_positive_pct=sentiment_positive_pct
+        )
+        if score_obj.total_score > 0.0 and score_obj.rank < 99:
             ranked.append(score_obj)
         else:
             score_obj.recommendation_reason = (
-                f"Not ranked: {score_obj.recommendation_reason or 'Platform unavailable or listing rejected.'}"
+                score_obj.recommendation_reason or 'Platform unavailable or listing rejected.'
             )
             unranked.append(score_obj)
 

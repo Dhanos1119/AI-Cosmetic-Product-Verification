@@ -12,7 +12,6 @@ import LoginModal from "../components/LoginModal";
 import SignupModal from "../components/SignupModal";
 import ForgotPasswordModal from "../components/ForgotPasswordModal";
 import LogoutConfirmModal from "../components/LogoutConfirmModal";
-import CameraModal from "../components/CameraModal";
 import FeatureDetailModal, { FeatureItem } from "../components/FeatureDetailModal";
 import { AiAnalysisResult } from "../components/VerificationResult";
 import { toast } from "react-toastify";
@@ -26,7 +25,6 @@ export default function Home() {
   const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
 
   // Modals State
-  const [isCameraModalOpen, setIsCameraModalOpen] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<FeatureItem | null>(null);
 
   // Upload & AI Analysis State
@@ -119,18 +117,6 @@ export default function Home() {
     setAnalysisError(null);
     setHasVerified(false);
     setIsAnalyzing(false);
-  };
-
-  // Open Camera Trigger (Protected)
-  const handleOpenCamera = () => {
-    if (!user) {
-      toast.info("Please sign in to use the camera verification feature.", {
-        toastId: "auth-required-camera",
-      });
-      setAuthModalState("login");
-      return;
-    }
-    setIsCameraModalOpen(true);
   };
 
   // Start Verification Trigger (Sends image to FastAPI AI Service via Backend Gateway)
@@ -343,7 +329,6 @@ export default function Home() {
           hasVerified={hasVerified}
           onFileSelect={handleFileSelect}
           onFileRemove={handleFileRemove}
-          onOpenCamera={handleOpenCamera}
           onStartVerification={handleStartVerification}
           onCancelVerification={handleCancelVerification}
           onResetVerification={handleResetVerification}
@@ -389,13 +374,6 @@ export default function Home() {
         isOpen={isLogoutConfirmOpen}
         onClose={() => setIsLogoutConfirmOpen(false)}
         onConfirmLogout={handleConfirmLogout}
-      />
-
-      {/* Camera Modal */}
-      <CameraModal
-        isOpen={isCameraModalOpen}
-        onClose={() => setIsCameraModalOpen(false)}
-        onPhotoCaptured={handleFileSelect}
       />
 
       {/* Feature Details Specification Modal */}

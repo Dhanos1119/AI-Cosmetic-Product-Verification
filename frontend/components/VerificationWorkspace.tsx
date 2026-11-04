@@ -32,7 +32,7 @@ interface VerificationWorkspaceProps {
   hasVerified: boolean;
   onFileSelect: (file: File) => void;
   onFileRemove: () => void;
-  onOpenCamera: () => void;
+  onOpenCamera?: () => void;
   onStartVerification: (e?: React.MouseEvent) => void;
   onCancelVerification?: () => void;
   onResetVerification: () => void;
@@ -58,7 +58,6 @@ export default function VerificationWorkspace({
   hasVerified,
   onFileSelect,
   onFileRemove,
-  onOpenCamera,
   onStartVerification,
   onCancelVerification,
   onResetVerification,
@@ -114,7 +113,7 @@ export default function VerificationWorkspace({
                 Access Product Verification
               </h3>
               <p className="text-sm text-[#A1A1B5] leading-relaxed">
-                Please sign in or create a free account to upload product photos, scan with your camera, and view marketplace analysis.
+                Please sign in or create a free account to upload product photos and view marketplace analysis.
               </p>
             </div>
 
@@ -149,7 +148,6 @@ export default function VerificationWorkspace({
                 previewUrl={previewUrl}
                 onFileSelect={onFileSelect}
                 onFileRemove={onFileRemove}
-                onOpenCamera={onOpenCamera}
               />
 
               {/* Processing Stages Indicator (Displayed honestly during in-flight analysis) */}

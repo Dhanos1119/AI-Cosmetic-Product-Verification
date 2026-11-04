@@ -1,0 +1,8 @@
+Method,Top-1 Accuracy (%),Top-5 Accuracy (%),Macro F1-Score (%),Weighted F1-Score (%),Macro Precision (%),Macro Recall (%),Inference Latency (ms/query),Catalog Memory (KB)
+Method 1: Baseline Single-Centroid,30.82,57.54,30.63,28.96,35.89,32.71,0.014,60.0
+Method 2: 1-NN Reference Bank,58.03,75.57,58.78,57.92,59.46,59.21,0.023,2680.0
+Method 3: 3-NN Reference Bank,56.56,75.57,57.29,56.39,58.34,57.77,0.091,2680.0
+Method 4: K-Means Sub-Centroids (k=3),37.87,61.8,38.61,37.21,38.92,39.54,0.001,180.0
+Method 5: Hybrid Visual + Text Prompt,28.2,54.59,27.82,26.7,30.58,30.16,0.0,120.0
+Method 6: Production OCR + CLIP Pipeline,30.66,57.87,30.4,28.71,34.85,32.56,0.014,60.0
+Method 7 (Ensemble): 1-NN + OCR Boost,58.36,76.07,59.11,58.25,59.78,59.53,0.023,2680.0

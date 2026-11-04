@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ShieldCheck, Sparkles, Menu, X, LogIn, LogOut, User, UserPlus, CheckCircle2 } from "lucide-react";
 
 interface HeaderProps {
-  user: { email: string; name: string } | null;
+  user: { email: string; name?: string; username?: string; full_name?: string } | null;
   onOpenLogin: () => void;
   onOpenSignup: () => void;
   onLogout: () => void;
@@ -19,6 +19,14 @@ export default function Header({
   onNavigateToWorkspace,
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Authenticated username greeting resolution
+  const username =
+    user?.name?.trim() ||
+    user?.username?.trim() ||
+    user?.full_name?.trim() ||
+    (user?.email ? user.email.split("@")[0] : "") ||
+    "User";
 
   const navLinks = [
     { name: "Home", href: "#hero" },
@@ -115,25 +123,18 @@ export default function Header({
             ) : (
               /* LOGGED-IN STATE CONTROLS (Desktop) */
               <div className="flex items-center gap-3">
-                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#191925] border border-[#303047] rounded-full text-xs font-semibold text-[#F8FAFC] shadow-2xs">
-                  <div className="w-5 h-5 rounded-full bg-[#A855F7] text-white flex items-center justify-center text-[10px] font-bold">
-                    {user.name ? user.name[0].toUpperCase() : "D"}
-                  </div>
-                  <span className="max-w-[110px] truncate text-[#A1A1B5]">{user.email}</span>
-                  <span className="text-[10px] uppercase font-bold text-[#22C55E] bg-[#22C55E]/10 px-2 py-0.5 rounded-full border border-[#22C55E]/30 flex items-center gap-1">
-                    <CheckCircle2 className="w-3 h-3 text-[#22C55E]" />
-                    <span>Signed in</span>
-                  </span>
-                </div>
+                <span className="hidden sm:inline-block text-xs font-semibold text-[#F8FAFC] px-3.5 py-1.5 bg-[#191925] border border-[#303047] rounded-full shadow-2xs whitespace-nowrap">
+                  Hi, {username}
+                </span>
 
                 <button
                   type="button"
                   onClick={onLogout}
                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-[#F87171] bg-[#191925] hover:bg-[#202033] border border-[#303047] rounded-full transition-colors touch-manipulation min-h-[38px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#F87171]"
-                  title="Sign out of demo account"
+                  title="Logout"
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Logout</span>
+                  <span>Logout</span>
                 </button>
               </div>
             )}
@@ -207,22 +208,20 @@ export default function Header({
                 </button>
               </div>
             ) : (
-              <div className="p-3 bg-[#191925] border border-[#303047] rounded-2xl flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#F8FAFC] overflow-hidden">
-                  <div className="w-6 h-6 rounded-full bg-[#A855F7] text-white flex items-center justify-center text-xs font-bold shrink-0">
-                    {user.name ? user.name[0].toUpperCase() : "D"}
-                  </div>
-                  <span className="truncate text-[#A1A1B5]">{user.email}</span>
-                </div>
+              <div className="p-3 bg-[#191925] border border-[#303047] rounded-2xl flex items-center justify-between gap-3">
+                <span className="text-xs font-semibold text-[#F8FAFC] whitespace-nowrap">
+                  Hi, {username}
+                </span>
                 <button
                   type="button"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onLogout();
                   }}
-                  className="px-3 py-1.5 text-xs font-bold text-[#F87171] bg-[#191925] hover:bg-[#202033] border border-[#303047] rounded-lg touch-manipulation min-h-[36px] cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-[#F87171] bg-[#12121C] hover:bg-[#202033] border border-[#303047] rounded-xl touch-manipulation min-h-[36px] cursor-pointer"
                 >
-                  Logout
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Logout</span>
                 </button>
               </div>
             )}

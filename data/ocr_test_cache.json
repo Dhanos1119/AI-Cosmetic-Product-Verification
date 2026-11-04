@@ -1,0 +1,3662 @@
+{
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0039.jpg": {
+    "brand_name": "12",
+    "product_name": "12",
+    "category": "Cosmetic Container",
+    "confidence": 0.64
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0033.jpg": {
+    "brand_name": "Past Perfect",
+    "product_name": "PastPerfectContinuous PAST PERFECTCONTINUOUS Subject + had + past participle (V3) Subject + had been + verb + ing",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0063.jpg": {
+    "brand_name": "MAC",
+    "product_name": "YEWTEE KRANJI MARSILING ADMIRALTY SEMBAWANG",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0014.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0056.jpg": {
+    "brand_name": "Dressagearenadiagrams",
+    "product_name": "IncludesInstructions +ArenaDiagrams Design,print, prep,and setup in your arena is easy 20mx40m 20mx60ml",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0002.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0003.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0028.jpg": {
+    "brand_name": "Lightyear",
+    "product_name": "LIGHTYEAR",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0006.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0035.jpg": {
+    "brand_name": "Future Perfectsimple",
+    "product_name": "FUTURE PERFECT CONTINUOUS ALCOQUETERMINARAANTESDE 01 01",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0061.jpg": {
+    "brand_name": "Sodin Seath",
+    "product_name": "Cee Tee C fuas Uck Besenoir West",
+    "category": "Cosmetic Container",
+    "confidence": 0.58
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0044.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0007.jpg": {
+    "brand_name": "Zorch",
+    "product_name": "zoich",
+    "category": "Cosmetic Container",
+    "confidence": 0.6
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0048.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0009.jpg": {
+    "brand_name": "Wire Diameter",
+    "product_name": "Pitch Inside Outside Diameter",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0067.jpg": {
+    "brand_name": "Fare Per Ride (Cent",
+    "product_name": "Distance Card Single Trip Ticket 78",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0032.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0036.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0004.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P013_ZorahBiocosmetiques_LiquidLiner/P013_0015.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0035.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0063.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0039.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0005.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0042.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0044.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0045.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0018.jpg": {
+    "brand_name": "Abstractbackground",
+    "product_name": "temporposueremassa invarius.Pellentesque viverra nibheuvehicula mattis.Nullamportafacilisis justo,a feugiatdolor sodales sed.Vestibulumnequenisi,elementum tinciduntmetus sit amet,egestas bibendum enim. Aenean a blandit elit, vel rutrum mi. Nunc dapibus turpis sed massa aliquet tincidunt",
+    "category": "Cosmetic Container",
+    "confidence": 0.9
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0043.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0014.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0023.jpg": {
+    "brand_name": "Designed By",
+    "product_name": "vexels",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0061.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0011.jpg": {
+    "brand_name": "\u5c0f\u5c71\u306e\u5165\u53e3\uff08\u90e8\u5206\uff09\uff092024\u5e74",
+    "product_name": "\u5e9c\u4e2d\u5e02\u7f8e\u8853\u9928\u516c\u5f00\u5236\u4f5c89 Open Studio Program 89 Haruka Teshima : About a Small Mountain Yet to be Seen 2024\u5e744\u670820\u65e5\uff3b\u00b1] \u21927\u67087\u65e5\uff3b\u65e5",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0024.jpg": {
+    "brand_name": "Mag",
+    "product_name": "Mag",
+    "category": "Cosmetic Container",
+    "confidence": 0.56
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0054.jpg": {
+    "brand_name": "Tktoak",
+    "product_name": "\u5b89\u5168\u5316 \u5b9e\u73b0 \u91d1\u83dc\u4e03\u6280\u732b\u8349\u65b0 SDGs",
+    "category": "Cosmetic Container",
+    "confidence": 0.65
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0041.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0059.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0036.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0049.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P014_MaiaSMineralGalaxy_MineralEyeBrowLinerCharcoalBrown/P014_0013.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0022.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0042.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0018.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0049.jpg": {
+    "brand_name": "Ice",
+    "product_name": "CReaM watermelonBBQhotdogs swimminGPOOl swmmertimeand the livingr is easy",
+    "category": "Moisturizer",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0035.jpg": {
+    "brand_name": "Xhamster",
+    "product_name": "lamster.com Videos-LiveSex-Po",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0066.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0008.jpg": {
+    "brand_name": "Otus",
+    "product_name": "NATURALPLANT ULEC'PENTRU MASAJ Adtana Coleo",
+    "category": "Cosmetic Container",
+    "confidence": 0.72
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0047.jpg": {
+    "brand_name": "Sunshin",
+    "product_name": "NMO KEEPSHINING UNFROGETTABLE LIFE IS BETTER",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0044.jpg": {
+    "brand_name": "9-\"70",
+    "product_name": "9-\"70=",
+    "category": "Cosmetic Container",
+    "confidence": 0.32
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0001.jpg": {
+    "brand_name": "Apamicelara",
+    "product_name": "Routino Derm PURIFIANTA Routino",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0056.jpg": {
+    "brand_name": "Esg",
+    "product_name": "F1 F2 F3 F5",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0036.jpg": {
+    "brand_name": "Xhamster",
+    "product_name": "Free Porn Videos & Sex Tube Mo dobe Stock VideosLiveSex-Pornstars Searchin4,881,344vid",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0017.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0034.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0039.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0025.jpg": {
+    "brand_name": "Yoga",
+    "product_name": "POSE TUTORIAL WARRIOR2",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0050.jpg": {
+    "brand_name": "RoC",
+    "product_name": "101 bits of Summer fun make.atortcheckout",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0009.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0055.jpg": {
+    "brand_name": "Summer Lovin'Tag",
+    "product_name": "SUMMER LOVIN'TAG",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Eye_Products/P015_LotusCosmeticsUsa_Mascara/P015_0021.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0050.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0054.jpg": {
+    "brand_name": "Tips For Creating Timeline Slides",
+    "product_name": "1995 2000 2012 2022",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0036.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0002.jpg": {
+    "brand_name": "Weleda",
+    "product_name": "SkinFood aajingfpeg 150mle",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0022.jpg": {
+    "brand_name": "Gual",
+    "product_name": "coliee FRESNHONE",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0005.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0015.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0016.jpg": {
+    "brand_name": "Onufvco21Xi6Mx",
+    "product_name": "HT",
+    "category": "Cosmetic Container",
+    "confidence": 0.59
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0008.jpg": {
+    "brand_name": "Ceenpeore",
+    "product_name": "SENTSECSESTE",
+    "category": "Cosmetic Container",
+    "confidence": 0.61
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0060.jpg": {
+    "brand_name": "Timelineinfographic Slide",
+    "product_name": "Letterpress nextlevel trust fund,beforethey sold out +1 meh gluten-free locavoretacos PBR&B tofu. Synth chartreuse Xoxo, Synth chartreuse xoxo, Synth chartreuse XoxO",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0034.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0058.jpg": {
+    "brand_name": "Timelineinfographic Slide",
+    "product_name": "Letterpressnextlevel trustfund,beforetheysoldout+1mehgluten-freelocavoretacosPBR&Btofu. Synth chartreuse XoXO, Synth chartreuse XOxO, Synth chartreuse xoxo",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0029.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0024.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0042.jpg": {
+    "brand_name": "Happy Ganesh Chaturthi",
+    "product_name": "Happy Ganesh Chaturthi!",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0043.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0052.jpg": {
+    "brand_name": "3\u4e2a8\u4e2a88\u4e2a8\u672c8\u4e2a88\u4e2a",
+    "product_name": "3\u4e2a8\u4e2a88\u4e2a8\u672c8\u4e2a88\u4e2a",
+    "category": "Cosmetic Container",
+    "confidence": 0.69
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0040.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0026.jpg": {
+    "brand_name": "Without",
+    "product_name": "LTFE MISTAKE FRTEDRICH NIETZSCHE",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Eye_Products/P016_GreenPeople_VolumisingMascara/P016_0028.jpg": {
+    "brand_name": "2005Www.Aref-Adib.Com",
+    "product_name": "@2005www.aref-adib.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0061.jpg": {
+    "brand_name": "10Easyanduseful",
+    "product_name": "GoogleSearchTips HowtoSearchUsingGoogle Find'Keywords'inWebContent SearchContentofSpecificWebsite",
+    "category": "Cosmetic Container",
+    "confidence": 0.9
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0006.jpg": {
+    "brand_name": "C'Est",
+    "product_name": "MOI -itsmem CLARIFY Cleansing",
+    "category": "Cleanser",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0001.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0035.jpg": {
+    "brand_name": "Slogans On Water Conservation",
+    "product_name": "Save Water,Secure the Future .WaterConservationisLife Preservation Don't LetWater RunDry-Save EveryDrop! \u00b7SaveWater,Save Earth",
+    "category": "Serum",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0042.jpg": {
+    "brand_name": "Most Effective",
+    "product_name": "GOOGLE SEARCH TIPS AND TRICKS Searc MOSTEXPERTS",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0004.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0007.jpg": {
+    "brand_name": "Carbon",
+    "product_name": "Cycle CO2 Photosynthesis Plant",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0036.jpg": {
+    "brand_name": "Savewaterslogans",
+    "product_name": "Water's value is beyond measure. Conservation is a global treasure. \u00b7 Preserve water, secure our fate. Water saved is a blessing made",
+    "category": "Serum",
+    "confidence": 0.89
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0065.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0052.jpg": {
+    "brand_name": "Google",
+    "product_name": "United Stateshistory QAll Books Images",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0029.jpg": {
+    "brand_name": "\u901a\u5b66\u8def",
+    "product_name": "\u901a\u5b66\u8def",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0005.jpg": {
+    "brand_name": "C'Est",
+    "product_name": "itsme - lascara",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0056.jpg": {
+    "brand_name": "Www.Businessinsider.Com",
+    "product_name": "Best Google Search tips, tricks, and hidden shortcuts- Business Insider",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0016.jpg": {
+    "brand_name": "Groperti",
+    "product_name": "Tips Gunakan Sekat Ruangan untuk Rumah Minimalis",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0030.jpg": {
+    "brand_name": "Images",
+    "product_name": "Artefactory \u901a\u5b66\u8def",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0066.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0024.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0055.jpg": {
+    "brand_name": "Google",
+    "product_name": "the inner detail, About Store",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0018.jpg": {
+    "brand_name": "06",
+    "product_name": "06",
+    "category": "Cosmetic Container",
+    "confidence": 0.63
+  },
+  "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0058.jpg": {
+    "brand_name": "Search",
+    "product_name": "nFeeling Lucky",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0065.jpg": {
+    "brand_name": "Drop",
+    "product_name": "\u4e0b\u3011https://sukiruma.net",
+    "category": "Serum",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0053.jpg": {
+    "brand_name": "International",
+    "product_name": "MASONRY INSTITUTE MASONRYDETAILINGSERIES KEY NOTES",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0046.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0057.jpg": {
+    "brand_name": "Seven&I",
+    "product_name": "PREMIUM \u5375\u9ec4\u4e09\u513f\u4e45\u306e\u5473\u6253\uff01 Pudding 1\u500b95g",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0014.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0017.jpg": {
+    "brand_name": "Twilio",
+    "product_name": "RetellAl CustomBuild AUTO AUTO",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0021.jpg": {
+    "brand_name": "Kanzonet",
+    "product_name": "12345 678910",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0034.jpg": {
+    "brand_name": "Www.Laavyskitchen.Com",
+    "product_name": "www.laavyskitchen.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.91
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0037.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0063.jpg": {
+    "brand_name": "2026Sanrioco.,Ltd",
+    "product_name": "\u8457\u4f5c\uff08\u682a\uff09\u5dde\u624d tLLyPOP-UP STORE in1f07172026 3.6",
+    "category": "Cosmetic Container",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0043.jpg": {
+    "brand_name": "Bi",
+    "product_name": "Bl [D QIp GIp",
+    "category": "Cosmetic Container",
+    "confidence": 0.37
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0027.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0006.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0040.jpg": {
+    "brand_name": "Sous",
+    "product_name": "CREA EXTRA LARGE",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0003.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0039.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0038.jpg": {
+    "brand_name": "Tanveer",
+    "product_name": "Ahmed Psychiatrist/Social Commentator THE EXPERTS PODCAST Hosted byNic Hayes",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0032.jpg": {
+    "brand_name": "49",
+    "product_name": "49",
+    "category": "Cosmetic Container",
+    "confidence": 0.31
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0016.jpg": {
+    "brand_name": "Adobestock|#523081539",
+    "product_name": "AdobeStock|#523081539",
+    "category": "Cosmetic Container",
+    "confidence": 0.92
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0052.jpg": {
+    "brand_name": "Buildingpaper",
+    "product_name": "SHEATHING BRICK VENEER INSULATION 8d NAIL",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Eye_Products/P018_Alva_LiquidEyeShadow/P018_0031.jpg": {
+    "brand_name": "Dforteeboul",
+    "product_name": "hh\u626basmi",
+    "category": "Cosmetic Container",
+    "confidence": 0.57
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0046.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0036.jpg": {
+    "brand_name": "Calculating Standard Deviation",
+    "product_name": "Xi X Sx = n-1 = The number of data points",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0029.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0048.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0011.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0017.jpg": {
+    "brand_name": "\u767d\u8272",
+    "product_name": "\u8272\uff09 \uff08\u9ec4\u5305",
+    "category": "Cosmetic Container",
+    "confidence": 0.56
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0062.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0009.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0050.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0022.jpg": {
+    "brand_name": "\u77e5\u4e4e@\u55b5\u55b5\u662f\u4e2a\u5927\u5b9d\u8d1d",
+    "product_name": "\u77e5\u4e4e@\u55b5\u55b5\u662f\u4e2a\u5927\u5b9d\u8d1d",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0001.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0003.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0018.jpg": {
+    "brand_name": "Ngiree",
+    "product_name": "ngiree",
+    "category": "Cosmetic Container",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0054.jpg": {
+    "brand_name": "Mas",
+    "product_name": "Monetary Authority of Singapore For more information scan the QR code here",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0028.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0041.jpg": {
+    "brand_name": "New Zealand",
+    "product_name": "NEW ZEALAND",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0006.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0007.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0063.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P007_Deciem_CoverageFoundation/P007_0065.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0066.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0018.jpg": {
+    "brand_name": "Phantomi",
+    "product_name": "F-4E (U.S.AIR FORCE FIGHTER-BOVBER! 77\u591641 F-4E",
+    "category": "Cosmetic Container",
+    "confidence": 0.73
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0022.jpg": {
+    "brand_name": "RoC",
+    "product_name": "ProcurementProcesswithSupplierSelectionandTenderEvaluation AssetManagement UnderstandNeed FYour ot here",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0026.jpg": {
+    "brand_name": "1",
+    "product_name": "2 8",
+    "category": "Cosmetic Container",
+    "confidence": 0.59
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0063.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0043.jpg": {
+    "brand_name": "4:53",
+    "product_name": "4:53",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0002.jpg": {
+    "brand_name": "Vt",
+    "product_name": "VT",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0055.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0015.jpg": {
+    "brand_name": "Rdomie",
+    "product_name": "MiInstan Rasa Ayam Bawang",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0051.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0062.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0020.jpg": {
+    "brand_name": "Respiratory Rate Measurement",
+    "product_name": "Respiratory rate measurement",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0023.jpg": {
+    "brand_name": "Supplier",
+    "product_name": "SELECTION PRICE QUALITY LOGISTICS",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0030.jpg": {
+    "brand_name": "Byju'S",
+    "product_name": "The Learning App Beforecollision Aftercollision",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0059.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0053.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0013.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0029.jpg": {
+    "brand_name": "Elasticity Of Collisions",
+    "product_name": "Elastic \u2192 K; = Kp Ki+Kf HInelastic",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0061.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0005.jpg": {
+    "brand_name": "Wellpeople",
+    "product_name": "WELLPEOPLE",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0049.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0028.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0014.jpg": {
+    "brand_name": "Scorsahtwlthne",
+    "product_name": "LLAthrabbinglove atarirelcheoche GreatCity! AGlamorous",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0019.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0054.jpg": {
+    "brand_name": "Ay",
+    "product_name": "Xxa 44t",
+    "category": "Cosmetic Container",
+    "confidence": 0.32
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0001.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0036.jpg": {
+    "brand_name": "Enfoythe Littlethings",
+    "product_name": "If theonly prayeryou Wecan only be said to forome dayyou said was thankyou",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0026.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0020.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0037.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0040.jpg": {
+    "brand_name": "0+O",
+    "product_name": "0+o+",
+    "category": "Cosmetic Container",
+    "confidence": 0.22
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0012.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0048.jpg": {
+    "brand_name": "1918",
+    "product_name": "Millennium",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0044.jpg": {
+    "brand_name": "Wilder Yorkes",
+    "product_name": "LDEROYORKES WILDFR OYORI ACCOUNTING ICCOUNTING",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0025.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0043.jpg": {
+    "brand_name": "Vexpect",
+    "product_name": "VEXPECT",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0027.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0013.jpg": {
+    "brand_name": "Nicoeetompkinscaseykramerkeyon Mowman",
+    "product_name": "EMEN",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0017.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0052.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P009_RejuvaMinerals_PressedPowderFoundation/P009_0042.jpg": {
+    "brand_name": "Glass",
+    "product_name": "Sticker- assSticker 01605676017 www.glassstickerbd.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0047.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0040.jpg": {
+    "brand_name": "Don'T Even Know If There Is Such A",
+    "product_name": "THING AS JUSTICE IN THE SHINOBI WORLD WE FIGHT BELIEVING IN OUR OWN JUSTICE BUT IE THE ENEMY IS DOING THE THING. WHO'SRIGHT",
+    "category": "Cosmetic Container",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0029.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0049.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0021.jpg": {
+    "brand_name": "Sevki",
+    "product_name": "MEHMET CANER CEPA AKAY",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0039.jpg": {
+    "brand_name": "Bside",
+    "product_name": "tofe 7eventzz.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.64
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0036.jpg": {
+    "brand_name": "Bride",
+    "product_name": "teBe",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0034.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0043.jpg": {
+    "brand_name": "Authofi",
+    "product_name": "EmylcoMigyeiLpalistan Stryctural civil Engineer PRC:116561 TIN:238-306-509",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0066.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0052.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0009.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0008.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0055.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0059.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0032.jpg": {
+    "brand_name": "Greai War",
+    "product_name": "8HNEVAB",
+    "category": "Cosmetic Container",
+    "confidence": 0.26
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0007.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P010_Glossier_StretchConcealer/P010_0023.jpg": {
+    "brand_name": "Competition",
+    "product_name": "BIG SOREEN AITUNBT TENEMENT IN CINEMAS 2024",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0044.jpg": {
+    "brand_name": "800G",
+    "product_name": "800g",
+    "category": "Cosmetic Container",
+    "confidence": 0.57
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0043.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0022.jpg": {
+    "brand_name": "Sulfur",
+    "product_name": "VERSUS SULFURDIOXIDE Sulfuris anelementthat has Sulfur dioxide is a gaseous",
+    "category": "Cosmetic Container",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0025.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0002.jpg": {
+    "brand_name": "Fertybeauty",
+    "product_name": "FERTYBEAUTY",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0056.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0028.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0018.jpg": {
+    "brand_name": "RoC",
+    "product_name": "dilute hydrochloric acid sodium sulphite or",
+    "category": "Serum",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0057.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0032.jpg": {
+    "brand_name": "\u8bdd\u9898/\u725b\u513f\u4e0a\u5c55\u96c6U\u65b9\u706b\u7528\u8dd1",
+    "product_name": "\u5fc5\u898b\uff01\u5c71\u53e3\u767e\u60e0\u53bb\u8d85\u5927\u4f5c le \u5143\u6b4c\u624b \u53e3\u767e\u60e05",
+    "category": "Cosmetic Container",
+    "confidence": 0.64
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0015.jpg": {
+    "brand_name": "120",
+    "product_name": "119 118 117 109",
+    "category": "Cosmetic Container",
+    "confidence": 0.65
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0066.jpg": {
+    "brand_name": "Microsoftbingvisual Search",
+    "product_name": "Fiddle Leaf Fig Plant See it, search it The world is visualnow search is too",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0052.jpg": {
+    "brand_name": "\u725b\u4fca\u673a",
+    "product_name": "\u65b9\u3011 \u3010\u610f\u5473\u3011 \u3010\u7fa9\u8a9e\u3011 J\u4e00\u5c81\u4e00\u306e\u5bf8\u5bf8\u53fb",
+    "category": "Cosmetic Container",
+    "confidence": 0.67
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0063.jpg": {
+    "brand_name": "Jawa Tengah",
+    "product_name": "LaufJawa KabupatendanKota Jepara SEMARANG",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0062.jpg": {
+    "brand_name": "Jawatengah",
+    "product_name": "Kota PembagianAdministratif Kabupaten IbukotaKabupaten",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0048.jpg": {
+    "brand_name": "\u9dc4\u53e3\u725b\u4fca",
+    "product_name": "\u9dc4\u53e3\u725b\u4fca",
+    "category": "Cosmetic Container",
+    "confidence": 0.51
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0035.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0054.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0050.jpg": {
+    "brand_name": "\u538b\u5236",
+    "product_name": "\u4e8c\u5b57 \u6f22\u5b57\u719f\u8bed \u4f7f\u5206 \u5927\u5c9b\u4e2d\u6b63",
+    "category": "Cosmetic Container",
+    "confidence": 0.64
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0039.jpg": {
+    "brand_name": "Light",
+    "product_name": "Emitting Compact Important Halogen",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Foundation_Base/P011_Fenty_MatchStixMatteSkinstick/P011_0046.jpg": {
+    "brand_name": "\u75db\u5feb\u723d\u5feb",
+    "product_name": "\u7279\u522b\u8c0e\u5207",
+    "category": "Cosmetic Container",
+    "confidence": 0.64
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0051.jpg": {
+    "brand_name": "Google",
+    "product_name": "before new new redesign",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0002.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0038.jpg": {
+    "brand_name": "Atelier\u718a\u672c",
+    "product_name": "\u6700\u521d\u8fbe\u58f3 \u5982\u6708\u52aa\u529b",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0007.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0020.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0059.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0067.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0008.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0046.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0048.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0058.jpg": {
+    "brand_name": "10",
+    "product_name": "10",
+    "category": "Cosmetic Container",
+    "confidence": 0.63
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0039.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0011.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0024.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0050.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0017.jpg": {
+    "brand_name": "C)10Beans/Producefactory",
+    "product_name": "(C)10BEANS/ProduceFactory",
+    "category": "Cosmetic Container",
+    "confidence": 0.93
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0045.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0028.jpg": {
+    "brand_name": "Iraditionalriceharvest",
+    "product_name": "IRADITIONALRICEHARVEST",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0015.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P012_Clinique_EvenBetterCompactMakeupBroadSpectrumSpf15/P012_0061.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0034.jpg": {
+    "brand_name": "Good Job",
+    "product_name": "GOOD JOB/",
+    "category": "Cosmetic Container",
+    "confidence": 0.89
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0001.jpg": {
+    "brand_name": "Imai",
+    "product_name": "IMAI",
+    "category": "Cosmetic Container",
+    "confidence": 0.58
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0036.jpg": {
+    "brand_name": "Tatapowercompanyltd.Nsetatapower",
+    "product_name": "393.65+2.15\uff080.6%\uff0904Jun2025,03:59:53pm Fundamental Peers Updates",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0053.jpg": {
+    "brand_name": "Lifein",
+    "product_name": "LIFEIn",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0045.jpg": {
+    "brand_name": "Team",
+    "product_name": "DANG-AHWA",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0039.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0018.jpg": {
+    "brand_name": "Fiber Networks",
+    "product_name": "intercity",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0022.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0017.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0052.jpg": {
+    "brand_name": "Team",
+    "product_name": "10 4. DANG-AHWA",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0023.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0014.jpg": {
+    "brand_name": "1\u5206",
+    "product_name": "\u5b88\u624b\u4f5c\u513f",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0063.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0012.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0021.jpg": {
+    "brand_name": "Pngirec",
+    "product_name": "pngirec",
+    "category": "Cosmetic Container",
+    "confidence": 0.53
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0055.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0032.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0004.jpg": {
+    "brand_name": "Serum B.B Crea",
+    "product_name": "PERFECTCOVEF NO.21 MISSHA",
+    "category": "Serum",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0044.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0049.jpg": {
+    "brand_name": "Sa",
+    "product_name": "SA: -",
+    "category": "Cosmetic Container",
+    "confidence": 0.49
+  },
+  "data/image_model_dataset/Foundation_Base/P019_Iman_CcCorrectCoverClayMediumDeep/P019_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0007.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0032.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0041.jpg": {
+    "brand_name": "\u6c5f\u306e\u5c9b\u5473",
+    "product_name": "\u4e1c\u4eac2020\u624d\u4e45\u7af6\u6280\u5927\u4f1a\u306e T0KY02020 T0KY02020 PARALYMPICGAMES",
+    "category": "Cosmetic Container",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0057.jpg": {
+    "brand_name": "Besttemplates",
+    "product_name": "Be YOUR COMPANYNAMEI CEmplopment ertifitateof",
+    "category": "Cosmetic Container",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0045.jpg": {
+    "brand_name": "Dext",
+    "product_name": "RIS REDUCEDTIMEFORSUITINGUP Withfewerlayers,DEXTRIStakes under a minuteto put on",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0019.jpg": {
+    "brand_name": "Text",
+    "product_name": "sample winter frame winter",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0036.jpg": {
+    "brand_name": "Pixta.Jp-33910013",
+    "product_name": "pixta.jp-33910013",
+    "category": "Cosmetic Container",
+    "confidence": 0.89
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0004.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0003.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0018.jpg": {
+    "brand_name": "Ci",
+    "product_name": "Ci",
+    "category": "Cosmetic Container",
+    "confidence": 0.36
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0009.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0035.jpg": {
+    "brand_name": "Ust",
+    "product_name": "ust",
+    "category": "Cosmetic Container",
+    "confidence": 0.72
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0046.jpg": {
+    "brand_name": "2019Rudolfbuchbinder",
+    "product_name": "\u81fa\u5317\u570b\u5bb6\u97f3\u6a02\u5ef0 4F 2A 2A",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0001.jpg": {
+    "brand_name": "Hour",
+    "product_name": "inashbox 24 CCSPOT CONCEALER",
+    "category": "Makeup",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0020.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0012.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0024.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0025.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P020_Smashbox_24HourCcSpotConcealer/P020_0013.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0044.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0005.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0030.jpg": {
+    "brand_name": "Story",
+    "product_name": "Front of Wings SPACE RANGER LIGHTYEAR Costume Sold",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0059.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0053.jpg": {
+    "brand_name": "RoC",
+    "product_name": "ARCTIC OCEAN ARCTIC OCEAN (NORWAY) SEVERNAYA",
+    "category": "Cleanser",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0046.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0056.jpg": {
+    "brand_name": "Ani",
+    "product_name": "Trading",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0015.jpg": {
+    "brand_name": "Ces",
+    "product_name": "CES",
+    "category": "Cosmetic Container",
+    "confidence": 1.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0003.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0019.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0066.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0039.jpg": {
+    "brand_name": "Phuquoc",
+    "product_name": "VIETNAM Pepper Farm Bee Farm Night Market",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0045.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0029.jpg": {
+    "brand_name": "Martin Pelzel",
+    "product_name": "Geachichte der Bohmen EELEN SICHATZ",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0027.jpg": {
+    "brand_name": "Codr",
+    "product_name": "CODR",
+    "category": "Cosmetic Container",
+    "confidence": 0.54
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0001.jpg": {
+    "brand_name": "Kfk",
+    "product_name": "\u624b\u8f7b\u672c\u683c\u7684\u4e09\u51fa\u4e00 COFFEE MEETS MILK",
+    "category": "Cosmetic Container",
+    "confidence": 0.73
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0011.jpg": {
+    "brand_name": "\u706b\u4fdd\u9664\u306e\u4fdd\u9664\u59cb\u671f\u65e5\u8fbe",
+    "product_name": "\u706b\u4fdd\u9664 \u5207\u66ff \u5f15\u6e21\u65e5\u529e5 \u6355\u50f9\u6574\u4e86\u65e5\u529b5",
+    "category": "Cosmetic Container",
+    "confidence": 0.62
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0010.jpg": {
+    "brand_name": "\u706b\u4fdd-\u6355\u50f9\u5185\u5bb9",
+    "product_name": "\u57fa\u672c\u6960 \u706b\u708e\u88dc\u50f9 \u843d\u96f7/\u7834\u88c2\u4e30\u9f99 \u8fbe\u7206\u5c27\u8001\u542b\u82af",
+    "category": "Cosmetic Container",
+    "confidence": 0.58
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0023.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0031.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P023_Marcelle_MarcelleBbCreamToPowderMakeup/P023_0021.jpg": {
+    "brand_name": "\u5065\u5eb7\u4e00\u751f",
+    "product_name": "\u79d1\u5b66\u517b\u751f \u79cb\u5b63 Autumn Wellness",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0011.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0007.jpg": {
+    "brand_name": "Anua",
+    "product_name": "IJELS International Journal of Education & Literacy Studies ISSN:2202-9478 AC",
+    "category": "Cosmetic Container",
+    "confidence": 0.91
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0043.jpg": {
+    "brand_name": "Assam",
+    "product_name": "AdobeStock|#510511378",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0021.jpg": {
+    "brand_name": "Hino",
+    "product_name": "\u682a\u5f0f\u4f1a\u793e\u4f50\u91ce\u7d66\u696d \u91ca\u8425\u7406\u5ff5 \u306e\u7269\u5ba2\u6837\u4e4b\u53d6\u53f7 21",
+    "category": "Cosmetic Container",
+    "confidence": 0.69
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0022.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0027.jpg": {
+    "brand_name": "\u7523\u306e\u4e7e\u306e\u521d\u5165\u672d",
+    "product_name": "\u53bb\u5e74\u4e0a\u9ad8\u503c\u53d6\u5f15",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0066.jpg": {
+    "brand_name": "\u5bab\u57ce\u9f0e\u7acb\u5c0f\u677e\u5c9b\u652f\u63f4\u5b66\u6821",
+    "product_name": "MiyagiPrefecturalKomatsushima Special Support School \u5143\u820c\u79c1\u306e\u672a\u6765",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0031.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0067.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0032.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0053.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0041.jpg": {
+    "brand_name": "Assam Statemap",
+    "product_name": "WITH ALL DISTRICT SET CACHAR BAKSA BARPETA",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0028.jpg": {
+    "brand_name": "\u5165\u672d\u306e\u6d41\u673a",
+    "product_name": "\u521d\u306e\u65b9",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0012.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0018.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0059.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0057.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0061.jpg": {
+    "brand_name": "Ymboismean",
+    "product_name": "Ceramicrange-safe Electricelement-safe Gas ring-safe 000",
+    "category": "Cleanser",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0023.jpg": {
+    "brand_name": "Ep",
+    "product_name": "Fp",
+    "category": "Cosmetic Container",
+    "confidence": 0.6
+  },
+  "data/image_model_dataset/Foundation_Base/P024_CargoCosmetics_CargoCosmeticsOnebaseForFace/P024_0006.jpg": {
+    "brand_name": "Reading Aloud At Home: Importance And Frequency",
+    "product_name": "Figure 4. Percentage of parents who... Say reading aloud to their child is Say their child is read extremely/veryimportant",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0036.jpg": {
+    "brand_name": "Cloud Whip",
+    "product_name": "Cloud Whip",
+    "category": "Cosmetic Container",
+    "confidence": 0.86
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0030.jpg": {
+    "brand_name": "Ego Boost",
+    "product_name": "EAT",
+    "category": "Cosmetic Container",
+    "confidence": 0.69
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0016.jpg": {
+    "brand_name": "Olourpot",
+    "product_name": "OLOURPOT",
+    "category": "Cosmetic Container",
+    "confidence": 0.72
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0051.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0031.jpg": {
+    "brand_name": "Ego Boost",
+    "product_name": "BRIGHTENINGSERUMSTICK THE GOOD STUFF VITAMIN C\uff08THD ASCORBATE) Astabilizedactiveformof VitaminCknownto",
+    "category": "Serum",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0027.jpg": {
+    "brand_name": "Hunny",
+    "product_name": "HUNNY",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0018.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0057.jpg": {
+    "brand_name": "Makea Toast",
+    "product_name": "Asheer silvery TOPPER SHADE taupe to cheers to",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0019.jpg": {
+    "brand_name": "Cloud Whip",
+    "product_name": "COLOURPOP COLOURPOP COLOURPOP",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0046.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0032.jpg": {
+    "brand_name": "Reveal",
+    "product_name": "Fourte 102 alpha hydro acidserum",
+    "category": "Serum",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0010.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0054.jpg": {
+    "brand_name": "Colourpop",
+    "product_name": "Cloud Whip",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0042.jpg": {
+    "brand_name": "Colovrror",
+    "product_name": "lippiepencil the lil box of lippiepencils",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0008.jpg": {
+    "brand_name": "New",
+    "product_name": "Cloud Whip Blurring Lip Liner blur the line between liner+ colour SHOP NOW",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0061.jpg": {
+    "brand_name": "Colourpop",
+    "product_name": "COLOURPOP",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0015.jpg": {
+    "brand_name": "Colourpot",
+    "product_name": "COLOURPOT",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0029.jpg": {
+    "brand_name": "Good Mood",
+    "product_name": "FourthRo gel moisturizer",
+    "category": "Moisturizer",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0012.jpg": {
+    "brand_name": "Cloud Whip",
+    "product_name": "CoLouRPor Cloud Whip CloudWhip CloudWhip COLOURPOP",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0049.jpg": {
+    "brand_name": "Englishtrainingteacherkpidaily",
+    "product_name": "PEREORMANCEAPPRAISALFORM",
+    "category": "Cosmetic Container",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0042.jpg": {
+    "brand_name": "A Peanuts Book",
+    "product_name": "featuring SNOOPY IT'SADOGSUFE \u6c38\u9042",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0027.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0010.jpg": {
+    "brand_name": "Highlylegible Calibrations",
+    "product_name": "Flexibletubing/swivelmouthpiece Dual-sidedcalibrationsclearly DOUR Mouthpieceallowsthepatient",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0047.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0001.jpg": {
+    "brand_name": "Skin",
+    "product_name": "Suy bs YUMMIES",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0034.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0058.jpg": {
+    "brand_name": "Femalereproductive",
+    "product_name": "PosteriorView OVERVIEW Suspenspryligament Uterus",
+    "category": "Cosmetic Container",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0029.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0055.jpg": {
+    "brand_name": "No.1404",
+    "product_name": "SD \u624b\u724c \u5927\u7f8e\u5de5\u5200\u7247 \u8fdb\u53e3\u9ad8\u78b3\u94a2",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0059.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0007.jpg": {
+    "brand_name": "Skin Yummies",
+    "product_name": "YUMMIES SKIN Sample IMML",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0056.jpg": {
+    "brand_name": "Expert",
+    "product_name": "deli 10PCS /8 Srap-otf CUTTERBLADE Prufessienst blasckes blace",
+    "category": "Cosmetic Container",
+    "confidence": 0.72
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0022.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0038.jpg": {
+    "brand_name": "Me48",
+    "product_name": "Me48",
+    "category": "Cosmetic Container",
+    "confidence": 0.55
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0009.jpg": {
+    "brand_name": "Date",
+    "product_name": "Overwhelm TME NOTES MUTRITION/MEALS",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0005.jpg": {
+    "brand_name": "Skin",
+    "product_name": "SMr b's. YUMMIES CARROT FACIAL DREAM CREAM",
+    "category": "Moisturizer",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Lip_Products/P002_SallyBSSkinYummies_BGlossyLipGloss/P002_0064.jpg": {
+    "brand_name": "\u6298\u306e",
+    "product_name": "\u8776\u82b1\u5f62 \u675f\u306e \u677e\u83dc\u306e \u6587\u5b57\u306e",
+    "category": "Cosmetic Container",
+    "confidence": 0.66
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0066.jpg": {
+    "brand_name": "Sy2026-2027Three-Termschoolcalendarstructure",
+    "product_name": "TotalClassDays:201 TERM1(696ays) TERM 2 (65dayS) TERM3 (67days",
+    "category": "Cosmetic Container",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0035.jpg": {
+    "brand_name": "RoC",
+    "product_name": "Cheatography Intro to Sociology Cheat Sheet by RainyMoons (RainyMoons) via cheatography.com/153402/cs/44250/ Foundational Theories",
+    "category": "Makeup",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0044.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0019.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0055.jpg": {
+    "brand_name": "Illust A",
+    "product_name": "illust A",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0001.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0043.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0056.jpg": {
+    "brand_name": "Illusta",
+    "product_name": "illustA",
+    "category": "Cosmetic Container",
+    "confidence": 0.73
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0058.jpg": {
+    "brand_name": "Illust Ac",
+    "product_name": "illust AC",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0017.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0041.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0015.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0010.jpg": {
+    "brand_name": "Pennylane",
+    "product_name": "ORGANICS ORGANICS SCENT FREE ORGANICS",
+    "category": "Moisturizer",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0059.jpg": {
+    "brand_name": "Sonomama",
+    "product_name": "parfait tarte: muscat ame muscat daifsu",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0032.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0031.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0049.jpg": {
+    "brand_name": "\u5fc5\u643a\u00b7\u751f\u5f0f\u6cd5",
+    "product_name": "\u65e5\u672c\u83dc\u5b66\u4f1a\u7f16 \u91d1\u539f\u51fa\u7248\u682a\u5f0f\u4f1a\u793e",
+    "category": "Cosmetic Container",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Lip_Products/P003_PennyLaneOrganics_LipGloss/P003_0011.jpg": {
+    "brand_name": "Sakurastrawberry",
+    "product_name": "LIQUID DETERGENT PECIA EDITON WINGSCAR",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0033.jpg": {
+    "brand_name": "Hotsnapz",
+    "product_name": "www.HotSnapZ.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0034.jpg": {
+    "brand_name": "Hotsnapz",
+    "product_name": "www.HotSnapZ.com HotSnap lotSnapz ww.HoBnap2.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0062.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0035.jpg": {
+    "brand_name": "Hotsnapz",
+    "product_name": "www.HotSnupZ.com otSnapz www.Hiot5napZ.com www.HoISnapZ.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0051.jpg": {
+    "brand_name": "Ust",
+    "product_name": "ust",
+    "category": "Cosmetic Container",
+    "confidence": 0.73
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0013.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0012.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0027.jpg": {
+    "brand_name": "Hotsnapz",
+    "product_name": "wwHolStapZcom www.HotSnanZ.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0048.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0021.jpg": {
+    "brand_name": "Settings",
+    "product_name": "SplitTunneling General ProtocolsAdvancedShortcuts BypassVPNandRouteviaVPNcannotbeenabledatthesametime",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0019.jpg": {
+    "brand_name": "Ziff",
+    "product_name": "openAl Davis",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0006.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0009.jpg": {
+    "brand_name": "Standard",
+    "product_name": "FIREWORKS World's Largest",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0047.jpg": {
+    "brand_name": "5 D",
+    "product_name": "5 d",
+    "category": "Cosmetic Container",
+    "confidence": 0.36
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0024.jpg": {
+    "brand_name": "Hotsnapz",
+    "product_name": "HotSnapz",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0038.jpg": {
+    "brand_name": "Hotsnapz",
+    "product_name": "www.HotSnapZ.com www.HotSnapZ.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0005.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0057.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P004_Nudus_Amalia/P004_0040.jpg": {
+    "brand_name": "Hotsnapz",
+    "product_name": "aDZ.cOF 1otSnapz www.HotSnapZ.com HotSnap",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0010.jpg": {
+    "brand_name": "Espbesso",
+    "product_name": "ESPBESSO",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0047.jpg": {
+    "brand_name": "Top",
+    "product_name": "Male Dog Names 26.Harry",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0054.jpg": {
+    "brand_name": "Nameera",
+    "product_name": "ByFarooq NdimeerabyFarooo.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0038.jpg": {
+    "brand_name": "\u53e3\u53e3O\u5e74",
+    "product_name": "\u635f\u76ca\u8dbe\u7b97\u5584 \u501f\u5bf9\u7167\u8868 22,042, 6,411",
+    "category": "Cosmetic Container",
+    "confidence": 0.69
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0027.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0060.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0045.jpg": {
+    "brand_name": "RoC",
+    "product_name": "Top 100 Dog Names of 2021 1. Bella",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0048.jpg": {
+    "brand_name": "Mxvi",
+    "product_name": "SANDOR",
+    "category": "Cosmetic Container",
+    "confidence": 0.67
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0043.jpg": {
+    "brand_name": "Thank You",
+    "product_name": "NO",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0024.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0025.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0009.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0035.jpg": {
+    "brand_name": "66",
+    "product_name": "66",
+    "category": "Cosmetic Container",
+    "confidence": 1.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0057.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0016.jpg": {
+    "brand_name": "\u5929\u7136\u6728",
+    "product_name": "\u5929\u7136\u6728",
+    "category": "Cosmetic Container",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0007.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0015.jpg": {
+    "brand_name": "Atomicbeauty",
+    "product_name": "SKIN CARE ROUTINE WITH BROOKE",
+    "category": "Cosmetic Container",
+    "confidence": 0.87
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0064.jpg": {
+    "brand_name": "Avene",
+    "product_name": "cashfly Product Pricing About",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0039.jpg": {
+    "brand_name": "\u5507\u306e\u4f53\u64cd",
+    "product_name": "\u516b\u529b\u4f53\u64cd \u9891\u306e\u4f53\u64cd \u65b910\u56de\u884c",
+    "category": "Cosmetic Container",
+    "confidence": 0.63
+  },
+  "data/image_model_dataset/Lip_Products/P005_Marienatie_Lipstick/P005_0005.jpg": {
+    "brand_name": "Note How The Apical Surface Of",
+    "product_name": "the cells (facing the lumen of the trachea) is covered in cilia Although pseudostratified ciliated columnar epithelium is a simple tissue (all cells touch the basementmebrane",
+    "category": "Cosmetic Container",
+    "confidence": 0.88
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0065.jpg": {
+    "brand_name": "\u4ec1\u5385\u5916-Word",
+    "product_name": "\u6323\u5165 \u53c2\u8003\u74f7\u6599 \u5dee\u529e\u6587\u66f8 \u8868\u793a",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0062.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0058.jpg": {
+    "brand_name": "Open",
+    "product_name": "SOONJUNGHOSPITAL\u4e73",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0021.jpg": {
+    "brand_name": "Iepiopiiecyas",
+    "product_name": "iepiopiiecyas",
+    "category": "Cosmetic Container",
+    "confidence": 0.53
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0016.jpg": {
+    "brand_name": "Computer Powerpoint",
+    "product_name": "01 Increased productivity and efficiency. 02",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0054.jpg": {
+    "brand_name": "Netetatcosrsks",
+    "product_name": "SITOXRARRRELTE AELST c.eoecncmreurs 12",
+    "category": "Cosmetic Container",
+    "confidence": 0.55
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0051.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0023.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0001.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0009.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0002.jpg": {
+    "brand_name": "Creations",
+    "product_name": "CREATIONS",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0056.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0043.jpg": {
+    "brand_name": "Tusta",
+    "product_name": "TustA",
+    "category": "Cosmetic Container",
+    "confidence": 0.63
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0008.jpg": {
+    "brand_name": "Vectee",
+    "product_name": "Vectee",
+    "category": "Cosmetic Container",
+    "confidence": 0.62
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0012.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0052.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0017.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0019.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Lip_Products/P006_CoastalClassicCreation_ConchLipstick/P006_0036.jpg": {
+    "brand_name": "Cerfbell",
+    "product_name": "\u9ad4\u6e29\u9b54\u672f\u5e2b \u808c\u51c9 2.0 \u9632\u66ec\u5916\u5957",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0022.jpg": {
+    "brand_name": "Old",
+    "product_name": "SOAP BRANDS",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0027.jpg": {
+    "brand_name": "Yamaaa",
+    "product_name": "YAMAAA",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0015.jpg": {
+    "brand_name": "Bus",
+    "product_name": "Bus",
+    "category": "Cosmetic Container",
+    "confidence": 0.51
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0029.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0028.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0014.jpg": {
+    "brand_name": "Ill",
+    "product_name": "ill",
+    "category": "Cosmetic Container",
+    "confidence": 0.53
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0047.jpg": {
+    "brand_name": "RoC",
+    "product_name": "TO BRER Bath 2mg 9.s",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0036.jpg": {
+    "brand_name": "Mahendragiri",
+    "product_name": "Mahendragiri",
+    "category": "Cosmetic Container",
+    "confidence": 0.9
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0050.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0057.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0067.jpg": {
+    "brand_name": "Siko",
+    "product_name": "SIKO",
+    "category": "Cosmetic Container",
+    "confidence": 0.51
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0042.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0055.jpg": {
+    "brand_name": "Wiseguy",
+    "product_name": "MarketShareBreakdown,ByRobotType,2024 REPORTS XX% ArticulatedRobots",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0008.jpg": {
+    "brand_name": "51",
+    "product_name": "51",
+    "category": "Cosmetic Container",
+    "confidence": 0.55
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0045.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0051.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0013.jpg": {
+    "brand_name": "Lust",
+    "product_name": "lust",
+    "category": "Cosmetic Container",
+    "confidence": 0.72
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0056.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0065.jpg": {
+    "brand_name": "Siko",
+    "product_name": "12345",
+    "category": "Cosmetic Container",
+    "confidence": 0.62
+  },
+  "data/image_model_dataset/Other_Makeup/P021_DrHauschka_DrHauschkaTranslucentBronzingTint/P021_0059.jpg": {
+    "brand_name": "1234",
+    "product_name": "\u753b\u50cf",
+    "category": "Cosmetic Container",
+    "confidence": 0.71
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0002.jpg": {
+    "brand_name": "Saveupto",
+    "product_name": "30",
+    "category": "Cosmetic Container",
+    "confidence": 0.74
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0056.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0042.jpg": {
+    "brand_name": "\u53e3\u4e007\u5b57\u5165\u529b\u8868",
+    "product_name": "DA DE DO 12",
+    "category": "Cosmetic Container",
+    "confidence": 0.66
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0044.jpg": {
+    "brand_name": "\u5b57\u8868",
+    "product_name": "\u540d\u5165\u673a\u5fd9\u4f7f\u4e86\u53e3\u4e00\u5b57\u306e\u4e00\u89c9\u8868\u5bf8\u3002 \u63ed\u8f7d\u5b57\u6ce8\u6642\u5468\u3002 50\u97f3 KA",
+    "category": "Cosmetic Container",
+    "confidence": 0.67
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0058.jpg": {
+    "brand_name": "MAC",
+    "product_name": "Punggol Point Woodlands North Samudera Nibong",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0040.jpg": {
+    "brand_name": "\u53e3\u5b57\u5165\u529b\u8868\u00b7\u7248",
+    "product_name": "112 7\u5143 \u203b\u5c0f\u5b66\u6821\u53ea\u4ee4\u5f0f\u53e3\u4e00\u5b57 DI",
+    "category": "Cosmetic Container",
+    "confidence": 0.67
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0053.jpg": {
+    "brand_name": "Size",
+    "product_name": "215mm 155mm \u7d04\u5e45215mm\u00d7\u9ad8\u00b1155mm",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0050.jpg": {
+    "brand_name": "\u5ddd\u4e0a\u672a\u6620\u5b50Miekokawakami",
+    "product_name": "mieko_kawakami\u00b7Follow \u590f\u306e\u8bde\u751f\u65e5\u8fce\u3002\u534a\u4e16 \uff0150\u52fa\uff01 \u306e\u795d\u3002how",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0036.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0055.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0028.jpg": {
+    "brand_name": "Queens",
+    "product_name": "Name NY OED",
+    "category": "Cosmetic Container",
+    "confidence": 0.67
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0052.jpg": {
+    "brand_name": "Afl\u4eca\u9632\u4e03\u540c\u529b\u4e00\u672f\u67c4\u98de\u5bf8",
+    "product_name": "\u7c73\u4e00\u4e8d\u4e00\u5370\u8c61\u306e\u529b\u4e00\u672f\u67c4",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0015.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0037.jpg": {
+    "brand_name": "Brin",
+    "product_name": "2025.11.1-11.30 aouamarine BHRIREEST ASIDNAL MANADO",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0018.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0049.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0008.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0048.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0045.jpg": {
+    "brand_name": "0_0",
+    "product_name": "0_0",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0014.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P022_PhysiciansFormula_PhysiciansFormulaBronzeBoosterGlowBoostingBbCream/P022_0029.jpg": {
+    "brand_name": "MAC",
+    "product_name": "spiny dorsal fin soft dorsal fin spinal cord gallbladder",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0001.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0004.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0039.jpg": {
+    "brand_name": "Pngtree",
+    "product_name": "pngtee",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0026.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0064.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0003.jpg": {
+    "brand_name": "56",
+    "product_name": "56",
+    "category": "Cosmetic Container",
+    "confidence": 0.59
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0020.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0043.jpg": {
+    "brand_name": "Freecharge",
+    "product_name": "FLEE",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0034.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0032.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0038.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0059.jpg": {
+    "brand_name": "168",
+    "product_name": "100gna",
+    "category": "Cosmetic Container",
+    "confidence": 0.65
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0044.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0019.jpg": {
+    "brand_name": "Madewith",
+    "product_name": "VideoShow",
+    "category": "Cosmetic Container",
+    "confidence": 0.84
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0008.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0065.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0023.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0015.jpg": {
+    "brand_name": "Dreamstime.Com",
+    "product_name": "ID1638004660leksandrKyrylov",
+    "category": "Cosmetic Container",
+    "confidence": 0.9
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0028.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0035.jpg": {
+    "brand_name": "Lluseac",
+    "product_name": "llusEAC",
+    "category": "Cosmetic Container",
+    "confidence": 0.3
+  },
+  "data/image_model_dataset/Other_Makeup/P025_Dior_Junon/P025_0054.jpg": {
+    "brand_name": "Magnific",
+    "product_name": "Mag Magnif Magr Magt",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0051.jpg": {
+    "brand_name": "Edsa",
+    "product_name": "SAMSONROAD Cloverleaf Balintawak AYALAMALLS",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0063.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0008.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0041.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0005.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0011.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0050.jpg": {
+    "brand_name": "Ninjag",
+    "product_name": "BRAND NEW INFO ABOUT THUNDER-FANG DRAGONS RISING",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0057.jpg": {
+    "brand_name": "Maxd",
+    "product_name": "MRXIMUMOESTRUCTION TOMMEENTS MAGNAFLOW SIMPSON",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0015.jpg": {
+    "brand_name": "Min",
+    "product_name": "MIN",
+    "category": "Cosmetic Container",
+    "confidence": 0.63
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0022.jpg": {
+    "brand_name": "Adobestock|#388354474",
+    "product_name": "AdobeStock|#388354474",
+    "category": "Cosmetic Container",
+    "confidence": 0.93
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0048.jpg": {
+    "brand_name": "Edsa",
+    "product_name": "To Bulacan To Trinoma LRT To Caloocan",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0020.jpg": {
+    "brand_name": "Poetry",
+    "product_name": "Ir Ihad a flower of you,I could walr in-my garden forever. Dh.rapturous rasc-crownedoccasion",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0065.jpg": {
+    "brand_name": "Ae Shingy Bearlipul",
+    "product_name": "Ae Shingy Bearlipul",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0026.jpg": {
+    "brand_name": "\u5915\u4e45\u306e\u9032\u6d89",
+    "product_name": "\u535c\u4e00\u535c\u306e\u4f5c\u65b9\u4e66\u6d3b\u7528\u6cd5\u5bf8\u89e3\u8bf4 \u8868\u793a\u670b\u59cb\u65e5\uff1a \u753b2022/01/01 \u8868\u793a\u80fd\u56ed\uff1a17\u6708",
+    "category": "Cosmetic Container",
+    "confidence": 0.67
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0006.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0034.jpg": {
+    "brand_name": "Sharda",
+    "product_name": "UNIVERSITY",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0052.jpg": {
+    "brand_name": "Valenzuela",
+    "product_name": "MindanaoAvenue Governor Pascual Project8 Takemethere",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0056.jpg": {
+    "brand_name": "Toockmarws",
+    "product_name": "STOCKMARKETNEWSTODAY: LATESTBREAKINGUPDATES,PRICES TRENDS&GLOBALMARKETANALYSIS2026 POLIMERNEWSLIVE.COM",
+    "category": "Moisturizer",
+    "confidence": 0.89
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0032.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P026_Benefit_DallasDustyRoseFacePowder/P026_0014.jpg": {
+    "brand_name": "Rgtae",
+    "product_name": "JEON JMNGKOOK tte iud",
+    "category": "Cosmetic Container",
+    "confidence": 0.65
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0063.jpg": {
+    "brand_name": "Dl",
+    "product_name": "DL",
+    "category": "Cosmetic Container",
+    "confidence": 0.24
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0065.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0029.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0003.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0066.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0051.jpg": {
+    "brand_name": "00",
+    "product_name": "00",
+    "category": "Cosmetic Container",
+    "confidence": 0.52
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0036.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0038.jpg": {
+    "brand_name": "Hetra",
+    "product_name": "HER Jake K est15 Michani",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0025.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0039.jpg": {
+    "brand_name": "Hetra",
+    "product_name": "EST1989",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0040.jpg": {
+    "brand_name": "Codgif",
+    "product_name": "CODGIF",
+    "category": "Cosmetic Container",
+    "confidence": 0.72
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0006.jpg": {
+    "brand_name": "Wooden Street",
+    "product_name": "Wooden Street",
+    "category": "Cosmetic Container",
+    "confidence": 0.81
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0055.jpg": {
+    "brand_name": "Creamstn",
+    "product_name": "creamstn",
+    "category": "Moisturizer",
+    "confidence": 0.64
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0056.jpg": {
+    "brand_name": "Dobestod",
+    "product_name": "IdobeSto AdobeStock|#554565963 dobeStoc",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0042.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0010.jpg": {
+    "brand_name": "Sgs",
+    "product_name": "SGS",
+    "category": "Cosmetic Container",
+    "confidence": 0.93
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0037.jpg": {
+    "brand_name": "Hetra",
+    "product_name": "ne 1089 e2023",
+    "category": "Cosmetic Container",
+    "confidence": 0.69
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0048.jpg": {
+    "brand_name": "0",
+    "product_name": "0)",
+    "category": "Cosmetic Container",
+    "confidence": 0.83
+  },
+  "data/image_model_dataset/Other_Makeup/P027_Stila_StilaStayAllDayBronzerInMedium/P027_0008.jpg": {
+    "brand_name": "Heart Rate Fat",
+    "product_name": "Burn Chart HeartRateFat AGE MAXIMUMHEART",
+    "category": "Cosmetic Container",
+    "confidence": 0.77
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0028.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0056.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0061.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0006.jpg": {
+    "brand_name": "Shopnow",
+    "product_name": "SAVE UP TO 20% Women'sWellnessEvent COT7ON TANPONS",
+    "category": "Cosmetic Container",
+    "confidence": 0.76
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0034.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0044.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0048.jpg": {
+    "brand_name": "Contents",
+    "product_name": "AGENDA coremlpsan delcr sk amet, con PRESENTATION Lorem ipsum",
+    "category": "Cosmetic Container",
+    "confidence": 0.78
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0054.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0045.jpg": {
+    "brand_name": "Akmal",
+    "product_name": "AKMAL",
+    "category": "Cosmetic Container",
+    "confidence": 0.69
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0043.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0009.jpg": {
+    "brand_name": "Save",
+    "product_name": "BEST 40% DEAL OFTHE",
+    "category": "Cosmetic Container",
+    "confidence": 0.79
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0053.jpg": {
+    "brand_name": "This Is Your",
+    "product_name": "presentation title",
+    "category": "Cosmetic Container",
+    "confidence": 0.85
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0022.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0067.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0042.jpg": {
+    "brand_name": "\u4f50\u91ce\u83dc\u898b\u00b7Kadokawa\uff0f\u2014\u516b",
+    "product_name": "MigiDali",
+    "category": "Cosmetic Container",
+    "confidence": 0.8
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0025.jpg": {
+    "brand_name": "K",
+    "product_name": "7 L=L",
+    "category": "Cosmetic Container",
+    "confidence": 0.33
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0036.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0040.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0011.jpg": {
+    "brand_name": "Byju'S",
+    "product_name": "PERIODICTABLE The Learning App 13 15",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0017.jpg": {
+    "brand_name": "Czmi",
+    "product_name": "LAZNASIONAL",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Other_Makeup/P028_MineralFusion_MineralFusionBronzerDuo/P028_0051.jpg": {
+    "brand_name": "Tech Startup",
+    "product_name": "Here is where your presentation begins",
+    "category": "Cosmetic Container",
+    "confidence": 0.91
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0034.jpg": {
+    "brand_name": "Jea",
+    "product_name": "Jea",
+    "category": "Cosmetic Container",
+    "confidence": 0.25
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0033.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0025.jpg": {
+    "brand_name": "Http://Chaxeupnortheast.Blogspot.Com",
+    "product_name": "http://chaxeupnortheast.blogspot.com",
+    "category": "Cosmetic Container",
+    "confidence": 0.89
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0019.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0050.jpg": {
+    "brand_name": "48",
+    "product_name": "330h328",
+    "category": "Cosmetic Container",
+    "confidence": 0.63
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0066.jpg": {
+    "brand_name": "As",
+    "product_name": "AS",
+    "category": "Cosmetic Container",
+    "confidence": 0.16
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0029.jpg": {
+    "brand_name": "Bts\u767b\u5834\u8fbeLi",
+    "product_name": "\u653e\u9001\u4e00\u513f YSnowManY\u306e \u53e3\u4e8f\u6c42\u5185\u5bb9\u89e3\u8bf4",
+    "category": "Cosmetic Container",
+    "confidence": 0.67
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0037.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0044.jpg": {
+    "brand_name": "Klefer",
+    "product_name": "RAL 7032 RAL 7040 PEBBLEGREY WINDOWGREY",
+    "category": "Cosmetic Container",
+    "confidence": 0.82
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0024.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0013.jpg": {
+    "brand_name": "\u539f\u672c",
+    "product_name": "\u5951\u7d04\u66f8 \u5951\u7d04\u66f8 \u4f50\u85e4\u592a\u90ce \u4f50\u85e4\u592a\u90ce",
+    "category": "Cosmetic Container",
+    "confidence": 0.7
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0054.jpg": {
+    "brand_name": "Max",
+    "product_name": "EASTON EASTO 31 OFFICIAL BASEBALL",
+    "category": "Cosmetic Container",
+    "confidence": 0.69
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0067.jpg": {
+    "brand_name": "Iulus",
+    "product_name": "AC",
+    "category": "Cosmetic Container",
+    "confidence": 0.72
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0065.jpg": {
+    "brand_name": "Veia",
+    "product_name": "VEIA",
+    "category": "Cosmetic Container",
+    "confidence": 0.17
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0051.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0052.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0062.jpg": {
+    "brand_name": "Illustac",
+    "product_name": "illustAC",
+    "category": "Cosmetic Container",
+    "confidence": 0.75
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0040.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0031.jpg": {
+    "brand_name": "Oo",
+    "product_name": "6",
+    "category": "Cosmetic Container",
+    "confidence": 0.52
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0030.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P029_Nyx_NyxMosaicPowderBlushParadise/P029_0058.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P030_Annabelle_AnnabelleBiggyBronzerHauteGold/P030_0010.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P030_Annabelle_AnnabelleBiggyBronzerHauteGold/P030_0003.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P030_Annabelle_AnnabelleBiggyBronzerHauteGold/P030_0008.jpg": {
+    "brand_name": "No Text Detected",
+    "product_name": "Unidentified Product",
+    "category": "Unspecified Cosmetic",
+    "confidence": 0.0
+  },
+  "data/image_model_dataset/Other_Makeup/P030_Annabelle_AnnabelleBiggyBronzerHauteGold/P030_0005.jpg": {
+    "brand_name": "Dwallp",
+    "product_name": "DWallp",
+    "category": "Cosmetic Container",
+    "confidence": 0.68
+  }
+}

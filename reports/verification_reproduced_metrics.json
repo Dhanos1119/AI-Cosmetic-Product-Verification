@@ -1,0 +1,13 @@
+{
+  "valid_cosmetic_queries": 557,
+  "valid_cosmetic_top1_acc": 59.43,
+  "valid_cosmetic_top5_acc": 77.2,
+  "valid_cosmetic_macro_f1": 59.9,
+  "full_benchmark_queries": 610,
+  "full_benchmark_top1_acc": 57.21,
+  "full_benchmark_top5_acc": 74.92,
+  "full_benchmark_macro_f1": 57.98,
+  "quarantined_test_count": 53,
+  "non_cosmetic_rejection_rate": 0.0,
+  "mean_non_cosmetic_similarity_pct": 68.94
+}

@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   title: "CosmeticVerify | AI Cosmetic Product Verification & Marketplace Trust",
   description: "Upload a cosmetic product image and discover product details, review trust, and reliable marketplace recommendations.",
   keywords: ["Cosmetics Verification", "Beauty AI", "Product Trust", "Marketplace Recommendation", "CosmeticVerify"],
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

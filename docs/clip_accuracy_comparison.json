@@ -1,0 +1,1171 @@
+{
+  "Method 1: Baseline Single-Centroid": {
+    "top1_correct": 188,
+    "total": 610,
+    "top1_accuracy_pct": 30.82,
+    "precision_macro": 35.89,
+    "recall_macro": 32.71,
+    "f1_macro": 30.63,
+    "precision_weighted": 34.59,
+    "recall_weighted": 30.82,
+    "f1_weighted": 28.96,
+    "per_product": {
+      "P001": {
+        "total": 21,
+        "correct": 21,
+        "accuracy_pct": 100.0
+      },
+      "P002": {
+        "total": 20,
+        "correct": 8,
+        "accuracy_pct": 40.0
+      },
+      "P003": {
+        "total": 20,
+        "correct": 6,
+        "accuracy_pct": 30.0
+      },
+      "P004": {
+        "total": 20,
+        "correct": 7,
+        "accuracy_pct": 35.0
+      },
+      "P005": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P006": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P007": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P008": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P009": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P010": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P011": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P012": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P013": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P014": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P015": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P016": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P017": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P018": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P019": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P020": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P021": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P022": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P023": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P024": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P025": {
+        "total": 21,
+        "correct": 9,
+        "accuracy_pct": 42.9
+      },
+      "P026": {
+        "total": 21,
+        "correct": 3,
+        "accuracy_pct": 14.3
+      },
+      "P027": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P028": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P029": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P030": {
+        "total": 4,
+        "correct": 4,
+        "accuracy_pct": 100.0
+      }
+    },
+    "top5_correct": 351,
+    "top5_accuracy_pct": 57.54,
+    "inf_time_ms": 0.014,
+    "memory_kb": 60.0
+  },
+  "Method 2: 1-NN Reference Bank": {
+    "top1_correct": 354,
+    "total": 610,
+    "top1_accuracy_pct": 58.03,
+    "precision_macro": 59.46,
+    "recall_macro": 59.21,
+    "f1_macro": 58.78,
+    "precision_weighted": 58.87,
+    "recall_weighted": 58.03,
+    "f1_weighted": 57.92,
+    "per_product": {
+      "P001": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P002": {
+        "total": 20,
+        "correct": 13,
+        "accuracy_pct": 65.0
+      },
+      "P003": {
+        "total": 20,
+        "correct": 11,
+        "accuracy_pct": 55.0
+      },
+      "P004": {
+        "total": 20,
+        "correct": 16,
+        "accuracy_pct": 80.0
+      },
+      "P005": {
+        "total": 21,
+        "correct": 8,
+        "accuracy_pct": 38.1
+      },
+      "P006": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P007": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P008": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P009": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P010": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P011": {
+        "total": 21,
+        "correct": 11,
+        "accuracy_pct": 52.4
+      },
+      "P012": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P013": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P014": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P015": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P016": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P017": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P018": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P019": {
+        "total": 21,
+        "correct": 11,
+        "accuracy_pct": 52.4
+      },
+      "P020": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P021": {
+        "total": 21,
+        "correct": 15,
+        "accuracy_pct": 71.4
+      },
+      "P022": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P023": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P024": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P025": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P026": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P027": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P028": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P029": {
+        "total": 21,
+        "correct": 15,
+        "accuracy_pct": 71.4
+      },
+      "P030": {
+        "total": 4,
+        "correct": 4,
+        "accuracy_pct": 100.0
+      }
+    },
+    "top5_correct": 461,
+    "top5_accuracy_pct": 75.57,
+    "inf_time_ms": 0.023,
+    "memory_kb": 2680.0
+  },
+  "Method 3: 3-NN Reference Bank": {
+    "top1_correct": 345,
+    "total": 610,
+    "top1_accuracy_pct": 56.56,
+    "precision_macro": 58.34,
+    "recall_macro": 57.77,
+    "f1_macro": 57.29,
+    "precision_weighted": 57.72,
+    "recall_weighted": 56.56,
+    "f1_weighted": 56.39,
+    "per_product": {
+      "P001": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P002": {
+        "total": 20,
+        "correct": 13,
+        "accuracy_pct": 65.0
+      },
+      "P003": {
+        "total": 20,
+        "correct": 11,
+        "accuracy_pct": 55.0
+      },
+      "P004": {
+        "total": 20,
+        "correct": 15,
+        "accuracy_pct": 75.0
+      },
+      "P005": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P006": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P007": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P008": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P009": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P010": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P011": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P012": {
+        "total": 21,
+        "correct": 8,
+        "accuracy_pct": 38.1
+      },
+      "P013": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P014": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P015": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P016": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P017": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P018": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P019": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P020": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P021": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P022": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P023": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P024": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P025": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P026": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P027": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P028": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P029": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P030": {
+        "total": 4,
+        "correct": 4,
+        "accuracy_pct": 100.0
+      }
+    },
+    "top5_correct": 461,
+    "top5_accuracy_pct": 75.57,
+    "inf_time_ms": 0.091,
+    "memory_kb": 2680.0
+  },
+  "Method 4: K-Means Sub-Centroids (k=3)": {
+    "top1_correct": 231,
+    "total": 610,
+    "top1_accuracy_pct": 37.87,
+    "precision_macro": 38.92,
+    "recall_macro": 39.54,
+    "f1_macro": 38.61,
+    "precision_weighted": 37.76,
+    "recall_weighted": 37.87,
+    "f1_weighted": 37.21,
+    "per_product": {
+      "P001": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P002": {
+        "total": 20,
+        "correct": 7,
+        "accuracy_pct": 35.0
+      },
+      "P003": {
+        "total": 20,
+        "correct": 8,
+        "accuracy_pct": 40.0
+      },
+      "P004": {
+        "total": 20,
+        "correct": 7,
+        "accuracy_pct": 35.0
+      },
+      "P005": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P006": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P007": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P008": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P009": {
+        "total": 21,
+        "correct": 1,
+        "accuracy_pct": 4.8
+      },
+      "P010": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P011": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P012": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P013": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P014": {
+        "total": 21,
+        "correct": 11,
+        "accuracy_pct": 52.4
+      },
+      "P015": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P016": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P017": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P018": {
+        "total": 21,
+        "correct": 8,
+        "accuracy_pct": 38.1
+      },
+      "P019": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P020": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P021": {
+        "total": 21,
+        "correct": 8,
+        "accuracy_pct": 38.1
+      },
+      "P022": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P023": {
+        "total": 21,
+        "correct": 9,
+        "accuracy_pct": 42.9
+      },
+      "P024": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P025": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P026": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P027": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P028": {
+        "total": 21,
+        "correct": 8,
+        "accuracy_pct": 38.1
+      },
+      "P029": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P030": {
+        "total": 4,
+        "correct": 4,
+        "accuracy_pct": 100.0
+      }
+    },
+    "top5_correct": 377,
+    "top5_accuracy_pct": 61.8,
+    "inf_time_ms": 0.001,
+    "memory_kb": 180.0
+  },
+  "Method 5: Hybrid Visual + Text Prompt": {
+    "top1_correct": 172,
+    "total": 610,
+    "top1_accuracy_pct": 28.2,
+    "precision_macro": 30.58,
+    "recall_macro": 30.16,
+    "f1_macro": 27.82,
+    "precision_weighted": 29.99,
+    "recall_weighted": 28.2,
+    "f1_weighted": 26.7,
+    "per_product": {
+      "P001": {
+        "total": 21,
+        "correct": 19,
+        "accuracy_pct": 90.5
+      },
+      "P002": {
+        "total": 20,
+        "correct": 8,
+        "accuracy_pct": 40.0
+      },
+      "P003": {
+        "total": 20,
+        "correct": 5,
+        "accuracy_pct": 25.0
+      },
+      "P004": {
+        "total": 20,
+        "correct": 7,
+        "accuracy_pct": 35.0
+      },
+      "P005": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P006": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P007": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P008": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P009": {
+        "total": 21,
+        "correct": 0,
+        "accuracy_pct": 0.0
+      },
+      "P010": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P011": {
+        "total": 21,
+        "correct": 1,
+        "accuracy_pct": 4.8
+      },
+      "P012": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P013": {
+        "total": 21,
+        "correct": 1,
+        "accuracy_pct": 4.8
+      },
+      "P014": {
+        "total": 21,
+        "correct": 11,
+        "accuracy_pct": 52.4
+      },
+      "P015": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P016": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P017": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P018": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P019": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P020": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P021": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P022": {
+        "total": 21,
+        "correct": 3,
+        "accuracy_pct": 14.3
+      },
+      "P023": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P024": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P025": {
+        "total": 21,
+        "correct": 9,
+        "accuracy_pct": 42.9
+      },
+      "P026": {
+        "total": 21,
+        "correct": 3,
+        "accuracy_pct": 14.3
+      },
+      "P027": {
+        "total": 21,
+        "correct": 9,
+        "accuracy_pct": 42.9
+      },
+      "P028": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P029": {
+        "total": 21,
+        "correct": 3,
+        "accuracy_pct": 14.3
+      },
+      "P030": {
+        "total": 4,
+        "correct": 4,
+        "accuracy_pct": 100.0
+      }
+    },
+    "top5_correct": 333,
+    "top5_accuracy_pct": 54.59,
+    "inf_time_ms": 0.0,
+    "memory_kb": 120.0
+  },
+  "Method 6: Production OCR + CLIP Pipeline": {
+    "top1_correct": 187,
+    "total": 610,
+    "top1_accuracy_pct": 30.66,
+    "precision_macro": 34.85,
+    "recall_macro": 32.56,
+    "f1_macro": 30.4,
+    "precision_weighted": 33.51,
+    "recall_weighted": 30.66,
+    "f1_weighted": 28.71,
+    "per_product": {
+      "P001": {
+        "total": 21,
+        "correct": 21,
+        "accuracy_pct": 100.0
+      },
+      "P002": {
+        "total": 20,
+        "correct": 10,
+        "accuracy_pct": 50.0
+      },
+      "P003": {
+        "total": 20,
+        "correct": 6,
+        "accuracy_pct": 30.0
+      },
+      "P004": {
+        "total": 20,
+        "correct": 7,
+        "accuracy_pct": 35.0
+      },
+      "P005": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P006": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P007": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P008": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P009": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P010": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P011": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P012": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P013": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P014": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P015": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P016": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P017": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P018": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P019": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P020": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P021": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P022": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P023": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P024": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P025": {
+        "total": 21,
+        "correct": 9,
+        "accuracy_pct": 42.9
+      },
+      "P026": {
+        "total": 21,
+        "correct": 2,
+        "accuracy_pct": 9.5
+      },
+      "P027": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P028": {
+        "total": 21,
+        "correct": 6,
+        "accuracy_pct": 28.6
+      },
+      "P029": {
+        "total": 21,
+        "correct": 4,
+        "accuracy_pct": 19.0
+      },
+      "P030": {
+        "total": 4,
+        "correct": 4,
+        "accuracy_pct": 100.0
+      }
+    },
+    "top5_correct": 353,
+    "top5_accuracy_pct": 57.87,
+    "inf_time_ms": 0.014,
+    "memory_kb": 60.0
+  },
+  "Method 7 (Ensemble): 1-NN + OCR Boost": {
+    "top1_correct": 356,
+    "total": 610,
+    "top1_accuracy_pct": 58.36,
+    "precision_macro": 59.78,
+    "recall_macro": 59.53,
+    "f1_macro": 59.11,
+    "precision_weighted": 59.2,
+    "recall_weighted": 58.36,
+    "f1_weighted": 58.25,
+    "per_product": {
+      "P001": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P002": {
+        "total": 20,
+        "correct": 14,
+        "accuracy_pct": 70.0
+      },
+      "P003": {
+        "total": 20,
+        "correct": 11,
+        "accuracy_pct": 55.0
+      },
+      "P004": {
+        "total": 20,
+        "correct": 16,
+        "accuracy_pct": 80.0
+      },
+      "P005": {
+        "total": 21,
+        "correct": 8,
+        "accuracy_pct": 38.1
+      },
+      "P006": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P007": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P008": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P009": {
+        "total": 21,
+        "correct": 7,
+        "accuracy_pct": 33.3
+      },
+      "P010": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P011": {
+        "total": 21,
+        "correct": 11,
+        "accuracy_pct": 52.4
+      },
+      "P012": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P013": {
+        "total": 21,
+        "correct": 5,
+        "accuracy_pct": 23.8
+      },
+      "P014": {
+        "total": 21,
+        "correct": 16,
+        "accuracy_pct": 76.2
+      },
+      "P015": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P016": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P017": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P018": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P019": {
+        "total": 21,
+        "correct": 11,
+        "accuracy_pct": 52.4
+      },
+      "P020": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P021": {
+        "total": 21,
+        "correct": 15,
+        "accuracy_pct": 71.4
+      },
+      "P022": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P023": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P024": {
+        "total": 21,
+        "correct": 10,
+        "accuracy_pct": 47.6
+      },
+      "P025": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P026": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P027": {
+        "total": 21,
+        "correct": 13,
+        "accuracy_pct": 61.9
+      },
+      "P028": {
+        "total": 21,
+        "correct": 12,
+        "accuracy_pct": 57.1
+      },
+      "P029": {
+        "total": 21,
+        "correct": 14,
+        "accuracy_pct": 66.7
+      },
+      "P030": {
+        "total": 4,
+        "correct": 4,
+        "accuracy_pct": 100.0
+      }
+    },
+    "top5_correct": 464,
+    "top5_accuracy_pct": 76.07,
+    "inf_time_ms": 0.023,
+    "memory_kb": 2680.0
+  }
+}

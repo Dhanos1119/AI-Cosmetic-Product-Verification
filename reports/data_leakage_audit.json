@@ -1,0 +1,27 @@
+{
+  "original_reference_count": 1340,
+  "original_test_count": 610,
+  "quarantined_count": 145,
+  "cleaned_reference_count": 1248,
+  "exact_sha256_leakage": 0,
+  "near_duplicate_overlap_count": 2,
+  "near_duplicates": [
+    {
+      "test_image": "data/image_model_dataset/Eye_Products/P017_CEstMoi_MuseMascara/P017_0005.jpg",
+      "test_pid": "P017",
+      "ref_image": "data/image_model_dataset/Foundation_Base/P008_W3Llpeople_RealistInvisibleSettingPowder/P008_0003.jpg",
+      "ref_pid": "P008",
+      "dhash_distance": 4,
+      "is_same_pid": false
+    },
+    {
+      "test_image": "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0036.jpg",
+      "test_pid": "P001",
+      "ref_image": "data/image_model_dataset/Lip_Products/P001_Colourpop_LippiePencil/P001_0009.jpg",
+      "ref_pid": "P001",
+      "dhash_distance": 3,
+      "is_same_pid": true
+    }
+  ],
+  "recommendation": "Keep the test set intact as an unbiased benchmark. For the 1 near-duplicate pair in P001, ensure reference bank only uses non-overlapping original images."
+}

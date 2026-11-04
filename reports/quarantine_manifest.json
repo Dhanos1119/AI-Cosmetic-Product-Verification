@@ -1,0 +1,15 @@
+{
+  "quarantine_timestamp": "2026-10-30T21:04:09.946329+00:00",
+  "backup_location": "data/image_model_dataset_backup",
+  "total_files_moved": 145,
+  "missing_files": 0,
+  "breakdown_by_action": {
+    "QUARANTINE_CONFIRMED": 144,
+    "QUARANTINE_DUPLICATE": 1
+  },
+  "breakdown_by_split": {
+    "reference": 92,
+    "test": 53
+  },
+  "manifest_csv": "C:\\Users\\Dhanoshigan Ratnaraj\\AI-Cosmetic-Product-Verification\\reports\\quarantine_manifest.csv"
+}

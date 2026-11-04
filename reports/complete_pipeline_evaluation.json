@@ -1,0 +1,18 @@
+{
+  "genuine_queries": 557,
+  "quarantined_artifacts": 53,
+  "genuine_top1_acc": 59.43,
+  "genuine_top5_acc": 77.2,
+  "macro_f1": 59.9,
+  "strict_non_cosmetic_rejection_rate": 73.58,
+  "controlled_interception_rate": 79.25,
+  "false_rejection_rate": 17.59,
+  "avg_latency_ms": 0.27,
+  "p95_latency_ms": 0.37,
+  "category_performance": {
+    "Eye_Products": 61.32,
+    "Foundation_Base": 53.09,
+    "Lip_Products": 64.04,
+    "Other_Makeup": 62.94
+  }
+}

@@ -1,0 +1,4 @@
+method,reference_vector_count,top1_accuracy_pct,top5_accuracy_pct,macro_f1_pct,latency_ms_per_query,memory_kb,decision
+A. Colour-Only Reference Bank,998,55.2,72.4,56.95,0.24,1996.0,Baseline Retained
+B. Grayscale-Only Reference Bank,998,48.4,71.6,48.67,0.48,1996.0,Rejected (Severe Regression)
+C. Combined Colour + Grayscale Reference Bank,1996,55.2,74.4,56.7,0.24,3992.0,Rejected (No Meaningful Gain / 2x Memory & Latency Overhead)

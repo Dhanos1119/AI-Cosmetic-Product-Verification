@@ -69,6 +69,7 @@ class ReviewResultDetails(BaseModel):
     negative_themes: Optional[List[str]] = []
     sentiment_stats: Optional[Dict[str, Any]] = None
     simulated_reviews: Optional[List[Dict[str, Any]]] = []
+    platform_review_analyses: Optional[Dict[str, Any]] = None
 
 class AuthenticityResultDetails(BaseModel):
     status: str

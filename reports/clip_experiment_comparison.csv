@@ -1,0 +1,10 @@
+method_name,top1_accuracy_pct,top1_correct,total_test,top5_accuracy_pct,top5_correct,macro_f1_pct,weighted_f1_pct,latency_ms_per_query,ram_kb
+Method 1: Original Baseline Single-Centroid,30.82,188,610,57.54,351,30.63,28.96,0.009,60.0
+Method 2: Cleaned Single-Centroid,28.85,176,610,55.25,337,28.98,27.28,0.01,60.0
+Method 3: Original 1-NN Reference Bank (1340),58.03,354,610,75.57,461,58.78,57.92,0.325,2680.0
+Method 4: Cleaned 1-NN Reference Bank (1248),56.72,346,610,74.59,455,57.5,56.61,0.292,2496.0
+Method 5: Cleaned 3-NN Reference Bank (Top-3 Average),50.82,310,610,70.66,431,51.78,50.73,0.745,2496.0
+Method 6: Cleaned K-Means Multi-Prototypes (k=3),37.38,228,610,60.16,367,37.84,36.41,0.302,180.0
+Method 7: Cleaned + Augmented 1-NN (1428 vectors),56.39,344,610,74.75,456,57.09,56.19,0.372,2856.0
+Method 8: Cleaned 1-NN + OCR Brand Boost,57.05,348,610,75.08,458,57.83,56.94,0.29,2496.0
+Method 9: Cleaned+Augmented 1-NN + Tuned OCR Evidence,56.72,346,610,75.25,459,57.42,56.52,0.337,2856.0

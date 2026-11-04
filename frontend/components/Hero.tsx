@@ -58,7 +58,7 @@ export default function Hero({ user, onStartVerification, onHowItWorks }: HeroPr
               {!user ? (
                 "Upload a cosmetic product image and discover product details, review trust, and reliable marketplace recommendations."
               ) : (
-                "You are ready to verify your cosmetic products. Upload a packaging photo or use your camera to start instant inspection."
+                "You are ready to verify your cosmetic products. Upload a packaging photo to start instant inspection."
               )}
             </p>
 

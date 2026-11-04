@@ -65,6 +65,7 @@ export interface ReviewAnalysisModalProps {
   credibilityLabel?: string;
   positiveThemes?: string[];
   negativeThemes?: string[];
+  platformName?: string;
 }
 
 export default function ReviewAnalysisModal({
@@ -79,6 +80,7 @@ export default function ReviewAnalysisModal({
   credibilityLabel,
   positiveThemes = [],
   negativeThemes = [],
+  platformName,
 }: ReviewAnalysisModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -136,7 +138,11 @@ export default function ReviewAnalysisModal({
             <div>
               <div className="flex items-center gap-2">
                 <h3 id="review-modal-title" className="text-lg sm:text-xl font-black text-[#F8FAFC]">
-                  {isSimulated ? "Simulated Review Analysis" : "Customer Review Analysis"}
+                  {platformName
+                    ? `${platformName} Customer Reviews`
+                    : isSimulated
+                    ? "Simulated Review Analysis"
+                    : "Customer Review Analysis"}
                 </h3>
                 <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-[#A855F7]/20 text-[#A855F7] border border-[#A855F7]/30">
                   {totalReviews} Records
@@ -152,7 +158,10 @@ export default function ReviewAnalysisModal({
                 </span>
               </div>
               <p className="text-xs text-[#A1A1B5]">
-                {sentimentStats?.summary || `Sentiment distribution across all ${totalReviews} customer feedback records.`}
+                {sentimentStats?.summary ||
+                  `Sentiment distribution across all ${totalReviews} customer feedback records${
+                    platformName ? ` for ${platformName}` : ""
+                  }.`}
               </p>
             </div>
           </div>

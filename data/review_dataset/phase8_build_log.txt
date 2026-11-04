@@ -1,0 +1,122 @@
+﻿python.exe : 22:51:09  INFO      ======================================================================
+At line:1 char:1
++ & "ai-service\venv\Scripts\python.exe" "data\build_real_review_datase ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (22:51:09  INFO ...===============:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+22:51:09  INFO      PHASE 8 ù Real Review Dataset Preparation & Sentiment Model Training
+22:51:09  INFO      ======================================================================
+22:51:09  INFO      ======================================================================
+22:51:09  INFO      PHASE A ù Loading Amazon Beauty Reviews CSV (read-only)
+22:51:09  INFO      ======================================================================
+22:51:09  INFO      Source: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\raw\amazon_beauty_reviews_dataset.csv
+22:51:09  INFO      Chunked read in progress ...
+22:51:12  INFO      Loaded 701,528 rows, 10 columns
+22:51:12  INFO      All required columns present: ['rating', 'title', 'text', 'images', 'asin', 'parent_asin', 
+'user_id', 'timestamp', 'helpful_vote', 'verified_purchase']
+22:51:12  INFO      Timestamp samples (raw): ['08:48.9', '10:55.1', '41:06.1', '13:50.2', '02:43.5']
+22:51:12  INFO      ======================================================================
+22:51:12  INFO      PHASE B ù Deduplication and eligibility filtering
+22:51:12  INFO      ======================================================================
+22:51:12  INFO      After null/empty text removal: 700,703 rows (removed 825)
+22:51:12  INFO      After invalid rating removal: 700,703 rows (removed 0)
+22:51:14  INFO      Exact row duplicates removed: 7,260 (now 693,443 rows)
+22:51:14  INFO      (asin, user_id, text) duplicates removed: 1 (now 693,442 rows)
+22:51:15  INFO      Exact-text duplicates removed (global, keep first): 49,822 (now 643,620 rows)
+22:51:15  INFO      Rows with null titles (kept, filled with '' during training): 70
+22:51:15  INFO      Eligible pool size: 643,620 rows
+22:51:15  INFO      ======================================================================
+22:51:15  INFO      PHASE C ù Stratified sampling of exactly 100,000 reviews
+22:51:15  INFO      ======================================================================
+22:51:15  INFO      Eligible pool distribution:
+sentiment
+positive    450371
+negative    139167
+neutral      54082
+22:51:16  INFO      Sampled 100k distribution:
+sentiment
+positive    69975
+negative    21622
+neutral      8403
+22:51:16  INFO      Sampled exactly: 100,000 rows
+22:51:16  INFO      ======================================================================
+22:51:16  INFO      PHASE D ù Saving selected and prepared CSV files
+22:51:16  INFO      ======================================================================
+22:51:16  INFO      Writing selected CSV: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\selected\beauty_reviews_selected_100k.csv
+22:51:17  INFO        -> 46.30 MB, 100,000 rows
+22:51:17  INFO      Writing prepared CSV: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\processed\beauty_reviews_prepared_100k.csv
+22:51:18  INFO        -> 38.23 MB, 100,000 rows
+22:51:18  INFO      ======================================================================
+22:51:18  INFO      PHASE E ù Creating 80,000 / 20,000 stratified train/test split
+22:51:18  INFO      ======================================================================
+22:51:18  INFO      Review ID overlap (must be 0): 0
+22:51:18  INFO      Exact text overlap count: 0 (expected ~0 due to earlier dedup)
+22:51:18  INFO      ASIN (product) overlap: 7,721 ù EXPECTED. Split is random-stratified by sentiment, not grouped by 
+product. Same product may appear in both train and test. This is documented.
+22:51:18  INFO      Train sentiment distribution:
+sentiment
+positive    55980
+negative    17298
+neutral      6722
+22:51:18  INFO      Test  sentiment distribution:
+sentiment
+positive    13995
+negative     4324
+neutral      1681
+22:51:18  INFO      Writing train CSV: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\train\beauty_reviews_train_80k.csv
+22:51:19  INFO        -> 30.54 MB, 80,000 rows
+22:51:19  INFO      Writing test CSV: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\test\beauty_reviews_test_20k.csv
+22:51:19  INFO        -> 7.69 MB, 20,000 rows
+22:51:19  INFO      ======================================================================
+22:51:19  INFO      PHASE F ù Training TF-IDF + Logistic Regression sentiment baseline
+22:51:19  INFO      ======================================================================
+22:51:19  INFO      Preparing training text features ...
+22:51:20  INFO      Preparing test text features ...
+22:51:20  INFO      Fitting TF-IDF vectorizer on training set only ...
+22:51:25  INFO      Vectorizer fitted. Shape: (80000, 15000). Time: 4.7s
+22:51:25  INFO      Test matrix shape: (20000, 15000)
+22:51:25  INFO      Training Logistic Regression ...
+22:51:27  INFO      Training complete in 1.26s
+22:51:27  INFO      Evaluating on 20,000 test records ...
+22:51:27  INFO      Accuracy: 86.08%  |  Macro Precision: 72.86%  |  Macro Recall: 63.72%  |  Macro F1: 65.19%
+22:51:27  INFO      Majority-class baseline accuracy: 69.97%
+22:51:27  INFO      Inference time for 20k records: 0.003s
+22:51:27  INFO      Saving vectorizer: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\tfidf_vectorizer.joblib
+22:51:27  INFO      Saving classifier: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\sentiment_logistic_regression.joblib
+22:51:27  INFO      ======================================================================
+22:51:27  INFO      PHASE G ù Saving model metadata and evaluation report
+22:51:27  INFO      ======================================================================
+22:51:27  INFO      Writing metadata: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\model_metadata.json
+22:51:27  INFO      Writing evaluation report: C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\evaluation_report.json
+22:51:27  INFO      All artifacts saved.
+22:51:27  INFO      ======================================================================
+22:51:27  INFO      Phase 8 complete in 17.8s
+22:51:27  INFO        Selected CSV : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\selected\beauty_reviews_selected_100k.csv
+22:51:27  INFO        Prepared CSV : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\processed\beauty_reviews_prepared_100k.csv
+22:51:27  INFO        Train CSV    : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\train\beauty_reviews_train_80k.csv  (80,000 rows)
+22:51:27  INFO        Test CSV     : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\data\review_dataset\test\beauty_reviews_test_20k.csv   (20,000 rows)
+22:51:27  INFO        Vectorizer   : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\tfidf_vectorizer.joblib
+22:51:27  INFO        Classifier   : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\sentiment_logistic_regression.joblib
+22:51:27  INFO        Metadata     : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\model_metadata.json
+22:51:27  INFO        Eval report  : C:\Users\Dhanoshigan 
+Ratnaraj\AI-Cosmetic-Product-Verification\models\review_sentiment\evaluation_report.json
+22:51:27  INFO      ======================================================================
+22:51:27  INFO      Model accuracy on 20k holdout: 86.08%  (majority-class baseline: 69.97%)
+22:51:27  INFO      ======================================================================

@@ -8,7 +8,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import quote_plus, urljoin
-from typing import List, Optional
+from typing import List, Optional, Any
 from urllib3.util import Retry
 from requests.adapters import HTTPAdapter
 from app.services.scraping.schemas import RawMarketplaceItem
@@ -35,6 +35,77 @@ def _get_fast_session():
     s.mount("https://", adapter)
     s.mount("http://", adapter)
     return s
+
+
+def fetch_amazon_reviews(asin: Optional[str] = None, link: Optional[str] = None, timeout: float = 2.0) -> List[Any]:
+    """
+    Attempts to fetch genuine customer review text for a matched Amazon product.
+    If Amazon blocks, returns CAPTCHA, or times out, returns an empty list cleanly without failing the main scraper.
+    """
+    if not asin and not link:
+        return []
+
+    target_url = (
+        f"https://www.amazon.com/product-reviews/{asin}/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+        if asin
+        else link
+    )
+
+    try:
+        session = _get_fast_session()
+        resp = session.get(target_url, headers=HEADERS, timeout=(timeout, timeout))
+        if resp.status_code != 200:
+            return []
+        if any(marker in resp.text for marker in BOT_CHALLENGE_MARKERS):
+            return []
+
+        soup = BeautifulSoup(resp.text, 'html.parser')
+        cards = soup.select('div[data-hook="review"]') or soup.select('.review')
+        reviews = []
+        for card in cards[:10]:
+            body = (
+                card.select_one('span[data-hook="review-body"] span')
+                or card.select_one('.review-text-content span')
+                or card.select_one('.review-body')
+            )
+            comment = body.get_text(strip=True) if body else ""
+            if not comment:
+                continue
+
+            author_el = card.select_one('.a-profile-name') or card.select_one('.review-author')
+            author = author_el.get_text(strip=True) if author_el else "Amazon Customer"
+
+            rating = 5.0
+            r_el = (
+                card.select_one('i[data-hook="review-star-rating"] span')
+                or card.select_one('.review-rating span')
+                or card.select_one('.a-icon-alt')
+            )
+            if r_el:
+                m = re.search(r'(\d+(?:\.\d+)?)', r_el.get_text(strip=True))
+                if m:
+                    try:
+                        rating = float(m.group(1))
+                    except ValueError:
+                        rating = 5.0
+
+            date_el = card.select_one('span[data-hook="review-date"]') or card.select_one('.review-date')
+            date_str = date_el.get_text(strip=True) if date_el else None
+
+            vp_el = card.select_one('span[data-hook="avp-badge"]')
+            is_vp = bool(vp_el)
+
+            from app.schemas.marketplace import MarketplaceReview
+            reviews.append(MarketplaceReview(
+                author=author,
+                rating=rating,
+                comment=comment,
+                date=date_str,
+                verified_purchase=is_vp
+            ))
+        return reviews
+    except Exception:
+        return []
 
 
 def extract_amazon_card_link(card) -> Optional[str]:
@@ -214,6 +285,10 @@ def scrape_amazon_products(query: str, max_results: int = 3) -> List[RawMarketpl
             # Amazon search cards do not expose verified merchant seller names, so seller is None
             seller_val = None
 
+            card_reviews = []
+            if len(items) == 0 and (asin or link):
+                card_reviews = fetch_amazon_reviews(asin=asin, link=link, timeout=2.0)
+
             items.append(RawMarketplaceItem(
                 platform="Amazon",
                 raw_title=title,
@@ -227,9 +302,10 @@ def scrape_amazon_products(query: str, max_results: int = 3) -> List[RawMarketpl
                 link=link,
                 image_link=img_url,
                 listing_id=asin,
+                reviews=card_reviews,
                 source_status="available",
                 status_code="SUCCESS" if (price_val > 0.0 and (rating_val > 0.0 or review_count > 0)) else "PARTIAL_DATA",
-                explanation=f"Extracted verified Amazon listing: {title[:50]}"
+                explanation=f"Extracted verified Amazon listing with {len(card_reviews)} review(s): {title[:50]}"
             ))
 
         return items if items else [RawMarketplaceItem(

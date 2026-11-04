@@ -1,0 +1,9 @@
+{
+  "venvPath": "C:/Users/Dhanoshigan Ratnaraj/AI-Cosmetic-Product-Verification/ai-service",
+  "venv": "venv",
+  "extraPaths": [
+    "C:/Users/Dhanoshigan Ratnaraj/AI-Cosmetic-Product-Verification",
+    "C:/Users/Dhanoshigan Ratnaraj/AI-Cosmetic-Product-Verification/ai-service",
+    "C:/Users/Dhanoshigan Ratnaraj/AI-Cosmetic-Product-Verification/ai-service/venv/Lib/site-packages"
+  ]
+}

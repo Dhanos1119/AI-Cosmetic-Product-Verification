@@ -1,0 +1,361 @@
+{
+  "audit_date": "2026-10-31",
+  "total_images_inspected": 1950,
+  "total_products": 30,
+  "status_breakdown": {
+    "VALID_COSMETIC": 548,
+    "NEEDS_MANUAL_REVIEW": 1243,
+    "POSSIBLE_NON_COSMETIC": 158,
+    "NEAR_DUPLICATE": 1
+  },
+  "status_percentages": {
+    "VALID_COSMETIC": 28.1,
+    "NEEDS_MANUAL_REVIEW": 63.74,
+    "POSSIBLE_NON_COSMETIC": 8.1,
+    "NEAR_DUPLICATE": 0.05
+  },
+  "formats_breakdown": {
+    "WEBP": 92,
+    "JPEG": 1819,
+    "AVIF": 9,
+    "PNG": 30
+  },
+  "exact_duplicate_groups_count": 0,
+  "near_duplicate_groups_count": 1,
+  "corrupted_or_unusable_count": 0,
+  "non_cosmetic_count": 158,
+  "wrong_product_label_count": 0,
+  "needs_manual_review_count": 1243,
+  "valid_cosmetic_count": 548,
+  "per_product_summary": {
+    "P001": {
+      "brand": "colourpop",
+      "product_name": "Lippie Pencil",
+      "category": "Lip_Products",
+      "counts": {
+        "VALID_COSMETIC": 58,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 4,
+        "NEAR_DUPLICATE": 1,
+        "POSSIBLE_NON_COSMETIC": 4
+      }
+    },
+    "P002": {
+      "brand": "sally b's skin yummies",
+      "product_name": "B Glossy Lip Gloss",
+      "category": "Lip_Products",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 33,
+        "total": 65,
+        "VALID_COSMETIC": 27,
+        "POSSIBLE_NON_COSMETIC": 5
+      }
+    },
+    "P003": {
+      "brand": "penny lane organics",
+      "product_name": "Lip Gloss",
+      "category": "Lip_Products",
+      "counts": {
+        "VALID_COSMETIC": 32,
+        "total": 66,
+        "NEEDS_MANUAL_REVIEW": 31,
+        "POSSIBLE_NON_COSMETIC": 3
+      }
+    },
+    "P004": {
+      "brand": "nudus",
+      "product_name": "Amalia",
+      "category": "Lip_Products",
+      "counts": {
+        "VALID_COSMETIC": 28,
+        "total": 66,
+        "NEEDS_MANUAL_REVIEW": 34,
+        "POSSIBLE_NON_COSMETIC": 4
+      }
+    },
+    "P005": {
+      "brand": "marienatie",
+      "product_name": "Lipstick",
+      "category": "Lip_Products",
+      "counts": {
+        "VALID_COSMETIC": 11,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 43,
+        "POSSIBLE_NON_COSMETIC": 13
+      }
+    },
+    "P006": {
+      "brand": "coastal classic creation",
+      "product_name": "Conch Lipstick",
+      "category": "Lip_Products",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 44,
+        "total": 67,
+        "VALID_COSMETIC": 19,
+        "POSSIBLE_NON_COSMETIC": 4
+      }
+    },
+    "P007": {
+      "brand": "deciem",
+      "product_name": "Coverage Foundation",
+      "category": "Foundation_Base",
+      "counts": {
+        "VALID_COSMETIC": 13,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 52,
+        "POSSIBLE_NON_COSMETIC": 2
+      }
+    },
+    "P008": {
+      "brand": "w3llpeople",
+      "product_name": "Realist Invisible Setting Powder",
+      "category": "Foundation_Base",
+      "counts": {
+        "VALID_COSMETIC": 11,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 52,
+        "POSSIBLE_NON_COSMETIC": 4
+      }
+    },
+    "P009": {
+      "brand": "rejuva minerals",
+      "product_name": "Pressed Powder Foundation",
+      "category": "Foundation_Base",
+      "counts": {
+        "VALID_COSMETIC": 24,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 40,
+        "POSSIBLE_NON_COSMETIC": 3
+      }
+    },
+    "P010": {
+      "brand": "glossier",
+      "product_name": "Stretch Concealer",
+      "category": "Foundation_Base",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 44,
+        "total": 67,
+        "VALID_COSMETIC": 21,
+        "POSSIBLE_NON_COSMETIC": 2
+      }
+    },
+    "P011": {
+      "brand": "fenty",
+      "product_name": "MATCH STIX - Matte Skinstick",
+      "category": "Foundation_Base",
+      "counts": {
+        "VALID_COSMETIC": 28,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 34,
+        "POSSIBLE_NON_COSMETIC": 5
+      }
+    },
+    "P012": {
+      "brand": "clinique",
+      "product_name": "Even Better Compact Makeup Broad Spectrum SPF 15",
+      "category": "Foundation_Base",
+      "counts": {
+        "VALID_COSMETIC": 37,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 26,
+        "POSSIBLE_NON_COSMETIC": 4
+      }
+    },
+    "P013": {
+      "brand": "zorah biocosmetiques",
+      "product_name": "Liquid Liner",
+      "category": "Eye_Products",
+      "counts": {
+        "VALID_COSMETIC": 8,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 53,
+        "POSSIBLE_NON_COSMETIC": 6
+      }
+    },
+    "P014": {
+      "brand": "maia's mineral galaxy",
+      "product_name": "Mineral Eye Brow Liner Charcoal Brown",
+      "category": "Eye_Products",
+      "counts": {
+        "VALID_COSMETIC": 5,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 55,
+        "POSSIBLE_NON_COSMETIC": 7
+      }
+    },
+    "P015": {
+      "brand": "lotus cosmetics usa",
+      "product_name": "Mascara",
+      "category": "Eye_Products",
+      "counts": {
+        "VALID_COSMETIC": 12,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 50,
+        "POSSIBLE_NON_COSMETIC": 5
+      }
+    },
+    "P016": {
+      "brand": "green people",
+      "product_name": "Volumising Mascara",
+      "category": "Eye_Products",
+      "counts": {
+        "VALID_COSMETIC": 23,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 40,
+        "POSSIBLE_NON_COSMETIC": 4
+      }
+    },
+    "P017": {
+      "brand": "c'est moi",
+      "product_name": "Muse Mascara",
+      "category": "Eye_Products",
+      "counts": {
+        "VALID_COSMETIC": 8,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 49,
+        "POSSIBLE_NON_COSMETIC": 10
+      }
+    },
+    "P018": {
+      "brand": "alva",
+      "product_name": "Liquid Eye Shadow",
+      "category": "Eye_Products",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 45,
+        "total": 67,
+        "VALID_COSMETIC": 16,
+        "POSSIBLE_NON_COSMETIC": 6
+      }
+    },
+    "P019": {
+      "brand": "iman",
+      "product_name": "CC Correct & Cover Clay Medium Deep",
+      "category": "Foundation_Base",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 52,
+        "total": 67,
+        "VALID_COSMETIC": 11,
+        "POSSIBLE_NON_COSMETIC": 4
+      }
+    },
+    "P020": {
+      "brand": "smashbox",
+      "product_name": "24 Hour CC Spot Concealer",
+      "category": "Foundation_Base",
+      "counts": {
+        "VALID_COSMETIC": 14,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 41,
+        "POSSIBLE_NON_COSMETIC": 12
+      }
+    },
+    "P021": {
+      "brand": "dr. hauschka",
+      "product_name": "Dr. Hauschka Translucent Bronzing Tint",
+      "category": "Other_Makeup",
+      "counts": {
+        "VALID_COSMETIC": 20,
+        "total": 67,
+        "POSSIBLE_NON_COSMETIC": 4,
+        "NEEDS_MANUAL_REVIEW": 43
+      }
+    },
+    "P022": {
+      "brand": "physicians formula",
+      "product_name": "Physicians Formula Bronze Booster Glow-Boosting BB Cream",
+      "category": "Other_Makeup",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 41,
+        "total": 67,
+        "VALID_COSMETIC": 17,
+        "POSSIBLE_NON_COSMETIC": 9
+      }
+    },
+    "P023": {
+      "brand": "marcelle",
+      "product_name": "Marcelle BB Cream-to-Powder Makeup",
+      "category": "Foundation_Base",
+      "counts": {
+        "POSSIBLE_NON_COSMETIC": 8,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 43,
+        "VALID_COSMETIC": 16
+      }
+    },
+    "P024": {
+      "brand": "cargo cosmetics",
+      "product_name": "Cargo Cosmetics OneBase for Face",
+      "category": "Foundation_Base",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 52,
+        "total": 67,
+        "POSSIBLE_NON_COSMETIC": 5,
+        "VALID_COSMETIC": 10
+      }
+    },
+    "P025": {
+      "brand": "dior",
+      "product_name": "Junon",
+      "category": "Other_Makeup",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 55,
+        "total": 67,
+        "VALID_COSMETIC": 9,
+        "POSSIBLE_NON_COSMETIC": 3
+      }
+    },
+    "P026": {
+      "brand": "benefit",
+      "product_name": "dallas dusty rose face powder",
+      "category": "Other_Makeup",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 48,
+        "total": 67,
+        "VALID_COSMETIC": 13,
+        "POSSIBLE_NON_COSMETIC": 6
+      }
+    },
+    "P027": {
+      "brand": "stila",
+      "product_name": "Stila Stay All Day Bronzer in Medium",
+      "category": "Other_Makeup",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 48,
+        "total": 67,
+        "POSSIBLE_NON_COSMETIC": 8,
+        "VALID_COSMETIC": 11
+      }
+    },
+    "P028": {
+      "brand": "mineral fusion",
+      "product_name": "Mineral Fusion Bronzer Duo",
+      "category": "Other_Makeup",
+      "counts": {
+        "VALID_COSMETIC": 15,
+        "total": 67,
+        "NEEDS_MANUAL_REVIEW": 45,
+        "POSSIBLE_NON_COSMETIC": 7
+      }
+    },
+    "P029": {
+      "brand": "nyx",
+      "product_name": "NYX Mosaic Powder Blush Paradise",
+      "category": "Other_Makeup",
+      "counts": {
+        "NEEDS_MANUAL_REVIEW": 46,
+        "total": 67,
+        "VALID_COSMETIC": 20,
+        "POSSIBLE_NON_COSMETIC": 1
+      }
+    },
+    "P030": {
+      "brand": "annabelle",
+      "product_name": "Annabelle Biggy Bronzer Haute Gold",
+      "category": "Other_Makeup",
+      "counts": {
+        "VALID_COSMETIC": 11,
+        "total": 11
+      }
+    }
+  }
+}

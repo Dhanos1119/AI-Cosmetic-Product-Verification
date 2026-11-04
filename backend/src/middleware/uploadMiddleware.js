@@ -23,18 +23,18 @@ const storage = multer.diskStorage({
   },
 });
 
-// Allowed image MIME types and extensions
-const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-const allowedExtensions = ['.jpg', '.jpeg', '.png'];
+// Allowed image MIME types and extensions (JPG, JPEG, PNG, WEBP)
+const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const allowedExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
 
 const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname).toLowerCase();
   const mime = file.mimetype.toLowerCase();
 
-  if (allowedMimeTypes.includes(mime) && allowedExtensions.includes(ext)) {
+  if (allowedMimeTypes.includes(mime) || allowedExtensions.includes(ext)) {
     cb(null, true);
   } else {
-    const error = new Error('Invalid file type. Only JPG, JPEG, and PNG files are allowed.');
+    const error = new Error('Invalid file type. Only JPG, JPEG, PNG, and WEBP files are allowed.');
     error.code = 'INVALID_FILE_TYPE';
     cb(error, false);
   }
@@ -45,7 +45,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
   limits: {
-    fileSize: 10 * 1024 * 1024, // 10 MB limit
+    fileSize: 15 * 1024 * 1024, // 15 MB limit
   },
 });
 

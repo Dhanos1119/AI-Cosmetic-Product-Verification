@@ -1,0 +1,84 @@
+{
+  "positive_prompts": [
+    "a photo of a cosmetic product packaging, makeup bottle, tube, jar, compact powder, or lipstick container",
+    "a photo of cosmetic makeup swatches on skin, lipstick shades, or beauty product texture smear",
+    "a photo of a cosmetic product applicator wand, mascara brush, or cosmetic container carton packaging",
+    "a photo of beauty skincare, makeup cosmetics, or cosmetic container"
+  ],
+  "negative_prompts": [
+    "a promotional marketing banner, website advertisement, graphic logo, or digital infographic diagram",
+    "a diagram of text, educational chart, grammar rules, equestrian arena layout, or document graphic",
+    "a screenshot of a website, software app, text document, customer reviews, or computer screen",
+    "a full-body fashion portrait of a person wearing clothing, shoes, apparel, dress, or jacket",
+    "a photo of an electronic device, computer, appliance, vehicle, furniture, food, or animal",
+    "a photo of outdoor landscape, nature, city street, or empty room without any cosmetics"
+  ],
+  "validation_samples": {
+    "genuine_cosmetics": 250,
+    "non_cosmetics": 91
+  },
+  "distribution_metrics": {
+    "cosmetic_prob_mean": 0.2866,
+    "cosmetic_prob_min": 0.0,
+    "non_cosmetic_prob_mean": 0.052,
+    "non_cosmetic_prob_max": 0.6603
+  },
+  "selected_rejection_threshold": 0.4,
+  "ambiguous_threshold": 0.55,
+  "threshold_scan": [
+    {
+      "threshold": 0.2,
+      "non_cosmetic_rejection_rate_pct": 91.21,
+      "cosmetic_false_rejection_rate_pct": 58.4,
+      "f1_score": 0.5188
+    },
+    {
+      "threshold": 0.25,
+      "non_cosmetic_rejection_rate_pct": 92.31,
+      "cosmetic_false_rejection_rate_pct": 62.0,
+      "f1_score": 0.5091
+    },
+    {
+      "threshold": 0.3,
+      "non_cosmetic_rejection_rate_pct": 95.6,
+      "cosmetic_false_rejection_rate_pct": 67.2,
+      "f1_score": 0.5029
+    },
+    {
+      "threshold": 0.35,
+      "non_cosmetic_rejection_rate_pct": 97.8,
+      "cosmetic_false_rejection_rate_pct": 68.4,
+      "f1_score": 0.5071
+    },
+    {
+      "threshold": 0.4,
+      "non_cosmetic_rejection_rate_pct": 97.8,
+      "cosmetic_false_rejection_rate_pct": 71.6,
+      "f1_score": 0.4958
+    },
+    {
+      "threshold": 0.45,
+      "non_cosmetic_rejection_rate_pct": 98.9,
+      "cosmetic_false_rejection_rate_pct": 73.2,
+      "f1_score": 0.4945
+    },
+    {
+      "threshold": 0.5,
+      "non_cosmetic_rejection_rate_pct": 98.9,
+      "cosmetic_false_rejection_rate_pct": 74.0,
+      "f1_score": 0.4918
+    },
+    {
+      "threshold": 0.55,
+      "non_cosmetic_rejection_rate_pct": 98.9,
+      "cosmetic_false_rejection_rate_pct": 76.4,
+      "f1_score": 0.4839
+    },
+    {
+      "threshold": 0.6,
+      "non_cosmetic_rejection_rate_pct": 98.9,
+      "cosmetic_false_rejection_rate_pct": 78.4,
+      "f1_score": 0.4775
+    }
+  ]
+}

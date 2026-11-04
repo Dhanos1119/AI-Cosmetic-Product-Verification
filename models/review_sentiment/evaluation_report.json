@@ -1,0 +1,70 @@
+{
+  "evaluation_date": "2026-10-16 17:21:27 UTC",
+  "evaluation_set": "test_20k",
+  "evaluation_rows": 20000,
+  "disclaimer": "These metrics evaluate the model's ability to predict RATING-DERIVED sentiment labels (negative/neutral/positive). They do NOT measure fake-review detection accuracy. Labels are derived mechanically from star ratings and are not human-verified.",
+  "classes": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "accuracy": 86.08,
+  "macro_precision": 72.86,
+  "macro_recall": 63.72,
+  "macro_f1": 65.19,
+  "per_class": {
+    "negative": {
+      "precision": 80.21,
+      "recall": 79.46,
+      "f1": 79.83
+    },
+    "neutral": {
+      "precision": 49.41,
+      "recall": 15.05,
+      "f1": 23.07
+    },
+    "positive": {
+      "precision": 88.97,
+      "recall": 96.66,
+      "f1": 92.65
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "negative",
+      "neutral",
+      "positive"
+    ],
+    "matrix": [
+      [
+        3436,
+        136,
+        752
+      ],
+      [
+        503,
+        253,
+        925
+      ],
+      [
+        345,
+        123,
+        13527
+      ]
+    ]
+  },
+  "majority_class_baseline_accuracy": 69.97,
+  "majority_class": "positive",
+  "train_duration_seconds": 1.26,
+  "inference_duration_20k_seconds": 0.003,
+  "train_distribution": {
+    "positive": 55980,
+    "negative": 17298,
+    "neutral": 6722
+  },
+  "test_distribution": {
+    "positive": 13995,
+    "negative": 4324,
+    "neutral": 1681
+  }
+}

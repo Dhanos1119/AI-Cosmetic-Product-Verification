@@ -1,0 +1,187 @@
+{
+  "audit_timestamp": "2026-09-23 12:35:00",
+  "project_status": {
+    "ai_service": "Functional (FastAPI on port 8000 with CLIP ViT-B/32 matching, EasyOCR extraction, persistent centroid cache with live SHA256 validation, and marketplace comparison orchestrator)",
+    "backend_service": "Functional (Express.js on port 5000 with image upload controller saving files to /uploads)",
+    "frontend_service": "Functional (Next.js 15 React application in Demo Mode with UI upload preview; not yet wired to backend/AI APIs)",
+    "database_layer": "Unimplemented (directory /database contains only .gitkeep; no SQL/NoSQL ORM models or migrations exist)",
+    "scraping_layer": "Partially Implemented (HTTP scraper modules for Amazon, Daraz, and Temu using BeautifulSoup in ai-service/app/services/scraping/ with anti-bot fallback logic)",
+    "models_layer": "Partially Implemented (directory /models contains only .gitkeep; CLIP model loaded from Hugging Face hub, centroids saved in data/clip_centroids_vit_b32.npy)"
+  },
+  "existing_components": [
+    {
+      "component_name": "CLIP Vision Transformer Service",
+      "file_location": "ai-service/app/services/clip_service.py",
+      "status": "Verified Functional",
+      "description": "Loads openai/clip-vit-base-patch32, extracts 512-dim normalized pooler embeddings, computes cosine similarity against precomputed catalog centroids, and validates dataset SHA256 cache integrity."
+    },
+    {
+      "component_name": "EasyOCR Extraction Service",
+      "file_location": "ai-service/app/services/ocr_service.py",
+      "status": "Verified Functional",
+      "description": "Extracts raw text from image uploads using EasyOCR, identifies brand and product names, and applies OCR confidence thresholds."
+    },
+    {
+      "component_name": "Product Authenticity Predictor & Ensemble",
+      "file_location": "ai-service/app/services/authenticity_service.py",
+      "status": "Verified Functional",
+      "description": "Calculates weighted multi-modal ensemble authenticity score combining OCR confidence (30%), CLIP similarity (40%), review trust (20%), and image resolution integrity (10%). Note: CLIP similarity and sentiment scores are visual/text matching indicators, not physical authenticity proofs."
+    },
+    {
+      "component_name": "Review Trust & Sentiment Analysis Service",
+      "file_location": "ai-service/app/services/review_service.py",
+      "status": "Verified Functional (Dictionary Fallback)",
+      "description": "Evaluates review trust scores, rating distributions, and verified buyer ratios using a brand lookup dictionary (CeraVe, L'Oreal, The Ordinary, etc.) with default fallback. Note: Review sentiment is not proof of review authenticity."
+    },
+    {
+      "component_name": "Marketplace Platform Comparison Engine",
+      "file_location": "ai-service/app/services/marketplace_comparison_service.py",
+      "status": "Verified Functional",
+      "description": "Computes transparent multi-factor platform comparison scores using documented weights: Review Trust (40%), Rating Score (25%), Seller Trust (20%), Product Match Confidence (15%)."
+    },
+    {
+      "component_name": "Marketplace Search Orchestrator & Scraper Modules",
+      "file_location": "ai-service/app/services/scraping/",
+      "status": "Verified Functional (HTTP Scraping + Anti-Bot Safeguards)",
+      "description": "Orchestrates concurrent queries to Amazon, Daraz, and Temu via ThreadPoolExecutor. Captures anti-bot HTTP 403/503/429 blocks cleanly with source_status='blocked' or 'unavailable'."
+    },
+    {
+      "component_name": "Multi-Factor Product Matcher Engine",
+      "file_location": "ai-service/app/services/scraping/product_matcher.py",
+      "status": "Verified Functional",
+      "description": "Evaluates normalized token overlap across Brand (35%), Product Name (40%), Product Type (15%), and Variant/Shade (10%) to output 'Exact Product Match', 'Possible Match', or 'Not a Match'."
+    },
+    {
+      "component_name": "Express.js File Upload API",
+      "file_location": "backend/src/controllers/uploadController.js",
+      "status": "Verified Functional",
+      "description": "Accepts multipart form file uploads via Multer, validates file size and non-empty status, and stores files in backend/uploads."
+    }
+  ],
+  "reusable_components": [
+    "ProductIdentity, MarketplaceListing, MarketplaceReview, and PlatformComparisonScore Pydantic schemas (ai-service/app/schemas/marketplace.py)",
+    "match_product token alignment engine (ai-service/app/services/scraping/product_matcher.py)",
+    "compare_marketplace_platforms scoring algorithm (ai-service/app/services/marketplace_comparison_service.py)",
+    "search_all_marketplaces thread pool execution framework (ai-service/app/services/scraping/marketplace_search.py)",
+    "AnalysisResponse FastAPI response structure (ai-service/app/schemas/response.py)"
+  ],
+  "missing_components": [
+    "Persistent Database Storage & ORM Models (No PostgreSQL/MongoDB/SQLite models or migrations exist in database/)",
+    "Marketplace Product Listing Caching & Indexing Layer (Scraped listings are ephemeral and discarded per request)",
+    "Official Marketplace API Integrations (Amazon Product Advertising API, Lazada/Daraz Open Platform API, RapidAPI connectors)",
+    "Live NLP Review Sentiment Analyzer (Currently uses static DEFAULT_BRAND_TRUST_METRICS dictionary lookup)",
+    "Frontend API Integration (UploadSection.tsx remains in Demo Mode; needs fetch calls to backend /api/upload and ai-service /api/analyze)",
+    "Seller Verification & Trust Registry Database (Seller names are parsed as plain strings without historical verification)",
+    "Asynchronous Task Queue & Rate Limiter (No Celery/Redis queue for long-running marketplace queries)"
+  ],
+  "database_findings": {
+    "current_state": "Unimplemented. Directory database/ contains only .gitkeep.",
+    "models_found": {
+      "product_models": false,
+      "marketplace_models": false,
+      "product_listing_models": false,
+      "seller_models": false,
+      "rating_review_models": false
+    },
+    "required_database_tables": [
+      "products (id, product_id, brand, product_name, category, product_type, created_at)",
+      "marketplaces (id, platform_name, base_url, api_type, rate_limit_per_min)",
+      "sellers (id, marketplace_id, seller_name, is_official_store, seller_rating, verified_status)",
+      "marketplace_listings (id, product_id, marketplace_id, seller_id, raw_title, price, currency, rating, review_count, product_url, image_url, source_status, match_confidence, last_scraped_at)",
+      "customer_reviews (id, listing_id, author, rating, comment_text, review_date, is_verified_purchase, sentiment_score, suspicious_flag)",
+      "clip_centroids_metadata (id, model_id, random_seed, checksum_sha256, matrix_shape, updated_at)"
+    ]
+  },
+  "marketplace_source_findings": [
+    {
+      "platform": "Amazon",
+      "access_method": "Public HTTP HTML scraping via BeautifulSoup (Current) / Official Product Advertising API (Recommended)",
+      "status": "Blocked in raw scraping due to anti-bot CAPTCHA/HTTP 503. Handled cleanly with source_status='blocked'.",
+      "permitted_access_limitations": "Direct HTML scraping violates Amazon Terms of Service. Official access requires Amazon Associate / PA-API credentials or compliant proxy aggregation API (e.g. Rainforest API, ScrapingBee)."
+    },
+    {
+      "platform": "Daraz",
+      "access_method": "Public HTTP HTML scraping via BeautifulSoup (Current) / Open Platform API (Recommended)",
+      "status": "Requires client-side JavaScript execution (React/Vue rendering) or anti-bot session verification.",
+      "permitted_access_limitations": "Daraz/Lazada Open Platform API requires seller/developer portal registration."
+    },
+    {
+      "platform": "Temu",
+      "access_method": "Public HTTP HTML scraping via BeautifulSoup (Current) / Mobile App Endpoint API (Recommended)",
+      "status": "Strict anti-bot security & dynamic JS rendering active. Handled cleanly with source_status='blocked'.",
+      "permitted_access_limitations": "Temu has no public API; requires specialized proxy browser rendering or affiliate data feeds."
+    }
+  ],
+  "api_architecture_findings": {
+    "current_endpoints": [
+      "GET / (ai-service health & route directory)",
+      "GET /health (ai-service health check)",
+      "POST /api/analyze (ai-service image inspection, OCR, CLIP visual matching, review trust, and marketplace orchestrator)",
+      "GET / (backend Express welcome endpoint)",
+      "GET /api/health (backend Express health check)",
+      "POST /api/upload (backend Express image file upload)"
+    ],
+    "required_marketplace_apis": [
+      "GET /api/v1/marketplaces (List supported marketplace platforms and status)",
+      "GET /api/v1/products/{product_id}/listings (Retrieve cached & verified marketplace listings for a product)",
+      "GET /api/v1/products/{product_id}/comparison (Retrieve platform price, rating, and seller comparison)",
+      "POST /api/v1/marketplaces/refresh (Trigger background refresh of marketplace listings for a product)"
+    ]
+  },
+  "review_analysis_findings": {
+    "current_implementation": "Dictionary lookup based on brand name (DEFAULT_BRAND_TRUST_METRICS) returning trust_score, sentiment_label, average_rating, and verified_buyer_percentage.",
+    "scientific_disclaimer": "Review sentiment analysis evaluates customer opinion and expression patterns. High positive sentiment IS NOT proof of physical product authenticity or review authenticity (fake reviews can be overly positive).",
+    "recommended_enhancement": "Integrate lightweight NLP transformer (e.g. cardiffnlp/twitter-roberta-base-sentiment-latest) and deceptive review pattern heuristics (burst detection, unverified buyer weighting)."
+  },
+  "risks": [
+    {
+      "category": "Legal & Terms of Service Risk",
+      "severity": "High",
+      "description": "Automated HTML web scraping without API authorization may violate marketplace Terms of Service or trigger IP bans."
+    },
+    {
+      "category": "Anti-Bot & Data Availability Risk",
+      "severity": "High",
+      "description": "Marketplaces actively employ CAPTCHAs, Cloudflare, and JS rendering checks, causing frequent HTTP 403/503 blocks."
+    },
+    {
+      "category": "Data Quality & Inflation Risk",
+      "severity": "Medium",
+      "description": "Unverified seller listings or mislabeled marketplace titles can pollute comparison scores if not filtered by product matching thresholds."
+    },
+    {
+      "category": "Over-Reliance on Visual Matching Risk",
+      "severity": "High",
+      "description": "CLIP visual similarity measures visual packaging resemblance to catalog centroids. It CANNOT verify physical bottle contents or detect sophisticated counterfeit packaging."
+    },
+    {
+      "category": "Security & Secret Leakage Risk",
+      "severity": "Medium",
+      "description": "API keys for official marketplace services or proxy providers must be stored in .env and never committed to version control."
+    }
+  ],
+  "implementation_phases": [
+    {
+      "phase": "Phase 1: Database Architecture & Data Persistence",
+      "objective": "Design and implement SQLAlchemy ORM models (Product, Marketplace, Seller, MarketplaceListing, CustomerReview) and alembic migrations."
+    },
+    {
+      "phase": "Phase 2: Compliant Marketplace API & Proxy Adapter Layer",
+      "objective": "Replace raw requests.get scraping with structured marketplace API clients (or compliant proxy data services like Rainforest API) with rate-limiting and caching."
+    },
+    {
+      "phase": "Phase 3: Real NLP Review Analysis & Deceptive Pattern Detection",
+      "objective": "Replace brand dictionary lookup with a fine-tuned NLP review sentiment and spam/fake review detector."
+    },
+    {
+      "phase": "Phase 4: Full Frontend Integration & User Interface",
+      "objective": "Connect Next.js UploadSection.tsx to backend /api/upload and ai-service /api/analyze endpoints, displaying verified product identity, CLIP similarity, OCR text, and marketplace comparison cards."
+    }
+  ],
+  "open_questions": [
+    "Will official marketplace API access (Amazon PA-API / Lazada Open Platform) be acquired, or will a commercial proxy API service (Rainforest API) be used?",
+    "Should PostgreSQL or SQLite be selected as the primary relational database engine for listing and seller persistence?",
+    "What background task scheduler (Celery + Redis vs ARQ vs FastAPI BackgroundTasks) is preferred for async marketplace listing updates?"
+  ],
+  "recommended_next_action": "Design SQLAlchemy ORM database models and migration scripts for products, sellers, marketplace_listings, and customer_reviews in database/ to persist catalog identities and listing results."
+}
