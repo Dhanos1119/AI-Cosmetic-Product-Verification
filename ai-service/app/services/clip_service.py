@@ -780,16 +780,20 @@ def compute_clip_similarity(
                     _norm(clip_top_category) not in _norm(ocr_category)
                 )
 
-            # 7. Assign confidence — cap to Low on poor discrimination, category mismatch, or ambiguous screening
-            if screen_res.get("is_ambiguous"):
-                match_status = "Ambiguous Input / Manual Review Required"
-                confidence_level = "Low"
-            elif poor_discrimination or catalog_category_mismatch:
+            # 7. Assign confidence using validated similarity thresholds:
+            # When actual similarity score is 80.0% or above (without category contradiction), assign High Confidence.
+            if catalog_category_mismatch:
                 match_status = "Low-Confidence / Catalog Mismatch"
                 confidence_level = "Low"
             elif similarity_percentage >= 80.0:
                 match_status = "High-Confidence Product Match"
                 confidence_level = "High"
+            elif screen_res.get("is_ambiguous"):
+                match_status = "Ambiguous Input / Manual Review Required"
+                confidence_level = "Low"
+            elif poor_discrimination:
+                match_status = "Low-Confidence / Poor Discrimination"
+                confidence_level = "Low"
             elif similarity_percentage >= 60.0:
                 match_status = "Possible Product Match"
                 confidence_level = "Moderate"

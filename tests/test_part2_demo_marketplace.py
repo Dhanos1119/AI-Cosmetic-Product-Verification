@@ -183,10 +183,11 @@ def test_scenario_5_amazon_demo_configuration():
         amazon_item = next((l for l in listings_demo if l.platform == "Amazon"), None)
         assert amazon_item is not None
         assert amazon_item.retrieval_status == "DEMO"
-        assert amazon_item.price == 9.99
+        assert amazon_item.price == 2988.10
+        assert amazon_item.currency == "LKR"
         assert amazon_item.rating == 4.5
         assert amazon_item.product_url is not None
-        assert "amazon.com" in amazon_item.product_url
+        assert "B00FF7MJ70" in amazon_item.product_url
         assert amazon_item.data_source in ("Demo / Reference Data", "Simulated Demo Catalog")
 
         # When demo mode is disabled (demo_key=None), Amazon returns Data Unavailable with search URL
@@ -304,14 +305,17 @@ def test_scenario_9_live_demo_unavailable_labels():
 
         # Amazon returns configured DEMO data
         assert amazon_res.retrieval_status == "DEMO"
-        assert amazon_res.price == 9.99
+        assert amazon_res.price == 2988.10
+        assert amazon_res.currency == "LKR"
         assert amazon_res.rating == 4.5
         assert amazon_res.data_source in ("Demo / Reference Data", "Simulated Demo Catalog")
 
         # Daraz returns configured DEMO data
         assert daraz_res.retrieval_status == "DEMO"
-        assert daraz_res.price == 3850.0
+        assert daraz_res.price == 3990.00
         assert daraz_res.currency == "LKR"
+        assert daraz_res.rating == 5.0
+        assert daraz_res.review_count == 1
         assert daraz_res.data_source in ("Demo / Reference Data", "Simulated Demo Catalog")
 
         # Temu strictly returns UNAVAILABLE due to CAPTCHA limitation (never fake listing)

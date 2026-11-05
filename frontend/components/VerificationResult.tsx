@@ -372,14 +372,35 @@ export default function VerificationResult({
   const formatPrice = (price?: number, currency?: string) => {
     if (!price || price <= 0) return "Unavailable";
     const curr = (currency || "USD").toUpperCase();
+    if (curr === "LKR") {
+      return `LKR ${price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
     if (curr === "USD" || curr === "$") {
       return `$${price.toFixed(2)}`;
     }
-    if (curr === "LKR") {
-      return `${price.toFixed(1)} LKR`;
-    }
     return `${curr} ${price.toFixed(2)}`;
   };
+
+  // CLIP catalog similarity & honest confidence threshold calculations
+  const clipSimilarityPct =
+    typeof clipData?.similarity_percentage === "number"
+      ? clipData.similarity_percentage
+      : 0;
+
+  const isHighConfidence = clipSimilarityPct >= 80.0;
+  const isModerateConfidence = clipSimilarityPct >= 60.0 && clipSimilarityPct < 80.0;
+
+  const confidenceStatusLabel = isHighConfidence
+    ? "High Confidence"
+    : isModerateConfidence
+    ? "Moderate Confidence"
+    : "Low Confidence";
+
+  const confidenceStatusColor = isHighConfidence
+    ? "text-[#22C55E]"
+    : isModerateConfidence
+    ? "text-[#A855F7]"
+    : "text-[#F59E0B]";
 
   // Collect customer reviews (simulated or real)
   const allCustomerReviews: MarketplaceReview[] =
@@ -540,7 +561,7 @@ export default function VerificationResult({
               ) : rating ? (
                 <div className="flex items-center gap-1 text-[#F59E0B] font-bold">
                   <Star className="w-3.5 h-3.5 fill-[#F59E0B]" />
-                  <span>{rating.toFixed(1)}</span>
+                  <span>{rating.toFixed(1)} / 5</span>
                 </div>
               ) : (
                 <span className="text-[#A1A1B5]/60 italic">No ratings</span>
@@ -548,7 +569,7 @@ export default function VerificationResult({
               {isUnavailable ? (
                 <span className="text-[#A1A1B5]/60 italic font-normal text-[11px]">Reviews Unavailable</span>
               ) : (
-                <span>({reviewCount} reviews)</span>
+                <span>({reviewCount.toLocaleString()} {reviewCount === 1 ? "rating" : "reviews"})</span>
               )}
             </div>
 
@@ -758,12 +779,12 @@ export default function VerificationResult({
             <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#A1A1B5]">
               Catalog Match Status
             </div>
-            <div className="flex items-center gap-1.5 text-sm font-black text-[#A855F7]">
-              <Sparkles className="w-4 h-4 text-[#A855F7]" />
-              <span>{clipData?.match_status || "Match Evaluated"}</span>
+            <div className={`flex items-center gap-1.5 text-sm font-black ${confidenceStatusColor}`}>
+              <Sparkles className="w-4 h-4 shrink-0" />
+              <span>{confidenceStatusLabel}</span>
             </div>
             <p className="text-xs text-[#A1A1B5]">
-              Confidence: <strong className="text-[#F8FAFC]">{clipData?.similarity_percentage || 0}%</strong>
+              Catalog Similarity: <strong className="text-[#F8FAFC]">{clipSimilarityPct.toFixed(1)}%</strong>
             </p>
           </div>
 

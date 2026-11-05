@@ -24,26 +24,26 @@
       "marketplace_simulated": {
         "amazon": {
           "status": "DEMO",
-          "product_name": "Maybelline Fit Me Matte + Poreless Liquid Foundation, 128 Warm Nude",
-          "price": 9.99,
-          "currency": "USD",
+          "product_name": "Maybelline New York Fit Me Matte + Poreless Liquid Foundation",
+          "price": 2988.10,
+          "currency": "LKR",
           "rating": 4.5,
           "rating_count": 37100,
           "review_count": 37100,
           "seller_name": "Amazon.com / Maybelline",
-          "product_url": "https://www.amazon.com/Maybelline-Fit-Me-Matte-Poreless-Foundation/dp/B00DRPSQ60",
+          "product_url": "https://www.amazon.com/Maybelline-New-York-Foundation-Packaging/dp/B00FF7MJ70/ref=sr_1_3",
           "data_source": "Demo / Reference Data"
         },
         "daraz": {
           "status": "DEMO",
-          "product_name": "Maybelline Fit Me Matte + Poreless Liquid Foundation - 30ml",
-          "price": 3850.0,
+          "product_name": "Maybelline New York Liquid Foundation Matte + Poreless Full Coverage Blendable Fit Me 115 Ivory 18ml",
+          "price": 3990.00,
           "currency": "LKR",
-          "rating": 4.6,
-          "rating_count": 84,
-          "review_count": 84,
+          "rating": 5.0,
+          "rating_count": 1,
+          "review_count": 1,
           "seller_name": "Maybelline Flagship Store LK",
-          "product_url": "https://www.daraz.lk/products/maybelline-fit-me-matte-poreless-foundation-i100234.html",
+          "product_url": "https://www.daraz.lk/products/maybelline-new-york-liquid-foundation-matte-poreless-full-coverage-blendable-normal-to-oily-skin-fit-me-115-ivory-18ml-from-indiasam-i204162904-s1297189060.html",
           "data_source": "Demo / Reference Data"
         },
         "temu": {
