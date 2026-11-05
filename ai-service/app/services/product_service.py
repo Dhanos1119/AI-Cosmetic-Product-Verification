@@ -248,7 +248,8 @@ def analyze_product_authenticity(
         marketplace_listings = []
         mkt_status = "Product identity insufficient for marketplace comparison"
 
-    # 4. Review sentiment on ACTUAL review text or configured simulated demo reviews
+    # 4. Review sentiment on ACTUAL review text only.
+    # Synthetic review data is removed from actual product analysis.
     real_reviews = []
     for m in marketplace_listings:
         for rv in (m.reviews or []):
@@ -263,42 +264,46 @@ def analyze_product_authenticity(
                     "platform": m.platform
                 })
 
-    simulated_reviews = []
-    if not real_reviews and demo_key:
-        simulated_reviews = get_simulated_reviews(demo_key)
-
     review_res = analyze_review_authenticity(
         brand_name=matched_brand,
         product_name=matched_product,
         product_id=prod_id,
         category=matched_category,
         real_reviews=real_reviews,
-        simulated_reviews=simulated_reviews,
-        demo_key=demo_key
+        simulated_reviews=[],
+        demo_key=None
     )
 
     # 4b. Independent Platform-wise review analysis for Amazon, Daraz LK, Temu
     platform_review_analyses = {}
     for target_plat in ["Amazon", "Daraz LK", "Temu"]:
         plat_reviews = []
+        plat_listing = None
         for m in marketplace_listings:
             plat_name = m.platform or m.platform_name or ""
             if target_plat.lower() in plat_name.lower():
+                plat_listing = m
                 for rv in (m.reviews or []):
-                    plat_reviews.append({
-                        "text": rv.comment,
-                        "comment": rv.comment,
-                        "rating": rv.rating,
-                        "author": rv.author or "Anonymous",
-                        "date": rv.date,
-                        "verified_purchase": rv.verified_purchase or False,
-                        "platform": target_plat
-                    })
-        platform_review_analyses[target_plat] = analyze_platform_reviews(
+                    if rv.comment:
+                        plat_reviews.append({
+                            "text": rv.comment,
+                            "comment": rv.comment,
+                            "rating": rv.rating,
+                            "author": rv.author or "Anonymous",
+                            "date": rv.date,
+                            "verified_purchase": rv.verified_purchase or False,
+                            "platform": target_plat
+                        })
+        analysis = analyze_platform_reviews(
             platform_name=target_plat,
             reviews=plat_reviews,
             category=matched_category
         )
+        if plat_listing:
+            analysis["listing_rating"] = plat_listing.rating
+            analysis["listing_review_count"] = plat_listing.review_count
+            analysis["product_url"] = plat_listing.product_url
+        platform_review_analyses[target_plat] = analysis
 
     review_res["platform_review_analyses"] = platform_review_analyses
 

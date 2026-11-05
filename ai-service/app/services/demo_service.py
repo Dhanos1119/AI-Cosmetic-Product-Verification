@@ -271,13 +271,15 @@ def get_simulated_marketplace_listing(
             search_url=fallback_search_url,
         )
 
-    # Configured Demonstration Listing (Amazon or Daraz LK)
+    # Configured Demonstration Listing (Amazon, Daraz LK, or Temu)
     status = item.get("status", "DEMO")
     price_val = float(item.get("price", 0.0))
     rating_val = float(item.get("rating", 0.0))
     rating_count_val = int(item.get("rating_count", item.get("review_count", 0)))
     review_count_val = int(item.get("review_count", 0))
-    curr = item.get("currency", "USD" if plat_key != "daraz" else "LKR")
+    curr = item.get("currency", "LKR")
+    match_status_val = item.get("match_status", "Category Match / Unverified Listing" if demo_key == "2.png" else "Exact Product Match")
+    match_confidence_val = float(item.get("match_confidence", 68.0 if demo_key == "2.png" else 92.0))
 
     return MarketplaceListing(
         platform=norm_platform,
@@ -294,8 +296,8 @@ def get_simulated_marketplace_listing(
         product_image_url=None,
         reviews=[],
         source_status="available" if status in ("LIVE", "DEMO") else "unavailable",
-        match_status="Exact Product Match",
-        match_confidence=92.0,
+        match_status=match_status_val,
+        match_confidence=match_confidence_val,
         status_explanation=f"Configured demonstration listing loaded for {norm_platform}." if status == "DEMO" else None,
         search_query=search_query,
         listing_status="VERIFIED_LISTING",

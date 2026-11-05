@@ -120,6 +120,54 @@ def test_scenario_2_lipstick_demo_identifies_actual_product_with_evidence():
     assert demo_eval["identity_status"] == "Confirmed Product Identity"
 
 
+def test_scenario_2_lipstick_marketplace_mappings():
+    """Validates 2.png marketplace mappings: Temu (823.64 LKR, unrated), Daraz (1503.00 LKR, 4.95 rating, 183 reviews), Amazon (1660.42 LKR, 3.6 rating, 30 reviews)."""
+    ident = ProductIdentity(
+        brand="Cosmetic Brand",
+        product_name="Lipstick",
+        product_type="Lipstick",
+        category="Lipstick",
+    )
+    with patch("app.services.scraping.marketplace_search.scrape_amazon_products", return_value=[]), \
+         patch("app.services.scraping.marketplace_search.scrape_daraz_products", return_value=[]), \
+         patch("app.services.scraping.marketplace_search.scrape_temu_products", return_value=[]):
+        listings = search_all_marketplaces(ident, demo_key="2.png")
+
+        temu_res = next((l for l in listings if "temu" in l.platform.lower()), None)
+        daraz_res = next((l for l in listings if "daraz" in l.platform.lower()), None)
+        amazon_res = next((l for l in listings if "amazon" in l.platform.lower()), None)
+
+        # Temu DEMO listing
+        assert temu_res is not None
+        assert temu_res.retrieval_status == "DEMO"
+        assert temu_res.price == 823.64
+        assert temu_res.currency == "LKR"
+        assert temu_res.rating == 0.0
+        assert temu_res.review_count == 0
+        assert temu_res.match_status == "Category Match / Unverified Listing"
+        assert "607452607171951" in temu_res.product_url
+
+        # Daraz DEMO listing
+        assert daraz_res is not None
+        assert daraz_res.retrieval_status == "DEMO"
+        assert daraz_res.price == 1503.00
+        assert daraz_res.currency == "LKR"
+        assert daraz_res.rating == 4.95
+        assert daraz_res.review_count == 183
+        assert daraz_res.match_status == "Category Match / Unverified Listing"
+        assert "handaiyan-12-colors-waterproof-lipstick" in daraz_res.product_url
+
+        # Amazon DEMO listing
+        assert amazon_res is not None
+        assert amazon_res.retrieval_status == "DEMO"
+        assert amazon_res.price == 1660.42
+        assert amazon_res.currency == "LKR"
+        assert amazon_res.rating == 3.6
+        assert amazon_res.review_count == 30
+        assert amazon_res.match_status == "Category Match / Unverified Listing"
+        assert "B00X4V8BYO" in amazon_res.product_url
+
+
 # --------------------------------------------------------------------------
 # Scenario 3: 3.png – Non-Cosmetic Rejection
 # --------------------------------------------------------------------------

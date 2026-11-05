@@ -125,6 +125,28 @@ export interface MarketplaceReview {
   suspicious_reason?: string;
 }
 
+export interface PlatformReviewAnalysisData {
+  platform: string;
+  status?: string;
+  status_message?: string;
+  has_reviews?: boolean;
+  total_reviews_retrieved?: number;
+  total_reviews_analyzed?: number;
+  average_rating?: number | null;
+  listing_rating?: number | null;
+  listing_review_count?: number | null;
+  product_url?: string | null;
+  counts?: { positive: number; neutral: number; negative: number };
+  positive_percentage?: number;
+  neutral_percentage?: number;
+  negative_percentage?: number;
+  overall_sentiment?: string;
+  positive_themes?: string[];
+  negative_themes?: string[];
+  analyzed_reviews?: MarketplaceReview[];
+  source_info?: string;
+}
+
 export interface ReviewResultDetails {
   status: string;
   is_simulated?: boolean;
@@ -134,6 +156,7 @@ export interface ReviewResultDetails {
   positive_themes?: string[];
   negative_themes?: string[];
   sentiment_stats?: ReviewSentimentStats;
+  platform_review_analyses?: Record<string, PlatformReviewAnalysisData>;
   review_dataset_source?: string;
   authenticity_analysis_status?: string;
   authenticity_note?: string;
@@ -273,7 +296,7 @@ export default function VerificationResult({
   onReset,
 }: VerificationResultProps) {
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
-  const [selectedReviewPlatform, setSelectedReviewPlatform] = useState<"All" | "Amazon" | "Daraz LK" | "Temu">("All");
+  const [modalPlatform, setModalPlatform] = useState<string | null>(null);
 
   // Extract result sub-objects safely
   const ocrData = aiAnalysisResult?.ocr_result;
@@ -420,28 +443,21 @@ export default function VerificationResult({
     (r.source_label || r.data_source || "").toLowerCase().includes("temu")
   );
 
-  const activeReviews =
-    selectedReviewPlatform === "Amazon"
-      ? amazonReviews
-      : selectedReviewPlatform === "Daraz LK"
-      ? darazReviews
-      : selectedReviewPlatform === "Temu"
-      ? temuReviews
-      : allCustomerReviews;
-
-  const activePosCount = activeReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "positive").length;
-  const activeNeuCount = activeReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "neutral").length;
-  const activeNegCount = activeReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "negative").length;
-  const activeTotal = activeReviews.length;
-
-  const activePosPct = activeTotal > 0 ? Math.round((activePosCount / activeTotal) * 100) : 0;
-  const activeNeuPct = activeTotal > 0 ? Math.round((activeNeuCount / activeTotal) * 100) : 0;
-  const activeNegPct = activeTotal > 0 ? Math.round((activeNegCount / activeTotal) * 100) : 0;
-
-  const sentimentSummary = reviewData?.marketplace_sentiment;
-  const suspiciousRisk = reviewData?.suspicious_review_risk;
   const sentimentStats = reviewData?.sentiment_stats;
   const isSimulatedReviews = Boolean(reviewData?.is_simulated);
+
+  // Independent platform review analyses
+  const platformAnalyses = reviewData?.platform_review_analyses || {};
+
+  // Active platforms with successfully retrieved and analysed actual customer reviews
+  const activeReviewPlatforms = (["Amazon", "Daraz LK", "Temu"] as const).filter((plat) => {
+    const pData = platformAnalyses[plat];
+    if (pData && (pData.total_reviews_analyzed || 0) > 0) return true;
+    const pReviews = allCustomerReviews.filter((r) =>
+      (r.source_label || r.data_source || "").toLowerCase().includes(plat.toLowerCase().replace(" lk", ""))
+    );
+    return pReviews.length > 0;
+  });
 
   // Platform comparison rankings
   const platformComparisons = aiAnalysisResult?.platform_comparison || [];
@@ -469,7 +485,7 @@ export default function VerificationResult({
     const retrievalStatus: "LIVE" | "DEMO" | "UNAVAILABLE" =
       rawStatus === "LIVE" ? "LIVE" : rawStatus === "DEMO" ? "DEMO" : "UNAVAILABLE";
 
-    const isUnavailable = retrievalStatus === "UNAVAILABLE" || platformName === "Temu";
+    const isUnavailable = retrievalStatus === "UNAVAILABLE";
 
     const title = isUnavailable
       ? (platformName === "Temu"
@@ -561,16 +577,24 @@ export default function VerificationResult({
               ) : rating ? (
                 <div className="flex items-center gap-1 text-[#F59E0B] font-bold">
                   <Star className="w-3.5 h-3.5 fill-[#F59E0B]" />
-                  <span>{rating.toFixed(1)} / 5</span>
+                  <span>{rating % 1 === 0 ? rating.toFixed(1) : rating.toString()} / 5</span>
                 </div>
               ) : (
-                <span className="text-[#A1A1B5]/60 italic">No ratings</span>
+                <span className="text-[#A1A1B5]/60 italic font-normal">Rating Unavailable</span>
               )}
-              {isUnavailable ? (
+              {isUnavailable || reviewCount === 0 ? (
                 <span className="text-[#A1A1B5]/60 italic font-normal text-[11px]">Reviews Unavailable</span>
               ) : (
                 <span>({reviewCount.toLocaleString()} {reviewCount === 1 ? "rating" : "reviews"})</span>
               )}
+            </div>
+
+            {/* Listing Relevance / Match Status */}
+            <div className="flex items-center justify-between">
+              <span>Listing Relevance:</span>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[#191925] border border-[#303047] text-[#A855F7]">
+                {!isUnavailable && listing?.match_status ? listing.match_status : "Direct Search"}
+              </span>
             </div>
 
             {/* Seller */}
@@ -875,247 +899,247 @@ export default function VerificationResult({
               </h3>
             </div>
             <p className="text-xs text-[#A1A1B5] font-medium">
-              {isSimulatedReviews
+              {activeReviewPlatforms.length === 0
+                ? "Customer review sentiment and credibility evaluation"
+                : isSimulatedReviews
                 ? "Simulated Review Analysis — Demonstration Data (10 synthetic records evaluated)"
-                : "Sentiment distribution and credibility evaluation from customer feedback"}
+                : "Sentiment distribution and credibility evaluation from verified customer feedback"}
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setIsReviewModalOpen(true)}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#EC4899] via-[#A855F7] to-[#8B5CF6] hover:opacity-95 rounded-xl transition-all shadow-md touch-manipulation min-h-[40px] cursor-pointer"
-            >
-              <FileText className="w-4 h-4" />
-              <span>View All Reviews ({allCustomerReviews.length})</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Simulated Reviews Disclosure Banner */}
-        {isSimulatedReviews && (
-          <div className="p-4 rounded-2xl bg-[#12121C] border border-[#A855F7]/30 text-xs text-[#A1A1B5] space-y-1.5">
-            <div className="flex items-center gap-2 text-[#A855F7] font-bold">
-              <Info className="w-4 h-4" />
-              <span>Simulated Review Analysis — Demonstration Data</span>
-            </div>
-            <p className="leading-relaxed">
-              These reviews are synthetic examples generated for demonstration and testing. They were not collected from real marketplace customers and must not be used as evidence of actual product quality.
-            </p>
-          </div>
-        )}
-
-        {/* Platform Separation Pills */}
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs font-bold text-[#A1A1B5]">Platform Breakdown:</span>
-          {(["All", "Amazon", "Daraz LK", "Temu"] as const).map((plat) => {
-            const count =
-              plat === "All"
-                ? allCustomerReviews.length
-                : plat === "Amazon"
-                ? amazonReviews.length
-                : plat === "Daraz LK"
-                ? darazReviews.length
-                : temuReviews.length;
-            const isUnavailable = plat === "Temu" && count === 0;
-            return (
-              <button
-                key={plat}
-                type="button"
-                onClick={() => setSelectedReviewPlatform(plat)}
-                className={`px-3 py-1 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
-                  selectedReviewPlatform === plat
-                    ? "bg-[#A855F7] text-white border-[#A855F7]"
-                    : "bg-[#12121C] text-[#A1A1B5] border-[#303047] hover:border-[#A855F7]/40"
-                }`}
-              >
-                {plat === "All" ? "All Platforms" : plat}
-                {isUnavailable ? " (Unavailable)" : ` (${count})`}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Sentiment Distribution Cards */}
-        {selectedReviewPlatform === "Temu" && temuReviews.length === 0 ? (
-          <div className="p-4 bg-[#12121C] rounded-2xl border border-[#303047] text-xs text-[#A1A1B5] space-y-1">
-            <div className="flex items-center gap-2 text-[#F59E0B] font-bold">
-              <AlertTriangle className="w-4 h-4" />
-              <span>Temu Review Data Unavailable</span>
-            </div>
-            <p className="leading-relaxed">
-              Customer review data is currently unavailable for Temu. Genuine review analysis is only reported when verified customer reviews can be retrieved from public endpoints.
-            </p>
-          </div>
-        ) : activeTotal > 0 ? (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {/* Positive */}
-              <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
-                <div className="flex items-center justify-between text-[#22C55E] text-xs font-bold">
-                  <span>Positive Feedback</span>
-                  <ThumbsUp className="w-4 h-4 text-[#22C55E]" />
-                </div>
-                <div className="text-2xl font-black text-[#F8FAFC]">
-                  {selectedReviewPlatform === "All"
-                    ? (sentimentStats?.positive_count ?? activePosCount)
-                    : activePosCount}
-                </div>
-                <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className="bg-[#22C55E] h-1.5 rounded-full"
-                    style={{
-                      width: `${selectedReviewPlatform === "All" ? (sentimentStats?.positive_percentage ?? activePosPct) : activePosPct}%`,
-                    }}
-                  />
-                </div>
-                <p className="text-[11px] text-[#A1A1B5]">
-                  {selectedReviewPlatform === "All" ? (sentimentStats?.positive_percentage ?? activePosPct) : activePosPct}% of platform reviews
-                </p>
-              </div>
-
-              {/* Neutral */}
-              <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
-                <div className="flex items-center justify-between text-[#A1A1B5] text-xs font-bold">
-                  <span>Neutral Feedback</span>
-                  <MinusCircle className="w-4 h-4 text-[#A1A1B5]" />
-                </div>
-                <div className="text-2xl font-black text-[#F8FAFC]">
-                  {selectedReviewPlatform === "All"
-                    ? (sentimentStats?.neutral_count ?? activeNeuCount)
-                    : activeNeuCount}
-                </div>
-                <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className="bg-[#A1A1B5] h-1.5 rounded-full"
-                    style={{
-                      width: `${selectedReviewPlatform === "All" ? (sentimentStats?.neutral_percentage ?? activeNeuPct) : activeNeuPct}%`,
-                    }}
-                  />
-                </div>
-                <p className="text-[11px] text-[#A1A1B5]">
-                  {selectedReviewPlatform === "All" ? (sentimentStats?.neutral_percentage ?? activeNeuPct) : activeNeuPct}% of platform reviews
-                </p>
-              </div>
-
-              {/* Negative */}
-              <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
-                <div className="flex items-center justify-between text-[#F87171] text-xs font-bold">
-                  <span>Critical Feedback</span>
-                  <ThumbsDown className="w-4 h-4 text-[#F87171]" />
-                </div>
-                <div className="text-2xl font-black text-[#F8FAFC]">
-                  {selectedReviewPlatform === "All"
-                    ? (sentimentStats?.negative_count ?? activeNegCount)
-                    : activeNegCount}
-                </div>
-                <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
-                  <div
-                    className="bg-[#F87171] h-1.5 rounded-full"
-                    style={{
-                      width: `${selectedReviewPlatform === "All" ? (sentimentStats?.negative_percentage ?? activeNegPct) : activeNegPct}%`,
-                    }}
-                  />
-                </div>
-                <p className="text-[11px] text-[#A1A1B5]">
-                  {selectedReviewPlatform === "All" ? (sentimentStats?.negative_percentage ?? activeNegPct) : activeNegPct}% of platform reviews
-                </p>
-              </div>
-            </div>
-
-            {/* Themes Section */}
-            {((reviewData?.positive_themes && reviewData.positive_themes.length > 0) ||
-              (reviewData?.negative_themes && reviewData.negative_themes.length > 0)) && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {reviewData?.positive_themes && reviewData.positive_themes.length > 0 && (
-                  <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#22C55E]">
-                      <ThumbsUp className="w-3.5 h-3.5" />
-                      <span>Common Positive Themes</span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {reviewData.positive_themes.map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="text-[11px] px-2.5 py-0.5 rounded bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {reviewData?.negative_themes && reviewData.negative_themes.length > 0 && (
-                  <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#F87171]">
-                      <ThumbsDown className="w-3.5 h-3.5" />
-                      <span>Common Critical Themes</span>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {reviewData.negative_themes.map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="text-[11px] px-2.5 py-0.5 rounded bg-[#F87171]/10 text-[#F87171] border border-[#F87171]/20"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
-            <div className="p-3 bg-[#12121C] rounded-xl border border-[#303047] text-xs text-[#A1A1B5] flex items-center justify-between">
-              <span>
-                Overall Sentiment Consensus:{" "}
-                <strong className="text-[#F8FAFC] capitalize">
-                  {reviewData?.sentiment_label || "Evaluated"}
-                </strong>
-              </span>
+          {activeReviewPlatforms.length > 0 && allCustomerReviews.length > 0 && (
+            <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={() => setIsReviewModalOpen(true)}
-                className="text-xs font-bold text-[#A855F7] hover:text-[#EC4899] underline cursor-pointer"
+                onClick={() => {
+                  setModalPlatform("All");
+                  setIsReviewModalOpen(true);
+                }}
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#EC4899] via-[#A855F7] to-[#8B5CF6] hover:opacity-95 rounded-xl transition-all shadow-md touch-manipulation min-h-[40px] cursor-pointer"
               >
-                Inspect All {allCustomerReviews.length} Reviews →
+                <FileText className="w-4 h-4" />
+                <span>View All Reviews ({allCustomerReviews.length})</span>
               </button>
+            </div>
+          )}
+        </div>
+
+        {/* Case A: No Marketplace has accessible customer reviews */}
+        {activeReviewPlatforms.length === 0 ? (
+          <div className="space-y-6">
+            <div className="p-8 bg-[#12121C] rounded-2xl border border-[#303047] text-center space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-[#A855F7]/10 border border-[#A855F7]/20 flex items-center justify-center mx-auto text-[#A855F7]">
+                <MessageSquare className="w-6 h-6" />
+              </div>
+              <h4 className="text-base font-bold text-[#F8FAFC]">
+                No verified marketplace reviews are currently available for comparison.
+              </h4>
+              <p className="text-xs text-[#A1A1B5] max-w-lg mx-auto leading-relaxed">
+                Public marketplace endpoints for Amazon, Daraz LK, and Temu did not return accessible verified customer review comments for this listing. Review comparison charts, sentiment scores, and synthetic ratings are omitted to ensure data integrity and prevent misleading evaluations.
+              </p>
+            </div>
+
+            {/* Credibility Notice */}
+            <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+              <div className="flex items-center gap-2">
+                <ShieldAlert className="w-4 h-4 text-[#A855F7]" />
+                <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#F8FAFC]">
+                  Review Credibility Assessment
+                </h4>
+              </div>
+              <p className="text-xs text-[#A1A1B5] leading-relaxed">
+                Insufficient customer review data to evaluate statistical credibility patterns. Public marketplace endpoints did not provide verified customer review samples for this listing.
+              </p>
             </div>
           </div>
         ) : (
-          <div className="p-4 bg-[#12121C] rounded-2xl border border-[#303047] text-xs text-[#A1A1B5]">
-            No customer reviews were extracted from marketplace sources for NLP sentiment breakdown.
+          <div className="space-y-6">
+            {/* Note if only one platform has reviews */}
+            {activeReviewPlatforms.length === 1 && (
+              <div className="p-4 bg-[#12121C] rounded-2xl border border-[#303047] text-xs text-[#A1A1B5] flex items-center gap-2.5">
+                <Info className="w-4 h-4 text-[#A855F7] shrink-0" />
+                <span>
+                  Cross-marketplace review comparison is unavailable because customer reviews were only accessible for <strong className="text-[#F8FAFC]">{activeReviewPlatforms[0]}</strong>. Other platforms did not have accessible verified customer reviews.
+                </span>
+              </div>
+            )}
+
+            {/* Simulated Reviews Disclosure Banner if simulated reviews */}
+            {isSimulatedReviews && (
+              <div className="p-4 rounded-2xl bg-[#12121C] border border-[#A855F7]/30 text-xs text-[#A1A1B5] space-y-1.5">
+                <div className="flex items-center gap-2 text-[#A855F7] font-bold">
+                  <Info className="w-4 h-4" />
+                  <span>Simulated Review Analysis — Demonstration Data</span>
+                </div>
+                <p className="leading-relaxed">
+                  These reviews are synthetic examples generated for demonstration and testing. They were not collected from real marketplace customers and must not be used as evidence of actual product quality.
+                </p>
+              </div>
+            )}
+
+            {/* Independent Platform Review Analysis Panels */}
+            <div className="space-y-5">
+              {activeReviewPlatforms.map((plat) => {
+                const pData = platformAnalyses[plat];
+                const pReviews = allCustomerReviews.filter((r) =>
+                  (r.source_label || r.data_source || "").toLowerCase().includes(plat.toLowerCase().replace(" lk", ""))
+                );
+                const totalAnalyzed = pData?.total_reviews_analyzed || pReviews.length;
+                const posCount = pData?.counts?.positive ?? pReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "positive").length;
+                const neuCount = pData?.counts?.neutral ?? pReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "neutral").length;
+                const negCount = pData?.counts?.negative ?? pReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "negative").length;
+
+                const posPct = pData?.positive_percentage ?? (totalAnalyzed > 0 ? Math.round((posCount / totalAnalyzed) * 100) : 0);
+                const neuPct = pData?.neutral_percentage ?? (totalAnalyzed > 0 ? Math.round((neuCount / totalAnalyzed) * 100) : 0);
+                const negPct = pData?.negative_percentage ?? (totalAnalyzed > 0 ? Math.round((negCount / totalAnalyzed) * 100) : 0);
+
+                const avgRating = pData?.average_rating || pData?.listing_rating;
+                const posThemes = pData?.positive_themes || [];
+                const negThemes = pData?.negative_themes || [];
+                const platColor = plat === "Amazon" ? "#ff9900" : plat === "Daraz LK" ? "#f57224" : "#fb7701";
+
+                return (
+                  <div key={plat} className="p-6 rounded-2xl bg-[#12121C] border border-[#303047] space-y-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#303047]/60">
+                      <div className="flex items-center gap-2.5">
+                        <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: platColor }} />
+                        <h4 className="text-base font-extrabold text-[#F8FAFC]">{plat}</h4>
+                        {avgRating && avgRating > 0 ? (
+                          <span className="inline-flex items-center gap-1 text-xs font-bold text-[#F59E0B] bg-[#191925] px-2.5 py-0.5 rounded-full border border-[#303047]">
+                            <Star className="w-3 h-3 fill-[#F59E0B]" />
+                            <span>{avgRating.toFixed(1)} / 5</span>
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <div className="flex items-center gap-3">
+                        <span className="text-xs text-[#A1A1B5] font-semibold">
+                          {totalAnalyzed} {totalAnalyzed === 1 ? "review" : "reviews"} analysed
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setModalPlatform(plat);
+                            setIsReviewModalOpen(true);
+                          }}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#F8FAFC] bg-[#191925] hover:bg-[#202033] border border-[#303047] rounded-xl transition-colors cursor-pointer"
+                        >
+                          <FileText className="w-3.5 h-3.5 text-[#A855F7]" />
+                          <span>View All Reviews ({totalAnalyzed})</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {/* Positive */}
+                      <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] space-y-2">
+                        <div className="flex items-center justify-between text-[#22C55E] text-xs font-bold">
+                          <span>Positive</span>
+                          <ThumbsUp className="w-3.5 h-3.5" />
+                        </div>
+                        <div className="text-xl font-black text-[#F8FAFC]">{posCount}</div>
+                        <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
+                          <div className="bg-[#22C55E] h-1.5 rounded-full" style={{ width: `${posPct}%` }} />
+                        </div>
+                        <p className="text-[11px] text-[#A1A1B5]">{posPct}% of analysed reviews</p>
+                      </div>
+
+                      {/* Neutral */}
+                      <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] space-y-2">
+                        <div className="flex items-center justify-between text-[#A1A1B5] text-xs font-bold">
+                          <span>Neutral</span>
+                          <MinusCircle className="w-3.5 h-3.5" />
+                        </div>
+                        <div className="text-xl font-black text-[#F8FAFC]">{neuCount}</div>
+                        <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
+                          <div className="bg-[#A1A1B5] h-1.5 rounded-full" style={{ width: `${neuPct}%` }} />
+                        </div>
+                        <p className="text-[11px] text-[#A1A1B5]">{neuPct}% of analysed reviews</p>
+                      </div>
+
+                      {/* Negative */}
+                      <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] space-y-2">
+                        <div className="flex items-center justify-between text-[#F87171] text-xs font-bold">
+                          <span>Critical</span>
+                          <ThumbsDown className="w-3.5 h-3.5" />
+                        </div>
+                        <div className="text-xl font-black text-[#F8FAFC]">{negCount}</div>
+                        <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
+                          <div className="bg-[#F87171] h-1.5 rounded-full" style={{ width: `${negPct}%` }} />
+                        </div>
+                        <p className="text-[11px] text-[#A1A1B5]">{negPct}% of analysed reviews</p>
+                      </div>
+                    </div>
+
+                    {(posThemes.length > 0 || negThemes.length > 0) && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        {posThemes.length > 0 && (
+                          <div className="space-y-1.5">
+                            <span className="text-[11px] font-bold text-[#22C55E] uppercase tracking-wider">
+                              Common Positive Themes
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {posThemes.map((t, idx) => (
+                                <span
+                                  key={idx}
+                                  className="text-[11px] px-2.5 py-0.5 rounded bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20"
+                                >
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {negThemes.length > 0 && (
+                          <div className="space-y-1.5">
+                            <span className="text-[11px] font-bold text-[#F87171] uppercase tracking-wider">
+                              Common Critical Themes
+                            </span>
+                            <div className="flex flex-wrap gap-1.5">
+                              {negThemes.map((t, idx) => (
+                                <span
+                                  key={idx}
+                                  className="text-[11px] px-2.5 py-0.5 rounded bg-[#F87171]/10 text-[#F87171] border border-[#F87171]/20"
+                                >
+                                  {t}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Review Credibility Insights */}
+            <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <ShieldAlert className="w-4 h-4 text-[#A855F7]" />
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#F8FAFC]">
+                    Review Credibility Assessment
+                  </h4>
+                </div>
+                <span className="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30 flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-[#22C55E]" />
+                  <span>Pattern Consistent</span>
+                </span>
+              </div>
+
+              <p className="text-xs text-[#A1A1B5] leading-relaxed">
+                {reviewData?.credibility_assessment_label ||
+                  "No anomalous posting bursts, repetitive review text patterns, or contradictory rating signals were observed."}
+              </p>
+
+              <p className="text-[11px] text-[#A1A1B5]/60 italic pt-1 border-t border-[#303047]">
+                Credibility indicators identify heuristic review patterns to assist buyers; they do not conclusively prove or disprove review authenticity.
+              </p>
+            </div>
           </div>
         )}
-
-        {/* Review Credibility Insights */}
-        <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <ShieldAlert className="w-4 h-4 text-[#A855F7]" />
-              <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#F8FAFC]">
-                Review Credibility Assessment
-              </h4>
-            </div>
-            <span className="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-[#22C55E]/15 text-[#22C55E] border border-[#22C55E]/30 flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3 text-[#22C55E]" />
-              <span>Pattern Consistent</span>
-            </span>
-          </div>
-
-          <p className="text-xs text-[#A1A1B5] leading-relaxed">
-            {reviewData?.credibility_assessment_label ||
-              (isSimulatedReviews
-                ? "Illustrative credibility analysis of simulated reviews."
-                : "No anomalous posting bursts, repetitive review text patterns, or contradictory rating signals were observed.")}
-          </p>
-
-          <p className="text-[11px] text-[#A1A1B5]/60 italic pt-1 border-t border-[#303047]">
-            Credibility indicators identify heuristic review patterns to assist buyers; they do not conclusively prove or disprove review authenticity.
-          </p>
-        </div>
       </div>
 
       {/* 6. Section E: Marketplace Recommendation */}
@@ -1132,28 +1156,34 @@ export default function VerificationResult({
                 </span>
                 <span
                   className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded border ${
-                    recommendedPlatform?.is_demo
+                    activeReviewPlatforms.length === 0
+                      ? "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30"
+                      : recommendedPlatform?.is_demo
                       ? "bg-[#A855F7]/15 text-[#A855F7] border-[#A855F7]/30"
                       : recommendedPlatform
                       ? "bg-[#22C55E]/15 text-[#22C55E] border-[#22C55E]/30"
                       : "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30"
                   }`}
                 >
-                  {recommendedPlatform?.recommendation_type ||
-                    (recommendedPlatform?.is_demo
-                      ? "DEMO RECOMMENDATION — BASED ON SIMULATED DATA"
-                      : recommendedPlatform
-                      ? "LIVE-DATA RECOMMENDATION"
-                      : "Recommendation unavailable")}
+                  {activeReviewPlatforms.length === 0
+                    ? "INSUFFICIENT REVIEW DATA"
+                    : recommendedPlatform?.recommendation_type ||
+                      (recommendedPlatform?.is_demo
+                        ? "DEMO RECOMMENDATION"
+                        : "LIVE-DATA RECOMMENDATION")}
                 </span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-[#F8FAFC]">
-                {recommendedPlatform ? recommendedPlatform.platform : "Direct Search Available"}
+                {activeReviewPlatforms.length === 0
+                  ? "Insufficient Review Data"
+                  : recommendedPlatform
+                  ? recommendedPlatform.platform
+                  : "Direct Search Available"}
               </h3>
             </div>
           </div>
 
-          {recommendedPlatform && recommendedPlatform.listing && recommendedPlatform.listing.price ? (
+          {activeReviewPlatforms.length > 0 && recommendedPlatform && recommendedPlatform.listing && recommendedPlatform.listing.price ? (
             <div className="sm:text-right">
               <div className="text-xs text-[#A1A1B5]">Recommended Listing Price</div>
               <div className="text-2xl font-black text-[#22C55E]">
@@ -1163,8 +1193,101 @@ export default function VerificationResult({
           ) : null}
         </div>
 
-        {recommendedPlatform && recommendedPlatform.listing ? (
+        {activeReviewPlatforms.length === 0 ? (
+          <div className="p-6 bg-[#12121C] rounded-2xl border border-[#303047] space-y-4">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" />
+              <div className="space-y-1">
+                <h4 className="text-sm font-bold text-[#F8FAFC]">
+                  Insufficient review data to make a reliable marketplace recommendation.
+                </h4>
+                <p className="text-xs text-[#A1A1B5] leading-relaxed">
+                  Marketplace recommendations require verified customer feedback to evaluate product satisfaction, seller reliability, and sentiment credibility. Because public endpoints for Amazon, Daraz LK, and Temu did not return verified customer reviews for this listing, an automated single-platform recommendation is omitted to prevent misleading rankings.
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-3 border-t border-[#303047]/60 space-y-2">
+              <div className="text-xs font-semibold text-[#A1A1B5]">
+                Explore verified product listings directly on supported e-commerce marketplaces:
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {darazListing?.product_url && (
+                  <a
+                    href={darazListing.product_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#f57224]/15 hover:bg-[#f57224]/25 text-[#f57224] border border-[#f57224]/30 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                  >
+                    <span>View on Daraz LK</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                {amazonListing?.product_url && (
+                  <a
+                    href={amazonListing.product_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#ff9900]/15 hover:bg-[#ff9900]/25 text-[#ff9900] border border-[#ff9900]/30 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                  >
+                    <span>View on Amazon</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                {temuListing?.product_url && (
+                  <a
+                    href={temuListing.product_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#fb7701]/15 hover:bg-[#fb7701]/25 text-[#fb7701] border border-[#fb7701]/30 rounded-xl text-xs font-bold transition-colors cursor-pointer"
+                  >
+                    <span>View on Temu</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                <a
+                  href={darazSearchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#191925] hover:bg-[#202033] text-[#A1A1B5] hover:text-[#F8FAFC] border border-[#303047] rounded-xl text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  <span>Search Daraz LK</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href={amazonSearchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#191925] hover:bg-[#202033] text-[#A1A1B5] hover:text-[#F8FAFC] border border-[#303047] rounded-xl text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  <span>Search Amazon</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href={temuSearchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#191925] hover:bg-[#202033] text-[#A1A1B5] hover:text-[#F8FAFC] border border-[#303047] rounded-xl text-xs font-semibold transition-colors cursor-pointer"
+                >
+                  <span>Search Temu</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        ) : recommendedPlatform && recommendedPlatform.listing ? (
           <div className="space-y-5">
+            {/* Note if only one platform has reviews */}
+            {activeReviewPlatforms.length === 1 && (
+              <div className="p-3.5 rounded-xl bg-[#12121C] border border-[#303047] text-xs text-[#A1A1B5] flex items-center gap-2">
+                <Info className="w-4 h-4 text-[#A855F7] shrink-0" />
+                <span>
+                  <strong>Note:</strong> Customer reviews were only accessible for{" "}
+                  <strong className="text-[#F8FAFC]">{activeReviewPlatforms[0]}</strong>; cross-marketplace review comparison is not possible.
+                </span>
+              </div>
+            )}
+
             <div className="p-6 bg-[#12121C] rounded-2xl border border-[#303047] space-y-5">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="space-y-1.5">
@@ -1266,7 +1389,7 @@ export default function VerificationResult({
                 href={darazSearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#f57224]/15 hover:bg-[#f57224]/25 text-[#f57224] border border-[#f57224]/30 rounded-xl text-xs font-bold transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#f57224]/15 hover:bg-[#f57224]/25 text-[#f57224] border border-[#f57224]/30 rounded-xl text-xs font-bold transition-colors cursor-pointer"
               >
                 <span>Search on Daraz LK</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -1275,7 +1398,7 @@ export default function VerificationResult({
                 href={amazonSearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#ff9900]/15 hover:bg-[#ff9900]/25 text-[#ff9900] border border-[#ff9900]/30 rounded-xl text-xs font-bold transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#ff9900]/15 hover:bg-[#ff9900]/25 text-[#ff9900] border border-[#ff9900]/30 rounded-xl text-xs font-bold transition-colors cursor-pointer"
               >
                 <span>Search on Amazon</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -1284,7 +1407,7 @@ export default function VerificationResult({
                 href={temuSearchUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#fb7701]/15 hover:bg-[#fb7701]/25 text-[#fb7701] border border-[#fb7701]/30 rounded-xl text-xs font-bold transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#fb7701]/15 hover:bg-[#fb7701]/25 text-[#fb7701] border border-[#fb7701]/30 rounded-xl text-xs font-bold transition-colors cursor-pointer"
               >
                 <span>Search on Temu</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -1314,16 +1437,41 @@ export default function VerificationResult({
       {/* Functional Review Analysis Modal */}
       <ReviewAnalysisModal
         isOpen={isReviewModalOpen}
-        onClose={() => setIsReviewModalOpen(false)}
-        reviews={(selectedReviewPlatform === "All" ? allCustomerReviews : activeReviews) as ReviewItem[]}
-        sentimentStats={sentimentStats}
-        sentimentLabel={reviewData?.sentiment_label}
+        onClose={() => {
+          setIsReviewModalOpen(false);
+          setModalPlatform(null);
+        }}
+        reviews={(modalPlatform && modalPlatform !== "All"
+          ? allCustomerReviews.filter((r) =>
+              (r.source_label || r.data_source || "").toLowerCase().includes(modalPlatform.toLowerCase().replace(" lk", ""))
+            )
+          : allCustomerReviews) as ReviewItem[]}
+        sentimentStats={modalPlatform && modalPlatform !== "All" && platformAnalyses[modalPlatform]
+          ? {
+              total: platformAnalyses[modalPlatform].total_reviews_analyzed || 0,
+              positive_count: platformAnalyses[modalPlatform].counts?.positive || 0,
+              positive_percentage: platformAnalyses[modalPlatform].positive_percentage || 0,
+              neutral_count: platformAnalyses[modalPlatform].counts?.neutral || 0,
+              neutral_percentage: platformAnalyses[modalPlatform].neutral_percentage || 0,
+              negative_count: platformAnalyses[modalPlatform].counts?.negative || 0,
+              negative_percentage: platformAnalyses[modalPlatform].negative_percentage || 0,
+              summary: `Analyzed customer reviews for ${modalPlatform}.`,
+            }
+          : sentimentStats}
+        sentimentLabel={modalPlatform && modalPlatform !== "All" && platformAnalyses[modalPlatform]
+          ? platformAnalyses[modalPlatform].overall_sentiment
+          : reviewData?.sentiment_label}
         isSimulated={isSimulatedReviews}
         simulationTitle={reviewData?.simulation_title}
         simulationDisclosure={reviewData?.simulation_disclosure}
         credibilityLabel={reviewData?.credibility_assessment_label}
-        positiveThemes={reviewData?.positive_themes}
-        negativeThemes={reviewData?.negative_themes}
+        positiveThemes={modalPlatform && modalPlatform !== "All" && platformAnalyses[modalPlatform]
+          ? platformAnalyses[modalPlatform].positive_themes
+          : reviewData?.positive_themes}
+        negativeThemes={modalPlatform && modalPlatform !== "All" && platformAnalyses[modalPlatform]
+          ? platformAnalyses[modalPlatform].negative_themes
+          : reviewData?.negative_themes}
+        platformName={modalPlatform && modalPlatform !== "All" ? modalPlatform : undefined}
       />
     </div>
   );

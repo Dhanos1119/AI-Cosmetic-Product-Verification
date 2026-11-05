@@ -252,9 +252,23 @@ def compare_marketplace_platforms(
     # Sort rankable platforms by score descending
     ranked.sort(key=lambda s: s.total_score, reverse=True)
 
-    # Assign sequential ranks to available-only platforms
+    # Check evidence across platforms
+    platforms_with_reviews = [
+        k for k, v in (platform_review_analyses or {}).items()
+        if v and v.get("has_reviews") and v.get("total_reviews_analyzed", 0) > 0
+    ]
+
+    # Assign sequential ranks to available-only platforms and contextualize review evidence
     for idx, s in enumerate(ranked, start=1):
         s.rank = idx
+        if len(platforms_with_reviews) == 0:
+            s.recommendation_reason = (
+                "Insufficient review data to make a reliable marketplace recommendation."
+            )
+        elif len(platforms_with_reviews) == 1:
+            s.recommendation_reason = (
+                f"{s.recommendation_reason} (Note: Customer reviews were only accessible for {platforms_with_reviews[0]}; cross-marketplace review comparison is not possible.)"
+            )
 
     # Unranked platforms get rank 99 (not an active recommendation)
     for s in unranked:

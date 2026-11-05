@@ -44,9 +44,8 @@ def test_scenario_1_foundation_reviews_and_recommendation():
     """
     1.png (Foundation) must produce:
     - Expected identity: Maybelline Fit Me Matte + Poreless Foundation
-    - Exactly 10 simulated reviews
-    - Counts adding up to 10: 5 positive (50%), 2 neutral (20%), 3 negative (30%)
-    - Active recommendation with DEMO RECOMMENDATION badge
+    - Genuine analysis without synthetic review injection (is_simulated is False)
+    - Fallback recommendation stating insufficient review data when scrapers return 0 reviews
     """
     img_bytes = _create_mock_image_bytes(color=(220, 180, 140))
     res = analyze_product_authenticity(
@@ -59,37 +58,16 @@ def test_scenario_1_foundation_reviews_and_recommendation():
     assert "Maybelline Fit Me" in res["product_identity"]["product_name"]
     assert res["is_confirmed"] is True
 
-    # Review analysis check
+    # Review analysis check: No synthetic reviews injected into actual analysis
     rev_res = res["review_result"]
-    assert rev_res["is_simulated"] is True
-    assert "Simulated Review Analysis" in rev_res["simulation_title"]
-    assert "These reviews are synthetic examples" in rev_res["simulation_disclosure"]
+    assert rev_res["is_simulated"] is False
+    assert len(rev_res.get("simulated_reviews", [])) == 0
 
-    sim_reviews = rev_res.get("analyzed_reviews", [])
-    assert len(sim_reviews) == 10, f"Expected exactly 10 reviews, got {len(sim_reviews)}"
-
-    stats = rev_res.get("sentiment_stats", {})
-    assert stats["total"] == 10
-    assert stats["positive_count"] == 5
-    assert stats["neutral_count"] == 2
-    assert stats["negative_count"] == 3
-    assert stats["positive_count"] + stats["neutral_count"] + stats["negative_count"] == 10
-    assert stats["positive_percentage"] == 50.0
-    assert stats["neutral_percentage"] == 20.0
-    assert stats["negative_percentage"] == 30.0
-
-    # Themes
-    assert len(rev_res.get("positive_themes", [])) >= 2
-    assert len(rev_res.get("negative_themes", [])) >= 2
-
-    # Credibility
-    assert "Illustrative credibility analysis of simulated reviews." in rev_res["credibility_assessment_label"]
-
-    # Recommendation check
+    # Recommendation check: When 0 platforms have reviews, states insufficient review data
     plat_comp = res["platform_comparison"]
     assert len(plat_comp) >= 2
     top = plat_comp[0]
-    assert any(k in top["recommendation_type"] for k in ("Demo Recommendation", "Live Data Recommendation", "insufficient comparable marketplace data"))
+    assert "Insufficient review data" in top["recommendation_reason"]
     assert "Amazon" in [p["platform"] for p in plat_comp]
 
 
@@ -101,8 +79,7 @@ def test_scenario_2_lipstick_reviews_and_recommendation():
     """
     2.png (Lipstick) must produce:
     - Category: Lipstick
-    - Exactly 10 simulated lipstick reviews
-    - Sentiment counts adding up to 10
+    - Genuine analysis without synthetic review injection
     - Proper recommendation or insufficient data explanation
     """
     img_bytes = _create_mock_image_bytes(color=(190, 25, 45))
@@ -115,18 +92,13 @@ def test_scenario_2_lipstick_reviews_and_recommendation():
     assert res["product_detection"] == "Lipstick"
 
     rev_res = res["review_result"]
-    assert rev_res["is_simulated"] is True
-    sim_reviews = rev_res.get("analyzed_reviews", [])
-    assert len(sim_reviews) == 10
-
-    stats = rev_res.get("sentiment_stats", {})
-    assert stats["total"] == 10
-    assert stats["positive_count"] + stats["neutral_count"] + stats["negative_count"] == 10
+    assert rev_res["is_simulated"] is False
+    assert len(rev_res.get("simulated_reviews", [])) == 0
 
     plat_comp = res["platform_comparison"]
     assert len(plat_comp) >= 2
     top = plat_comp[0]
-    assert any(k in top["recommendation_type"] for k in ("Demo Recommendation", "Live Data Recommendation", "insufficient comparable marketplace data"))
+    assert "Insufficient review data" in top["recommendation_reason"]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
