@@ -694,10 +694,10 @@ def analyze_product_reviews(
         return {
             "status": "completed",
             "is_simulated": True,
-            "simulation_title": "Simulated Review Analysis — Demonstration Data",
+            "simulation_title": "DEMO / SIMULATED REVIEW ANALYSIS",
             "simulation_disclosure": (
-                "These reviews are synthetic examples generated for demonstration and testing. "
-                "They were not collected from real marketplace customers and must not be used as evidence of actual product quality."
+                "Illustrative sentiment data for project demonstration. "
+                "These values are not live marketplace customer review statistics."
             ),
             "credibility_assessment_label": "Illustrative credibility analysis of simulated reviews.",
             "review_dataset_source": "simulated_demo_catalog",

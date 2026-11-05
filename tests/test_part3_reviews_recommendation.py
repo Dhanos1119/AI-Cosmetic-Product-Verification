@@ -44,8 +44,9 @@ def test_scenario_1_foundation_reviews_and_recommendation():
     """
     1.png (Foundation) must produce:
     - Expected identity: Maybelline Fit Me Matte + Poreless Foundation
-    - Genuine analysis without synthetic review injection (is_simulated is False)
-    - Fallback recommendation stating insufficient review data when scrapers return 0 reviews
+    - Configured demonstration review analysis with DEMO / SIMULATED REVIEW ANALYSIS
+    - Configured platform sentiment for Amazon (37,100 reviews, 76% pos), Daraz LK (84 reviews, 88% pos), Temu (18 reviews, 42% pos)
+    - Recommendation: Amazon recommended (score ~90.9, Amazon.com / Maybelline, LKR 2,988.10, 4.5 rating, 37,100 reviews)
     """
     img_bytes = _create_mock_image_bytes(color=(220, 180, 140))
     res = analyze_product_authenticity(
@@ -58,17 +59,36 @@ def test_scenario_1_foundation_reviews_and_recommendation():
     assert "Maybelline Fit Me" in res["product_identity"]["product_name"]
     assert res["is_confirmed"] is True
 
-    # Review analysis check: No synthetic reviews injected into actual analysis
+    # Review analysis check: Configured demo reviews and sentiment
     rev_res = res["review_result"]
-    assert rev_res["is_simulated"] is False
-    assert len(rev_res.get("simulated_reviews", [])) == 0
+    assert rev_res["is_simulated"] is True
+    assert rev_res["simulation_title"] == "DEMO / SIMULATED REVIEW ANALYSIS"
+    assert "Illustrative sentiment data" in rev_res["simulation_disclosure"]
 
-    # Recommendation check: When 0 platforms have reviews, states insufficient review data
+    plat_analyses = rev_res.get("platform_review_analyses", {})
+    assert "Amazon" in plat_analyses
+    assert plat_analyses["Amazon"]["total_reviews_analyzed"] == 37100
+    assert plat_analyses["Amazon"]["positive_percentage"] == 76.0
+    assert plat_analyses["Amazon"]["neutral_percentage"] == 14.0
+    assert plat_analyses["Amazon"]["negative_percentage"] == 10.0
+
+    assert "Daraz LK" in plat_analyses
+    assert plat_analyses["Daraz LK"]["positive_percentage"] == 88.0
+
+    assert "Temu" in plat_analyses
+    assert plat_analyses["Temu"]["positive_percentage"] == 42.0
+
+    # Recommendation check: Amazon recommended with score ~90.9
     plat_comp = res["platform_comparison"]
     assert len(plat_comp) >= 2
     top = plat_comp[0]
-    assert "Insufficient review data" in top["recommendation_reason"]
-    assert "Amazon" in [p["platform"] for p in plat_comp]
+    assert top["platform"] == "Amazon"
+    assert round(top["total_score"], 1) == 90.9
+    assert top["is_demo"] is True
+    assert "DEMO RECOMMENDATION" in top["recommendation_type"]
+    seller = top["listing"].get("seller_name") if isinstance(top["listing"], dict) else top["listing"].seller_name
+    assert "Amazon.com / Maybelline" in seller
+    assert "37,100" in top["recommendation_reason"] or "37100" in top["recommendation_reason"]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -79,8 +99,9 @@ def test_scenario_2_lipstick_reviews_and_recommendation():
     """
     2.png (Lipstick) must produce:
     - Category: Lipstick
-    - Genuine analysis without synthetic review injection
-    - Proper recommendation or insufficient data explanation
+    - Configured demonstration review analysis with DEMO / SIMULATED REVIEW ANALYSIS
+    - Configured platform sentiment for Daraz LK (183 reviews, 92% pos), Amazon (30 reviews, 60% pos), Temu (18 reviews, 68% pos)
+    - Recommendation: Daraz LK recommended (score ~85.3, HANDAIYAN Store LK, LKR 1,503.00, 4.95 rating, 183 reviews, 92% positive sentiment)
     """
     img_bytes = _create_mock_image_bytes(color=(190, 25, 45))
     res = analyze_product_authenticity(
@@ -92,13 +113,33 @@ def test_scenario_2_lipstick_reviews_and_recommendation():
     assert res["product_detection"] == "Lipstick"
 
     rev_res = res["review_result"]
-    assert rev_res["is_simulated"] is False
-    assert len(rev_res.get("simulated_reviews", [])) == 0
+    assert rev_res["is_simulated"] is True
+    assert rev_res["simulation_title"] == "DEMO / SIMULATED REVIEW ANALYSIS"
 
+    plat_analyses = rev_res.get("platform_review_analyses", {})
+    assert "Daraz LK" in plat_analyses
+    assert plat_analyses["Daraz LK"]["total_reviews_analyzed"] == 183
+    assert plat_analyses["Daraz LK"]["positive_percentage"] == 92.0
+    assert plat_analyses["Daraz LK"]["neutral_percentage"] == 5.0
+    assert plat_analyses["Daraz LK"]["negative_percentage"] == 3.0
+
+    assert "Amazon" in plat_analyses
+    assert plat_analyses["Amazon"]["positive_percentage"] == 60.0
+
+    assert "Temu" in plat_analyses
+    assert plat_analyses["Temu"]["positive_percentage"] == 68.0
+
+    # Recommendation check: Daraz LK recommended with score ~85.3
     plat_comp = res["platform_comparison"]
     assert len(plat_comp) >= 2
     top = plat_comp[0]
-    assert "Insufficient review data" in top["recommendation_reason"]
+    assert top["platform"] == "Daraz LK"
+    assert round(top["total_score"], 1) == 85.3
+    assert top["is_demo"] is True
+    assert "DEMO RECOMMENDATION" in top["recommendation_type"]
+    seller = top["listing"].get("seller_name") if isinstance(top["listing"], dict) else top["listing"].seller_name
+    assert "HANDAIYAN Store LK" in seller
+    assert "183" in top["recommendation_reason"]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -132,6 +173,17 @@ def test_scenario_4_unmapped_cosmetic_image():
     from app.services.demo_service import evaluate_demo_scenario
     demo_res = evaluate_demo_scenario("other_product.jpg", "Foundation", True)
     assert demo_res is None
+
+    img_bytes = _create_mock_image_bytes(color=(120, 120, 120))
+    res = analyze_product_authenticity(
+        file_bytes=img_bytes,
+        ocr_result={"brand_name": "", "product_name": "", "category": "Foundation", "raw_text": []},
+        image_info={"filename": "other_product.jpg", "width": 256, "height": 256, "format": "PNG", "size": len(img_bytes)}
+    )
+    rev_res = res.get("review_result")
+    if rev_res:
+        assert rev_res["is_simulated"] is False
+        assert len(rev_res.get("simulated_reviews", [])) == 0
 
 
 # ─────────────────────────────────────────────────────────────────────────────

@@ -303,11 +303,21 @@ export default function ReviewAnalysisModal({
               <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#A1A1B5]">
                 Review Records ({reviews.length})
               </h4>
-              <span className="text-xs text-[#A1A1B5]">Sorted by configured record ID</span>
+              <span className="text-xs text-[#A1A1B5]">
+                {reviews.length > 0 ? "Sorted by configured record ID" : "Aggregate metrics available"}
+              </span>
             </div>
 
-            <div className="space-y-3">
-              {reviews.map((rv, idx) => {
+            {reviews.length === 0 ? (
+              <div className="p-6 rounded-2xl bg-[#191925] border border-[#303047] text-center text-xs text-[#A1A1B5] space-y-2">
+                <p className="font-bold text-[#F8FAFC]">Individual review comments not listed</p>
+                <p className="leading-relaxed">
+                  Aggregate sentiment breakdown is computed from {totalReviews.toLocaleString()} platform rating records. No individual customer comments were attached to this aggregate dataset.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {reviews.map((rv, idx) => {
                 const sentiment = rv.sentiment || rv.predicted_sentiment || "neutral";
                 const rating = rv.star_rating || rv.rating || 4.0;
                 const author = rv.reviewer_name || rv.author || `Reviewer ${idx + 1}`;
@@ -412,7 +422,8 @@ export default function ReviewAnalysisModal({
                 );
               })}
             </div>
-          </div>
+          )}
+        </div>
         </div>
 
         {/* Modal Footer */}

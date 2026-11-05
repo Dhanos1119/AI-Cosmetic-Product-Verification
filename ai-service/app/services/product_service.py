@@ -9,7 +9,12 @@ from app.services.authenticity_service import predict_final_authenticity
 from app.schemas.marketplace import ProductIdentity
 from app.services.scraping.marketplace_search import search_all_marketplaces
 from app.services.marketplace_comparison_service import compare_marketplace_platforms
-from app.services.demo_service import evaluate_demo_scenario, get_simulated_reviews
+from app.services.demo_service import (
+    evaluate_demo_scenario,
+    get_simulated_reviews,
+    get_demo_marketplace_sentiment,
+    is_demo_mode_active,
+)
 from typing import Optional
 from sqlalchemy.orm import Session
 from database.persistence_service import persist_analysis_results
@@ -248,8 +253,7 @@ def analyze_product_authenticity(
         marketplace_listings = []
         mkt_status = "Product identity insufficient for marketplace comparison"
 
-    # 4. Review sentiment on ACTUAL review text only.
-    # Synthetic review data is removed from actual product analysis.
+    # 4. Review sentiment on ACTUAL review text, or configured demonstration reviews for demo scenarios
     real_reviews = []
     for m in marketplace_listings:
         for rv in (m.reviews or []):
@@ -264,14 +268,18 @@ def analyze_product_authenticity(
                     "platform": m.platform
                 })
 
+    is_demo_scenario = bool(demo_key in ("1.png", "2.png") and is_demo_mode_active())
+    simulated_reviews = get_simulated_reviews(demo_key) if is_demo_scenario else []
+    demo_sentiment_data = get_demo_marketplace_sentiment(demo_key) if is_demo_scenario else None
+
     review_res = analyze_review_authenticity(
         brand_name=matched_brand,
         product_name=matched_product,
         product_id=prod_id,
         category=matched_category,
         real_reviews=real_reviews,
-        simulated_reviews=[],
-        demo_key=None
+        simulated_reviews=simulated_reviews,
+        demo_key=demo_key if is_demo_scenario else None
     )
 
     # 4b. Independent Platform-wise review analysis for Amazon, Daraz LK, Temu
@@ -294,15 +302,56 @@ def analyze_product_authenticity(
                             "verified_purchase": rv.verified_purchase or False,
                             "platform": target_plat
                         })
-        analysis = analyze_platform_reviews(
-            platform_name=target_plat,
-            reviews=plat_reviews,
-            category=matched_category
-        )
-        if plat_listing:
-            analysis["listing_rating"] = plat_listing.rating
-            analysis["listing_review_count"] = plat_listing.review_count
-            analysis["product_url"] = plat_listing.product_url
+
+        if demo_sentiment_data and target_plat in demo_sentiment_data:
+            # Load configured demonstration sentiment data for demo presentation
+            plat_demo = demo_sentiment_data[target_plat]
+            tot = int(plat_demo.get("review_count", 10))
+            pos_p = float(plat_demo.get("positive_percentage", 70.0))
+            neu_p = float(plat_demo.get("neutral_percentage", 15.0))
+            neg_p = float(plat_demo.get("negative_percentage", 15.0))
+            pos_c = round((pos_p / 100.0) * tot)
+            neu_c = round((neu_p / 100.0) * tot)
+            neg_c = max(0, tot - pos_c - neu_c)
+
+            analysis = {
+                "platform": target_plat,
+                "status": "completed",
+                "status_message": f"Demonstration sentiment analysis configured for {target_plat}.",
+                "has_reviews": True,
+                "is_demo": True,
+                "total_reviews_retrieved": tot,
+                "total_reviews_analyzed": tot,
+                "counts": {
+                    "positive": pos_c,
+                    "neutral": neu_c,
+                    "negative": neg_c
+                },
+                "positive_percentage": pos_p,
+                "neutral_percentage": neu_p,
+                "negative_percentage": neg_p,
+                "overall_sentiment": plat_demo.get("overall_sentiment", "Positive"),
+                "positive_themes": plat_demo.get("positive_themes", []),
+                "negative_themes": plat_demo.get("negative_themes", []),
+                "summary": plat_demo.get("summary", ""),
+                "analyzed_reviews": simulated_reviews,
+                "source_info": f"{target_plat} Demonstration Data",
+                "average_rating": plat_demo.get("rating") or (plat_listing.rating if plat_listing else 4.0),
+                "listing_rating": plat_demo.get("rating") or (plat_listing.rating if plat_listing else 4.0),
+                "listing_review_count": tot,
+                "product_url": plat_listing.product_url if plat_listing else None,
+            }
+        else:
+            analysis = analyze_platform_reviews(
+                platform_name=target_plat,
+                reviews=plat_reviews,
+                category=matched_category
+            )
+            if plat_listing:
+                analysis["listing_rating"] = plat_listing.rating
+                analysis["listing_review_count"] = plat_listing.review_count
+                analysis["product_url"] = plat_listing.product_url
+
         platform_review_analyses[target_plat] = analysis
 
     review_res["platform_review_analyses"] = platform_review_analyses

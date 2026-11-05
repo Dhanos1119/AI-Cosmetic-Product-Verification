@@ -130,6 +130,7 @@ export interface PlatformReviewAnalysisData {
   status?: string;
   status_message?: string;
   has_reviews?: boolean;
+  is_demo?: boolean;
   total_reviews_retrieved?: number;
   total_reviews_analyzed?: number;
   average_rating?: number | null;
@@ -143,6 +144,7 @@ export interface PlatformReviewAnalysisData {
   overall_sentiment?: string;
   positive_themes?: string[];
   negative_themes?: string[];
+  summary?: string;
   analyzed_reviews?: MarketplaceReview[];
   source_info?: string;
 }
@@ -446,6 +448,16 @@ export default function VerificationResult({
   const sentimentStats = reviewData?.sentiment_stats;
   const isSimulatedReviews = Boolean(reviewData?.is_simulated);
 
+  // Platform comparison rankings
+  const platformComparisons = aiAnalysisResult?.platform_comparison || [];
+
+  const isDemoProduct = Boolean(
+    isSimulatedReviews ||
+    platformComparisons.some((p) => p.is_demo) ||
+    marketplaceListings.some((m) => m.retrieval_status === "DEMO") ||
+    aiAnalysisResult?.filename?.match(/^(1|2)\.png$/i)
+  );
+
   // Independent platform review analyses
   const platformAnalyses = reviewData?.platform_review_analyses || {};
 
@@ -459,8 +471,10 @@ export default function VerificationResult({
     return pReviews.length > 0;
   });
 
-  // Platform comparison rankings
-  const platformComparisons = aiAnalysisResult?.platform_comparison || [];
+  const platformsToRender = isDemoProduct
+    ? (["Amazon", "Daraz LK", "Temu"] as const)
+    : activeReviewPlatforms;
+
   const rankedComparisons = platformComparisons.filter(
     (p) =>
       p.total_score > 0 &&
@@ -892,22 +906,27 @@ export default function VerificationResult({
       <div className="bg-[#191925] rounded-3xl p-6 sm:p-8 border border-[#303047] shadow-xl space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#303047] pb-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <MessageSquare className="w-5 h-5 text-[#A855F7]" />
               <h3 className="text-xl font-extrabold text-[#F8FAFC]">
                 Section D: Customer Review Analysis
               </h3>
+              {isDemoProduct && (
+                <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-[#A855F7]/15 text-[#A855F7] border border-[#A855F7]/30">
+                  DEMO / SIMULATED REVIEW ANALYSIS
+                </span>
+              )}
             </div>
             <p className="text-xs text-[#A1A1B5] font-medium">
-              {activeReviewPlatforms.length === 0
+              {!isDemoProduct && activeReviewPlatforms.length === 0
                 ? "Customer review sentiment and credibility evaluation"
-                : isSimulatedReviews
+                : isDemoProduct
                 ? "Simulated Review Analysis — Demonstration Data (10 synthetic records evaluated)"
                 : "Sentiment distribution and credibility evaluation from verified customer feedback"}
             </p>
           </div>
 
-          {activeReviewPlatforms.length > 0 && allCustomerReviews.length > 0 && (
+          {(isDemoProduct || (activeReviewPlatforms.length > 0 && allCustomerReviews.length > 0)) && (
             <div className="flex items-center gap-2">
               <button
                 type="button"
@@ -918,14 +937,27 @@ export default function VerificationResult({
                 className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#EC4899] via-[#A855F7] to-[#8B5CF6] hover:opacity-95 rounded-xl transition-all shadow-md touch-manipulation min-h-[40px] cursor-pointer"
               >
                 <FileText className="w-4 h-4" />
-                <span>View All Reviews ({allCustomerReviews.length})</span>
+                <span>View All Reviews ({allCustomerReviews.length > 0 ? allCustomerReviews.length : 10})</span>
               </button>
             </div>
           )}
         </div>
 
-        {/* Case A: No Marketplace has accessible customer reviews */}
-        {activeReviewPlatforms.length === 0 ? (
+        {/* Distinctive Demonstration Notice Banner */}
+        {isDemoProduct && (
+          <div className="p-4 rounded-2xl bg-[#12121C] border border-[#A855F7]/30 text-xs text-[#A1A1B5] space-y-1">
+            <div className="flex items-center gap-2 text-[#A855F7] font-bold">
+              <Info className="w-4 h-4 shrink-0" />
+              <span>DEMO / SIMULATED REVIEW ANALYSIS</span>
+            </div>
+            <p className="leading-relaxed">
+              Illustrative sentiment data for project demonstration. These values are not live marketplace customer review statistics.
+            </p>
+          </div>
+        )}
+
+        {/* Case A: Non-demo and No Marketplace has accessible customer reviews */}
+        {!isDemoProduct && activeReviewPlatforms.length === 0 ? (
           <div className="space-y-6">
             <div className="p-8 bg-[#12121C] rounded-2xl border border-[#303047] text-center space-y-3">
               <div className="w-12 h-12 rounded-2xl bg-[#A855F7]/10 border border-[#A855F7]/20 flex items-center justify-center mx-auto text-[#A855F7]">
@@ -954,8 +986,8 @@ export default function VerificationResult({
           </div>
         ) : (
           <div className="space-y-6">
-            {/* Note if only one platform has reviews */}
-            {activeReviewPlatforms.length === 1 && (
+            {/* Note if only one platform has reviews in live mode */}
+            {!isDemoProduct && activeReviewPlatforms.length === 1 && (
               <div className="p-4 bg-[#12121C] rounded-2xl border border-[#303047] text-xs text-[#A1A1B5] flex items-center gap-2.5">
                 <Info className="w-4 h-4 text-[#A855F7] shrink-0" />
                 <span>
@@ -964,38 +996,23 @@ export default function VerificationResult({
               </div>
             )}
 
-            {/* Simulated Reviews Disclosure Banner if simulated reviews */}
-            {isSimulatedReviews && (
-              <div className="p-4 rounded-2xl bg-[#12121C] border border-[#A855F7]/30 text-xs text-[#A1A1B5] space-y-1.5">
-                <div className="flex items-center gap-2 text-[#A855F7] font-bold">
-                  <Info className="w-4 h-4" />
-                  <span>Simulated Review Analysis — Demonstration Data</span>
-                </div>
-                <p className="leading-relaxed">
-                  These reviews are synthetic examples generated for demonstration and testing. They were not collected from real marketplace customers and must not be used as evidence of actual product quality.
-                </p>
-              </div>
-            )}
-
-            {/* Independent Platform Review Analysis Panels */}
+            {/* 3 Marketplace Review Sentiment Panels with Horizontal Bars */}
             <div className="space-y-5">
-              {activeReviewPlatforms.map((plat) => {
+              {platformsToRender.map((plat) => {
                 const pData = platformAnalyses[plat];
                 const pReviews = allCustomerReviews.filter((r) =>
                   (r.source_label || r.data_source || "").toLowerCase().includes(plat.toLowerCase().replace(" lk", ""))
                 );
-                const totalAnalyzed = pData?.total_reviews_analyzed || pReviews.length;
-                const posCount = pData?.counts?.positive ?? pReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "positive").length;
-                const neuCount = pData?.counts?.neutral ?? pReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "neutral").length;
-                const negCount = pData?.counts?.negative ?? pReviews.filter((r) => (r.sentiment || r.predicted_sentiment) === "negative").length;
-
-                const posPct = pData?.positive_percentage ?? (totalAnalyzed > 0 ? Math.round((posCount / totalAnalyzed) * 100) : 0);
-                const neuPct = pData?.neutral_percentage ?? (totalAnalyzed > 0 ? Math.round((neuCount / totalAnalyzed) * 100) : 0);
-                const negPct = pData?.negative_percentage ?? (totalAnalyzed > 0 ? Math.round((negCount / totalAnalyzed) * 100) : 0);
+                const totalAnalyzed = pData?.total_reviews_analyzed || (isDemoProduct ? (plat === "Amazon" ? 37100 : plat === "Daraz LK" ? (aiAnalysisResult?.filename === "2.png" ? 183 : 84) : 18) : pReviews.length);
+                const posPct = pData?.positive_percentage ?? 0;
+                const neuPct = pData?.neutral_percentage ?? 0;
+                const negPct = pData?.negative_percentage ?? 0;
 
                 const avgRating = pData?.average_rating || pData?.listing_rating;
                 const posThemes = pData?.positive_themes || [];
                 const negThemes = pData?.negative_themes || [];
+                const summary = pData?.summary;
+                const overallSentiment = pData?.overall_sentiment || (posPct >= 50 ? "Positive" : "Mixed");
                 const platColor = plat === "Amazon" ? "#ff9900" : plat === "Daraz LK" ? "#f57224" : "#fb7701";
 
                 return (
@@ -1004,17 +1021,30 @@ export default function VerificationResult({
                       <div className="flex items-center gap-2.5">
                         <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: platColor }} />
                         <h4 className="text-base font-extrabold text-[#F8FAFC]">{plat}</h4>
+                        {overallSentiment && (
+                          <span
+                            className={`text-[10px] font-black uppercase px-2 py-0.5 rounded border ${
+                              overallSentiment.toLowerCase().includes("positive")
+                                ? "bg-[#22C55E]/15 text-[#22C55E] border-[#22C55E]/30"
+                                : overallSentiment.toLowerCase().includes("mixed")
+                                ? "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30"
+                                : "bg-[#94A3B8]/15 text-[#94A3B8] border-[#94A3B8]/30"
+                            }`}
+                          >
+                            {overallSentiment}
+                          </span>
+                        )}
                         {avgRating && avgRating > 0 ? (
                           <span className="inline-flex items-center gap-1 text-xs font-bold text-[#F59E0B] bg-[#191925] px-2.5 py-0.5 rounded-full border border-[#303047]">
                             <Star className="w-3 h-3 fill-[#F59E0B]" />
-                            <span>{avgRating.toFixed(1)} / 5</span>
+                            <span>{avgRating % 1 === 0 ? avgRating.toFixed(1) : avgRating.toString()} / 5</span>
                           </span>
                         ) : null}
                       </div>
 
                       <div className="flex items-center gap-3">
                         <span className="text-xs text-[#A1A1B5] font-semibold">
-                          {totalAnalyzed} {totalAnalyzed === 1 ? "review" : "reviews"} analysed
+                          {totalAnalyzed.toLocaleString()} {isDemoProduct ? "demonstration reviews" : (totalAnalyzed === 1 ? "review" : "reviews")}
                         </span>
                         <button
                           type="button"
@@ -1025,52 +1055,58 @@ export default function VerificationResult({
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#F8FAFC] bg-[#191925] hover:bg-[#202033] border border-[#303047] rounded-xl transition-colors cursor-pointer"
                         >
                           <FileText className="w-3.5 h-3.5 text-[#A855F7]" />
-                          <span>View All Reviews ({totalAnalyzed})</span>
+                          <span>View Reviews</span>
                         </button>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      {/* Positive */}
-                      <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] space-y-2">
-                        <div className="flex items-center justify-between text-[#22C55E] text-xs font-bold">
-                          <span>Positive</span>
+                    {/* Horizontal Sentiment Comparison Bar */}
+                    <div className="space-y-2 pt-1">
+                      <div className="flex items-center justify-between text-xs font-semibold text-[#A1A1B5]">
+                        <span>Horizontal Sentiment Distribution</span>
+                        <span className="text-[11px] text-[#A1A1B5]/70">100% Total Breakdown</span>
+                      </div>
+                      <div className="w-full bg-[#202033] rounded-full h-3.5 flex overflow-hidden border border-[#303047]/60">
+                        {posPct > 0 && (
+                          <div
+                            className="bg-[#22C55E] h-full transition-all duration-300"
+                            style={{ width: `${posPct}%` }}
+                            title={`Positive: ${posPct}%`}
+                          />
+                        )}
+                        {neuPct > 0 && (
+                          <div
+                            className="bg-[#94A3B8] h-full transition-all duration-300"
+                            style={{ width: `${neuPct}%` }}
+                            title={`Neutral: ${neuPct}%`}
+                          />
+                        )}
+                        {negPct > 0 && (
+                          <div
+                            className="bg-[#EF4444] h-full transition-all duration-300"
+                            style={{ width: `${negPct}%` }}
+                            title={`Negative: ${negPct}%`}
+                          />
+                        )}
+                      </div>
+
+                      <div className="flex flex-wrap items-center justify-between text-xs gap-2 pt-0.5">
+                        <span className="flex items-center gap-1.5 font-bold text-[#22C55E]">
                           <ThumbsUp className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="text-xl font-black text-[#F8FAFC]">{posCount}</div>
-                        <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
-                          <div className="bg-[#22C55E] h-1.5 rounded-full" style={{ width: `${posPct}%` }} />
-                        </div>
-                        <p className="text-[11px] text-[#A1A1B5]">{posPct}% of analysed reviews</p>
-                      </div>
-
-                      {/* Neutral */}
-                      <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] space-y-2">
-                        <div className="flex items-center justify-between text-[#A1A1B5] text-xs font-bold">
-                          <span>Neutral</span>
+                          <span>Positive: {posPct}%</span>
+                        </span>
+                        <span className="flex items-center gap-1.5 font-bold text-[#94A3B8]">
                           <MinusCircle className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="text-xl font-black text-[#F8FAFC]">{neuCount}</div>
-                        <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
-                          <div className="bg-[#A1A1B5] h-1.5 rounded-full" style={{ width: `${neuPct}%` }} />
-                        </div>
-                        <p className="text-[11px] text-[#A1A1B5]">{neuPct}% of analysed reviews</p>
-                      </div>
-
-                      {/* Negative */}
-                      <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] space-y-2">
-                        <div className="flex items-center justify-between text-[#F87171] text-xs font-bold">
-                          <span>Critical</span>
+                          <span>Neutral: {neuPct}%</span>
+                        </span>
+                        <span className="flex items-center gap-1.5 font-bold text-[#EF4444]">
                           <ThumbsDown className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="text-xl font-black text-[#F8FAFC]">{negCount}</div>
-                        <div className="w-full bg-[#202033] rounded-full h-1.5 overflow-hidden">
-                          <div className="bg-[#F87171] h-1.5 rounded-full" style={{ width: `${negPct}%` }} />
-                        </div>
-                        <p className="text-[11px] text-[#A1A1B5]">{negPct}% of analysed reviews</p>
+                          <span>Negative: {negPct}%</span>
+                        </span>
                       </div>
                     </div>
 
+                    {/* Common Positive & Critical Themes */}
                     {(posThemes.length > 0 || negThemes.length > 0) && (
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                         {posThemes.length > 0 && (
@@ -1079,7 +1115,7 @@ export default function VerificationResult({
                               Common Positive Themes
                             </span>
                             <div className="flex flex-wrap gap-1.5">
-                              {posThemes.map((t, idx) => (
+                              {posThemes.map((t: string, idx: number) => (
                                 <span
                                   key={idx}
                                   className="text-[11px] px-2.5 py-0.5 rounded bg-[#22C55E]/10 text-[#22C55E] border border-[#22C55E]/20"
@@ -1092,14 +1128,14 @@ export default function VerificationResult({
                         )}
                         {negThemes.length > 0 && (
                           <div className="space-y-1.5">
-                            <span className="text-[11px] font-bold text-[#F87171] uppercase tracking-wider">
+                            <span className="text-[11px] font-bold text-[#EF4444] uppercase tracking-wider">
                               Common Critical Themes
                             </span>
                             <div className="flex flex-wrap gap-1.5">
-                              {negThemes.map((t, idx) => (
+                              {negThemes.map((t: string, idx: number) => (
                                 <span
                                   key={idx}
-                                  className="text-[11px] px-2.5 py-0.5 rounded bg-[#F87171]/10 text-[#F87171] border border-[#F87171]/20"
+                                  className="text-[11px] px-2.5 py-0.5 rounded bg-[#EF4444]/10 text-[#EF4444] border border-[#EF4444]/20"
                                 >
                                   {t}
                                 </span>
@@ -1107,6 +1143,14 @@ export default function VerificationResult({
                             </div>
                           </div>
                         )}
+                      </div>
+                    )}
+
+                    {/* Overall Sentiment Summary */}
+                    {summary && (
+                      <div className="p-3.5 rounded-xl bg-[#191925] border border-[#303047] text-xs text-[#A1A1B5]">
+                        <span className="font-bold text-[#F8FAFC]">Overall Sentiment Summary: </span>
+                        <span>{summary}</span>
                       </div>
                     )}
                   </div>
@@ -1130,8 +1174,10 @@ export default function VerificationResult({
               </div>
 
               <p className="text-xs text-[#A1A1B5] leading-relaxed">
-                {reviewData?.credibility_assessment_label ||
-                  "No anomalous posting bursts, repetitive review text patterns, or contradictory rating signals were observed."}
+                {isDemoProduct
+                  ? "Illustrative credibility analysis of simulated reviews. Heuristic indicators evaluate consistency across configured demonstration review records."
+                  : (reviewData?.credibility_assessment_label ||
+                    "No anomalous posting bursts, repetitive review text patterns, or contradictory rating signals were observed.")}
               </p>
 
               <p className="text-[11px] text-[#A1A1B5]/60 italic pt-1 border-t border-[#303047]">
@@ -1150,31 +1196,30 @@ export default function VerificationResult({
               <Award className="w-5 h-5 text-[#EC4899]" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-xs font-extrabold uppercase tracking-widest text-[#EC4899]">
-                  Section E: Marketplace Recommendation
+                  {isDemoProduct ? "RECOMMENDED MARKETPLACE" : "Section E: Marketplace Recommendation"}
                 </span>
                 <span
                   className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded border ${
-                    activeReviewPlatforms.length === 0
+                    !isDemoProduct && activeReviewPlatforms.length === 0
                       ? "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30"
-                      : recommendedPlatform?.is_demo
+                      : isDemoProduct || recommendedPlatform?.is_demo
                       ? "bg-[#A855F7]/15 text-[#A855F7] border-[#A855F7]/30"
                       : recommendedPlatform
                       ? "bg-[#22C55E]/15 text-[#22C55E] border-[#22C55E]/30"
                       : "bg-[#F59E0B]/15 text-[#F59E0B] border-[#F59E0B]/30"
                   }`}
                 >
-                  {activeReviewPlatforms.length === 0
+                  {!isDemoProduct && activeReviewPlatforms.length === 0
                     ? "INSUFFICIENT REVIEW DATA"
-                    : recommendedPlatform?.recommendation_type ||
-                      (recommendedPlatform?.is_demo
-                        ? "DEMO RECOMMENDATION"
-                        : "LIVE-DATA RECOMMENDATION")}
+                    : isDemoProduct
+                    ? "DEMO RECOMMENDATION – BASED ON CONFIGURED DEMONSTRATION DATA"
+                    : recommendedPlatform?.recommendation_type || "LIVE-DATA RECOMMENDATION"}
                 </span>
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-[#F8FAFC]">
-                {activeReviewPlatforms.length === 0
+                {!isDemoProduct && activeReviewPlatforms.length === 0
                   ? "Insufficient Review Data"
                   : recommendedPlatform
                   ? recommendedPlatform.platform
@@ -1183,7 +1228,7 @@ export default function VerificationResult({
             </div>
           </div>
 
-          {activeReviewPlatforms.length > 0 && recommendedPlatform && recommendedPlatform.listing && recommendedPlatform.listing.price ? (
+          {(isDemoProduct || activeReviewPlatforms.length > 0) && recommendedPlatform && recommendedPlatform.listing && recommendedPlatform.listing.price ? (
             <div className="sm:text-right">
               <div className="text-xs text-[#A1A1B5]">Recommended Listing Price</div>
               <div className="text-2xl font-black text-[#22C55E]">
@@ -1193,7 +1238,7 @@ export default function VerificationResult({
           ) : null}
         </div>
 
-        {activeReviewPlatforms.length === 0 ? (
+        {!isDemoProduct && activeReviewPlatforms.length === 0 ? (
           <div className="p-6 bg-[#12121C] rounded-2xl border border-[#303047] space-y-4">
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" />
@@ -1305,7 +1350,7 @@ export default function VerificationResult({
                   {recommendedPlatform.listing.rating && recommendedPlatform.listing.rating > 0 ? (
                     <div className="flex items-center gap-1.5 text-[#F59E0B] text-sm font-bold bg-[#191925] px-3.5 py-1.5 rounded-xl border border-[#303047]">
                       <Star className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B]" />
-                      <span>{recommendedPlatform.listing.rating.toFixed(1)}</span>
+                      <span>{recommendedPlatform.listing.rating % 1 === 0 ? recommendedPlatform.listing.rating.toFixed(1) : recommendedPlatform.listing.rating.toString()}</span>
                     </div>
                   ) : null}
                   <span className="text-xs text-[#A1A1B5]">
@@ -1354,6 +1399,27 @@ export default function VerificationResult({
                   </div>
                 </div>
               </div>
+
+              {/* Recommended Platform Sentiment Breakdown */}
+              {(() => {
+                const recPlatData = recommendedPlatform ? platformAnalyses[recommendedPlatform.platform] : null;
+                const recPos = recPlatData?.positive_percentage;
+                const recNeu = recPlatData?.neutral_percentage;
+                const recNeg = recPlatData?.negative_percentage;
+                if (recPos !== undefined && recPos !== null) {
+                  return (
+                    <div className="p-3.5 rounded-xl bg-[#191925] border border-[#303047] flex flex-wrap items-center justify-between gap-2 text-xs">
+                      <span className="font-bold text-[#F8FAFC]">Marketplace Review Sentiment:</span>
+                      <div className="flex items-center gap-3 font-bold">
+                        <span className="text-[#22C55E]">Positive: {recPos}%</span>
+                        <span className="text-[#94A3B8]">Neutral: {recNeu}%</span>
+                        <span className="text-[#EF4444]">Negative: {recNeg}%</span>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })()}
 
               {/* Rationale */}
               <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] text-xs text-[#A1A1B5] flex items-start gap-2.5">

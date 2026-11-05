@@ -60,6 +60,63 @@
           "data_source": "Direct Search"
         }
       },
+      "marketplace_sentiment": {
+        "Amazon": {
+          "platform": "Amazon",
+          "review_count": 37100,
+          "positive_percentage": 76.0,
+          "neutral_percentage": 14.0,
+          "negative_percentage": 10.0,
+          "overall_sentiment": "Positive",
+          "rating": 4.5,
+          "positive_themes": [
+            "Natural buildable coverage",
+            "Shine control matte finish",
+            "8-hour wear longevity"
+          ],
+          "negative_themes": [
+            "Lack of pump dispenser",
+            "Color oxidation over time"
+          ],
+          "summary": "76% positive, 14% neutral, and 10% negative across 37,100 Amazon customer ratings."
+        },
+        "Daraz LK": {
+          "platform": "Daraz LK",
+          "review_count": 84,
+          "positive_percentage": 88.0,
+          "neutral_percentage": 8.0,
+          "negative_percentage": 4.0,
+          "overall_sentiment": "Positive",
+          "rating": 5.0,
+          "positive_themes": [
+            "Authentic Maybelline flagship stock",
+            "Smooth poreless blend",
+            "Accurate shade match"
+          ],
+          "negative_themes": [
+            "Higher local retail pricing than foreign imports"
+          ],
+          "summary": "88% positive, 8% neutral, and 4% negative across 84 Daraz LK customer ratings."
+        },
+        "Temu": {
+          "platform": "Temu",
+          "review_count": 18,
+          "positive_percentage": 42.0,
+          "neutral_percentage": 28.0,
+          "negative_percentage": 30.0,
+          "overall_sentiment": "Mixed",
+          "rating": 3.2,
+          "positive_themes": [
+            "Budget friendly pricing",
+            "Fast packaging delivery"
+          ],
+          "negative_themes": [
+            "Inconsistent shade formula",
+            "Packaging leaks without pump"
+          ],
+          "summary": "42% positive, 28% neutral, and 30% negative from 18 demonstration review records."
+        }
+      },
       "simulated_reviews": [
         {
           "review_id": "REV-F01",
@@ -253,6 +310,63 @@
           "data_source": "Demo / Reference Data",
           "match_status": "Category Match / Unverified Listing",
           "match_confidence": 65.0
+        }
+      },
+      "marketplace_sentiment": {
+        "Daraz LK": {
+          "platform": "Daraz LK",
+          "review_count": 183,
+          "positive_percentage": 92.0,
+          "neutral_percentage": 5.0,
+          "negative_percentage": 3.0,
+          "overall_sentiment": "Positive",
+          "rating": 4.95,
+          "positive_themes": [
+            "Stunning vibrant pigmentation",
+            "Long-lasting waterproof formula",
+            "Non-fading retro shades"
+          ],
+          "negative_themes": [
+            "Slightly drying without lip balm primer"
+          ],
+          "summary": "92% positive, 5% neutral, and 3% negative across 183 Daraz LK customer ratings."
+        },
+        "Amazon": {
+          "platform": "Amazon",
+          "review_count": 30,
+          "positive_percentage": 60.0,
+          "neutral_percentage": 20.0,
+          "negative_percentage": 20.0,
+          "overall_sentiment": "Positive",
+          "rating": 3.6,
+          "positive_themes": [
+            "Creamy velvet glide",
+            "Flattering nude-pink tone"
+          ],
+          "negative_themes": [
+            "Fades after meals",
+            "Plastic tube mechanism fragile"
+          ],
+          "summary": "60% positive, 20% neutral, and 20% negative across 30 Amazon customer ratings."
+        },
+        "Temu": {
+          "platform": "Temu",
+          "review_count": 18,
+          "positive_percentage": 68.0,
+          "neutral_percentage": 18.0,
+          "negative_percentage": 14.0,
+          "overall_sentiment": "Positive",
+          "rating": 4.2,
+          "positive_themes": [
+            "Deeply hydrating collagen core",
+            "Plumping lip glow effect",
+            "Unbeatable low price"
+          ],
+          "negative_themes": [
+            "Mild sticky feel in first 10 minutes",
+            "Soft balm melts in warm weather"
+          ],
+          "summary": "68% positive, 18% neutral, and 14% negative across 18 Temu customer feedback records."
         }
       },
       "simulated_reviews": [

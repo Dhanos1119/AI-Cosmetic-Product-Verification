@@ -326,3 +326,21 @@ def get_simulated_reviews(demo_key: str) -> List[Dict[str, Any]]:
     return scenario.get("simulated_reviews", [])
 
 
+def get_demo_marketplace_sentiment(demo_key: str) -> Optional[Dict[str, Any]]:
+    """
+    Retrieves configured demonstration sentiment comparisons for Amazon, Daraz LK, and Temu.
+    Returns None if demo mode is inactive or scenario has no configured marketplace sentiment.
+    """
+    if not is_demo_mode_active() or not demo_key:
+        return None
+
+    config = get_demo_config()
+    demos = config.get("demonstrations", {})
+    scenario = demos.get(demo_key)
+    if not scenario:
+        return None
+
+    return scenario.get("marketplace_sentiment")
+
+
+
