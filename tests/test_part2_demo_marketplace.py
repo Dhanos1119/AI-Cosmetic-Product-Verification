@@ -165,10 +165,10 @@ def test_scenario_4_unmapped_cosmetic_image():
 
 
 # --------------------------------------------------------------------------
-# Scenario 5: Amazon Unavailable
+# Scenario 5: Amazon Demo Configuration & Unavailable Handling
 # --------------------------------------------------------------------------
-def test_scenario_5_amazon_unavailable_in_demo_mode():
-    """Scenario 5: Amazon returns genuine search link and no fake data when live data is unavailable."""
+def test_scenario_5_amazon_demo_configuration():
+    """Scenario 5: Amazon returns configured DEMO price, rating and product link for demo, and UNAVAILABLE when demo is disabled."""
     ident = ProductIdentity(
         brand="Maybelline",
         product_name="Maybelline Fit Me Matte + Poreless Foundation",
@@ -178,16 +178,25 @@ def test_scenario_5_amazon_unavailable_in_demo_mode():
     with patch("app.services.scraping.marketplace_search.scrape_amazon_products", return_value=[]), \
          patch("app.services.scraping.marketplace_search.scrape_daraz_products", return_value=[]), \
          patch("app.services.scraping.marketplace_search.scrape_temu_products", return_value=[]):
-        listings = search_all_marketplaces(ident, demo_key="1.png")
-        amazon_item = next((l for l in listings if l.platform == "Amazon"), None)
+        # In demo mode for 1.png: Amazon loads configured demonstration product info
+        listings_demo = search_all_marketplaces(ident, demo_key="1.png")
+        amazon_item = next((l for l in listings_demo if l.platform == "Amazon"), None)
         assert amazon_item is not None
-        assert amazon_item.retrieval_status in ("Data Unavailable", "UNAVAILABLE")
-        assert "Live marketplace data unavailable" in amazon_item.status_explanation
-        assert amazon_item.price == 0.0
-        assert amazon_item.rating == 0.0
-        assert len(amazon_item.reviews) == 0
-        assert amazon_item.search_url is not None
-        assert "amazon.com/s?k=" in amazon_item.search_url
+        assert amazon_item.retrieval_status == "DEMO"
+        assert amazon_item.price == 9.99
+        assert amazon_item.rating == 4.5
+        assert amazon_item.product_url is not None
+        assert "amazon.com" in amazon_item.product_url
+        assert amazon_item.data_source in ("Demo / Reference Data", "Simulated Demo Catalog")
+
+        # When demo mode is disabled (demo_key=None), Amazon returns Data Unavailable with search URL
+        listings_unmapped = search_all_marketplaces(ident, demo_key=None)
+        amazon_unavail = next((l for l in listings_unmapped if l.platform == "Amazon"), None)
+        assert amazon_unavail is not None
+        assert amazon_unavail.retrieval_status in ("Data Unavailable", "UNAVAILABLE")
+        assert amazon_unavail.price == 0.0
+        assert amazon_unavail.search_url is not None
+        assert "amazon.com/s?k=" in amazon_unavail.search_url
 
 
 # --------------------------------------------------------------------------
@@ -276,7 +285,7 @@ def test_scenario_8_independent_marketplace_failures():
 # Scenario 9: 1.png Accuracy & Production Statuses
 # --------------------------------------------------------------------------
 def test_scenario_9_live_demo_unavailable_labels():
-    """Scenario 9: Validates production statuses and strictly checks that 1.png Temu returns Data Unavailable (no fake listing)."""
+    """Scenario 9: Validates Amazon & Daraz DEMO data, and strictly checks that Temu returns UNAVAILABLE due to CAPTCHA."""
     ident = ProductIdentity(
         brand="Maybelline",
         product_name="Maybelline Fit Me Matte + Poreless Foundation",
@@ -293,17 +302,23 @@ def test_scenario_9_live_demo_unavailable_labels():
         daraz_res = next((l for l in listings if "daraz" in l.platform.lower()), None)
         temu_res = next((l for l in listings if "temu" in l.platform.lower()), None)
 
-        # Amazon and Daraz when unretrieved return Data Unavailable
-        assert amazon_res.retrieval_status in ("Data Unavailable", "UNAVAILABLE")
-        assert amazon_res.data_source == "Direct Search"
+        # Amazon returns configured DEMO data
+        assert amazon_res.retrieval_status == "DEMO"
+        assert amazon_res.price == 9.99
+        assert amazon_res.rating == 4.5
+        assert amazon_res.data_source in ("Demo / Reference Data", "Simulated Demo Catalog")
 
-        assert daraz_res.retrieval_status in ("Data Unavailable", "UNAVAILABLE")
-        assert daraz_res.data_source == "Direct Search"
+        # Daraz returns configured DEMO data
+        assert daraz_res.retrieval_status == "DEMO"
+        assert daraz_res.price == 3850.0
+        assert daraz_res.currency == "LKR"
+        assert daraz_res.data_source in ("Demo / Reference Data", "Simulated Demo Catalog")
 
-        # Temu strictly returns Data Unavailable (NEVER a simulated Temu product for 1.png)
+        # Temu strictly returns UNAVAILABLE due to CAPTCHA limitation (never fake listing)
         assert temu_res.retrieval_status in ("Data Unavailable", "UNAVAILABLE")
         assert temu_res.retrieval_status != "DEMO"
         assert temu_res.price == 0.0
+        assert temu_res.rating == 0.0
         assert temu_res.data_source == "Direct Search"
 
 
@@ -327,10 +342,10 @@ def test_scenario_10_marketplace_cards_data_integrity():
             # Every card must have platform, product_name, retrieval_status, and search_url
             assert listing.platform in ("Amazon", "Daraz LK", "Temu")
             assert listing.product_name
-            assert listing.retrieval_status in ("Live Data", "Data Unavailable", "Retrieval Failed", "LIVE", "UNAVAILABLE")
+            assert listing.retrieval_status in ("Live Data", "Data Unavailable", "Retrieval Failed", "LIVE", "DEMO", "UNAVAILABLE")
             assert listing.search_url and listing.search_url.startswith("http")
             assert listing.retrieval_timestamp is not None
-            assert listing.data_source in ("Live Scraper", "Direct Search")
+            assert listing.data_source in ("Live Scraper", "Direct Search", "Demo / Reference Data", "Simulated Demo Catalog")
 
 
 if __name__ == "__main__":
@@ -342,8 +357,12 @@ if __name__ == "__main__":
     test_scenario_3_non_cosmetic_rejection()
     test_scenario_3_end_to_end_non_cosmetic_produces_no_marketplace_or_reviews()
     test_scenario_4_unmapped_cosmetic_image()
-    test_scenario_5_amazon_unavailable_in_demo_mode()
+    test_scenario_5_amazon_demo_configuration()
     test_scenario_6_7_daraz_and_temu_unavailable_when_demo_disabled()
+    test_scenario_8_independent_marketplace_failures()
+    test_scenario_9_live_demo_unavailable_labels()
+    test_scenario_10_marketplace_cards_data_integrity()
+    print("ALL 10 SCENARIOS PASSED SUCCESSFULLY!")
     test_scenario_8_independent_marketplace_failures()
     test_scenario_9_live_demo_unavailable_labels()
     test_scenario_10_marketplace_cards_data_integrity()

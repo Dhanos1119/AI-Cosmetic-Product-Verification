@@ -83,7 +83,7 @@ export default function VerificationWorkspace({
       id="verification-workspace"
       className="py-16 md:py-24 bg-[#0B0B12] text-[#F8FAFC]"
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Section Heading */}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#191925] border border-[#303047] text-[#EC4899] text-xs font-semibold uppercase tracking-wider">

@@ -210,8 +210,9 @@ def get_simulated_marketplace_listing(
     search_query: str
 ) -> Optional[MarketplaceListing]:
     """
-    Retrieves configured simulated marketplace listing for Daraz or Temu in demo mode.
-    Amazon is ALWAYS set to UNAVAILABLE (per requirement: live marketplace data unavailable).
+    Retrieves configured simulated marketplace listing for Amazon, Daraz, or Temu in demo mode.
+    Loads configured demonstration price, rating, seller, and product URL for Amazon and Daraz LK.
+    Temu is marked UNAVAILABLE due to CAPTCHA access limitations.
     """
     config = get_demo_config()
     demos = config.get("demonstrations", {})
@@ -233,11 +234,19 @@ def get_simulated_marketplace_listing(
     }
     fallback_search_url = search_urls.get(plat_key, f"https://www.google.com/search?q={quote_plus(search_query)}")
 
-    if plat_key == "amazon" or not item:
-        # Amazon in demonstration mode: always "Live marketplace data unavailable."
+    if not item or item.get("status") == "UNAVAILABLE":
+        # Unavailable platform (e.g., Temu blocked by CAPTCHA)
+        expl = item.get("message") if item else None
+        if not expl:
+            expl = "Access restricted due to marketplace CAPTCHA verification." if plat_key == "temu" else "Live marketplace data unavailable."
+
+        prod_name = item.get("product_name") if item else None
+        if not prod_name:
+            prod_name = f"{norm_platform} Search: {search_query}"
+
         return MarketplaceListing(
             platform=norm_platform,
-            product_name=f"{norm_platform} Search: {search_query}",
+            product_name=prod_name,
             brand="Cosmetic Brand",
             product_type="Cosmetics",
             price=0.0,
@@ -246,13 +255,13 @@ def get_simulated_marketplace_listing(
             rating_count=0,
             review_count=0,
             seller_name=None,
-            product_url=fallback_search_url,
+            product_url=item.get("product_url", fallback_search_url) if item else fallback_search_url,
             product_image_url=None,
             reviews=[],
             source_status="unavailable",
             match_status="Not a Match",
             match_confidence=0.0,
-            status_explanation="Live marketplace data unavailable.",
+            status_explanation=expl,
             search_query=search_query,
             listing_status="UNAVAILABLE",
             passed_match_threshold=False,
@@ -262,12 +271,13 @@ def get_simulated_marketplace_listing(
             search_url=fallback_search_url,
         )
 
-    # Simulated listing for Daraz LK or Temu
+    # Configured Demonstration Listing (Amazon or Daraz LK)
     status = item.get("status", "DEMO")
     price_val = float(item.get("price", 0.0))
     rating_val = float(item.get("rating", 0.0))
     rating_count_val = int(item.get("rating_count", item.get("review_count", 0)))
     review_count_val = int(item.get("review_count", 0))
+    curr = item.get("currency", "USD" if plat_key != "daraz" else "LKR")
 
     return MarketplaceListing(
         platform=norm_platform,
@@ -275,7 +285,7 @@ def get_simulated_marketplace_listing(
         brand="Cosmetic Brand",
         product_type="Cosmetics",
         price=price_val,
-        currency=item.get("currency", "USD"),
+        currency=curr,
         rating=rating_val,
         rating_count=rating_count_val,
         review_count=review_count_val,
@@ -291,7 +301,7 @@ def get_simulated_marketplace_listing(
         listing_status="VERIFIED_LISTING",
         passed_match_threshold=True,
         retrieval_status=status,
-        data_source=item.get("data_source", "Simulated Demo Catalog"),
+        data_source=item.get("data_source", "Demo / Reference Data"),
         retrieval_timestamp=now_iso,
         search_url=fallback_search_url,
     )

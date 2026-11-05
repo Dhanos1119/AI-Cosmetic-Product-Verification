@@ -300,6 +300,36 @@ export default function VerificationResult({
     aiAnalysisResult?.product_detection ||
     "Cosmetics";
 
+  // Defensive check for non-cosmetic images
+  const isNonCosmetic =
+    aiAnalysisResult?.product_detection === "Non-Cosmetic" ||
+    (aiAnalysisResult as any)?.status === "rejected_non_cosmetic" ||
+    (aiAnalysisResult as any)?.is_cosmetic === false;
+
+  if (isNonCosmetic) {
+    return (
+      <div className="w-full bg-[#191925] text-[#F8FAFC] rounded-3xl p-6 sm:p-10 border border-[#303047] shadow-2xl space-y-6 animate-fadeIn">
+        <div className="p-6 bg-[#202033] border border-[#F87171]/40 rounded-2xl flex items-start gap-4">
+          <AlertCircle className="w-6 h-6 text-[#F87171] shrink-0 mt-0.5" />
+          <div className="space-y-2">
+            <h3 className="text-lg font-bold text-[#F87171]">Non-cosmetic image detected.</h3>
+            <p className="text-sm text-[#A1A1B5]">
+              This image does not contain a recognized cosmetic product. Marketplace searches, customer reviews, sentiment analysis, and recommendation scoring are disabled for non-cosmetic items.
+            </p>
+            <button
+              type="button"
+              onClick={onReset}
+              className="mt-3 inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-[#F8FAFC] bg-[#12121C] hover:bg-[#191925] border border-[#303047] rounded-xl transition-all cursor-pointer"
+            >
+              <RotateCcw className="w-4 h-4 text-[#A855F7]" />
+              <span>Upload Another Image</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Determine confirmation state
   const isConfirmed =
     aiAnalysisResult?.is_confirmed !== undefined
@@ -340,8 +370,14 @@ export default function VerificationResult({
 
   // Format currency & price helper
   const formatPrice = (price?: number, currency?: string) => {
-    if (!price || price <= 0) return "Price info unavailable";
-    const curr = currency || "USD";
+    if (!price || price <= 0) return "Unavailable";
+    const curr = (currency || "USD").toUpperCase();
+    if (curr === "USD" || curr === "$") {
+      return `$${price.toFixed(2)}`;
+    }
+    if (curr === "LKR") {
+      return `${price.toFixed(1)} LKR`;
+    }
     return `${curr} ${price.toFixed(2)}`;
   };
 
@@ -412,22 +448,24 @@ export default function VerificationResult({
     const retrievalStatus: "LIVE" | "DEMO" | "UNAVAILABLE" =
       rawStatus === "LIVE" ? "LIVE" : rawStatus === "DEMO" ? "DEMO" : "UNAVAILABLE";
 
-    const title =
-      retrievalStatus === "UNAVAILABLE"
-        ? (platformName === "Amazon" ? "Live marketplace data unavailable." : `No active listing found on ${platformName}.`)
-        : (listing?.product_name || `${platformName} Listing`);
+    const isUnavailable = retrievalStatus === "UNAVAILABLE" || platformName === "Temu";
 
-    const price = listing?.price && listing.price > 0 ? formatPrice(listing.price, listing.currency) : null;
-    const rating = listing?.rating && listing.rating > 0 ? listing.rating : null;
-    const reviewCount = listing?.review_count || 0;
-    const seller = listing?.seller_name || null;
+    const title = isUnavailable
+      ? (platformName === "Temu"
+          ? "Access restricted due to marketplace CAPTCHA verification."
+          : `Live marketplace data unavailable for ${platformName}.`)
+      : (listing?.product_name || `${platformName} Listing`);
+
+    const price = !isUnavailable && listing?.price && listing.price > 0 ? formatPrice(listing.price, listing.currency) : null;
+    const rating = !isUnavailable && listing?.rating && listing.rating > 0 ? listing.rating : null;
+    const reviewCount = !isUnavailable ? (listing?.review_count || 0) : 0;
+    const seller = !isUnavailable ? (listing?.seller_name || null) : null;
     const dataSource =
-      listing?.data_source ||
-      (retrievalStatus === "DEMO"
-        ? "Simulated Demo Catalog"
+      retrievalStatus === "DEMO"
+        ? "Demo / Reference Data"
         : retrievalStatus === "LIVE"
-        ? "Live Scraper"
-        : "Direct Search");
+        ? (listing?.data_source || "Live Scraper")
+        : "Direct Search";
 
     const retrievalDate = listing?.retrieval_timestamp
       ? new Date(listing.retrieval_timestamp).toLocaleDateString(undefined, {
@@ -441,9 +479,9 @@ export default function VerificationResult({
     return (
       <div
         key={platformName}
-        className="flex flex-col justify-between p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-4 hover:border-[#A855F7]/40 transition-colors shadow-md"
+        className="flex flex-col justify-between p-6 rounded-2xl bg-[#12121C] border border-[#303047] space-y-5 hover:border-[#A855F7]/40 transition-colors shadow-md min-h-[350px]"
       >
-        <div className="space-y-3">
+        <div className="space-y-3.5">
           {/* Header Row: Platform Name + Status Badge */}
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
@@ -473,7 +511,7 @@ export default function VerificationResult({
           {/* Product Title */}
           <p
             className={`text-xs font-semibold leading-relaxed line-clamp-2 ${
-              retrievalStatus === "UNAVAILABLE" ? "text-[#A1A1B5] italic" : "text-[#F8FAFC]"
+              isUnavailable ? "text-[#A1A1B5] italic" : "text-[#F8FAFC]"
             }`}
             title={title}
           >
@@ -481,19 +519,25 @@ export default function VerificationResult({
           </p>
 
           {/* Metadata Row: Price, Rating, Seller */}
-          <div className="space-y-1.5 text-xs text-[#A1A1B5] pt-1 border-t border-[#303047]/60">
+          <div className="space-y-2 text-xs text-[#A1A1B5] pt-1.5 border-t border-[#303047]/60">
             {/* Price */}
             <div className="flex items-center justify-between">
               <span>Price:</span>
               <strong className="text-sm font-bold text-[#F8FAFC]">
-                {price || <span className="text-[#A1A1B5]/60 italic font-normal">Unavailable</span>}
+                {isUnavailable ? (
+                  <span className="text-[#A1A1B5]/60 italic font-normal">Price Unavailable</span>
+                ) : (
+                  price || <span className="text-[#A1A1B5]/60 italic font-normal">Price Unavailable</span>
+                )}
               </strong>
             </div>
 
             {/* Rating & Review Count */}
             <div className="flex items-center justify-between">
               <span>Customer Rating:</span>
-              {rating ? (
+              {isUnavailable ? (
+                <span className="text-[#A1A1B5]/60 italic font-normal">Rating Unavailable</span>
+              ) : rating ? (
                 <div className="flex items-center gap-1 text-[#F59E0B] font-bold">
                   <Star className="w-3.5 h-3.5 fill-[#F59E0B]" />
                   <span>{rating.toFixed(1)}</span>
@@ -501,25 +545,31 @@ export default function VerificationResult({
               ) : (
                 <span className="text-[#A1A1B5]/60 italic">No ratings</span>
               )}
-              <span>({reviewCount} reviews)</span>
+              {isUnavailable ? (
+                <span className="text-[#A1A1B5]/60 italic font-normal text-[11px]">Reviews Unavailable</span>
+              ) : (
+                <span>({reviewCount} reviews)</span>
+              )}
             </div>
 
             {/* Seller */}
             <div className="truncate">
               Seller:{" "}
-              <strong className="text-[#F8FAFC]">
-                {seller || "Information unavailable"}
-              </strong>
+              {isUnavailable ? (
+                <span className="text-[#A1A1B5]/60 italic">Information unavailable</span>
+              ) : (
+                <strong className="text-[#F8FAFC]">{seller || "Information unavailable"}</strong>
+              )}
             </div>
 
             {/* Data Source Badge */}
             <div className="pt-1 flex items-center justify-between gap-1 flex-wrap text-[11px]">
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#191925] border border-[#303047] text-[#A1A1B5]">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#191925] border border-[#303047] text-[#A1A1B5]">
                 <Database className="w-3 h-3 text-[#A855F7]" />
                 <span>{dataSource}</span>
               </span>
 
-              {retrievalDate && (
+              {retrievalDate && !isUnavailable && (
                 <span className="text-[#A1A1B5]/60 flex items-center gap-1 text-[10px]">
                   <Calendar className="w-3 h-3" />
                   <span>{retrievalDate}</span>
@@ -530,8 +580,8 @@ export default function VerificationResult({
         </div>
 
         {/* Action Buttons: Direct Listing View & Working Search Link */}
-        <div className="space-y-2 pt-2 border-t border-[#303047]/60">
-          {retrievalStatus !== "UNAVAILABLE" && listing?.product_url && (
+        <div className="space-y-2 pt-3 border-t border-[#303047]/60">
+          {!isUnavailable && listing?.product_url && (
             <a
               href={listing.product_url}
               target="_blank"
@@ -688,9 +738,9 @@ export default function VerificationResult({
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {/* 1. Cosmetic Classification */}
-          <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+          <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
             <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#A1A1B5]">
               Cosmetic Classification
             </div>
@@ -704,7 +754,7 @@ export default function VerificationResult({
           </div>
 
           {/* 2. Catalog Match Status */}
-          <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+          <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
             <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#A1A1B5]">
               Catalog Match Status
             </div>
@@ -718,7 +768,7 @@ export default function VerificationResult({
           </div>
 
           {/* 3. Marketplace Retrieval */}
-          <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+          <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
             <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#A1A1B5]">
               Marketplace Retrieval
             </div>
@@ -732,7 +782,7 @@ export default function VerificationResult({
           </div>
 
           {/* 4. Review Analysis Status */}
-          <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+          <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
             <div className="text-[11px] font-extrabold uppercase tracking-wider text-[#A1A1B5]">
               Review Analysis Status
             </div>
@@ -786,7 +836,7 @@ export default function VerificationResult({
         </div>
 
         {/* Responsive 3 Marketplace Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {renderMarketplaceCard("Amazon", amazonListing, amazonSearchUrl, "#ff9900")}
           {renderMarketplaceCard("Daraz LK", darazListing, darazSearchUrl, "#f57224")}
           {renderMarketplaceCard("Temu", temuListing, temuSearchUrl, "#fb7701")}
@@ -879,9 +929,9 @@ export default function VerificationResult({
           </div>
         ) : activeTotal > 0 ? (
           <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {/* Positive */}
-              <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+              <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
                 <div className="flex items-center justify-between text-[#22C55E] text-xs font-bold">
                   <span>Positive Feedback</span>
                   <ThumbsUp className="w-4 h-4 text-[#22C55E]" />
@@ -905,7 +955,7 @@ export default function VerificationResult({
               </div>
 
               {/* Neutral */}
-              <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+              <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
                 <div className="flex items-center justify-between text-[#A1A1B5] text-xs font-bold">
                   <span>Neutral Feedback</span>
                   <MinusCircle className="w-4 h-4 text-[#A1A1B5]" />
@@ -929,7 +979,7 @@ export default function VerificationResult({
               </div>
 
               {/* Negative */}
-              <div className="p-4 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2">
+              <div className="p-5 rounded-2xl bg-[#12121C] border border-[#303047] space-y-2.5">
                 <div className="flex items-center justify-between text-[#F87171] text-xs font-bold">
                   <span>Critical Feedback</span>
                   <ThumbsDown className="w-4 h-4 text-[#F87171]" />
@@ -1093,11 +1143,11 @@ export default function VerificationResult({
         </div>
 
         {recommendedPlatform && recommendedPlatform.listing ? (
-          <div className="space-y-4">
-            <div className="p-4 bg-[#12121C] rounded-2xl border border-[#303047] space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="space-y-1">
-                  <h4 className="font-bold text-base text-[#F8FAFC]">
+          <div className="space-y-5">
+            <div className="p-6 bg-[#12121C] rounded-2xl border border-[#303047] space-y-5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="space-y-1.5">
+                  <h4 className="font-bold text-lg text-[#F8FAFC]">
                     {recommendedPlatform.listing.product_name}
                   </h4>
                   {recommendedPlatform.listing.seller_name && (
@@ -1109,7 +1159,7 @@ export default function VerificationResult({
 
                 <div className="flex items-center gap-3">
                   {recommendedPlatform.listing.rating && recommendedPlatform.listing.rating > 0 ? (
-                    <div className="flex items-center gap-1 text-[#F59E0B] text-sm font-bold bg-[#191925] px-3 py-1 rounded-xl border border-[#303047]">
+                    <div className="flex items-center gap-1.5 text-[#F59E0B] text-sm font-bold bg-[#191925] px-3.5 py-1.5 rounded-xl border border-[#303047]">
                       <Star className="w-4 h-4 fill-[#F59E0B] text-[#F59E0B]" />
                       <span>{recommendedPlatform.listing.rating.toFixed(1)}</span>
                     </div>
@@ -1121,38 +1171,38 @@ export default function VerificationResult({
               </div>
 
               {/* 5-Factor Score Breakdown */}
-              <div className="pt-3 border-t border-[#303047] space-y-2">
+              <div className="pt-4 border-t border-[#303047] space-y-3">
                 <div className="text-xs font-bold text-[#A1A1B5] uppercase tracking-wider flex items-center justify-between">
                   <span>Recommendation Scoring Formula (Total: {recommendedPlatform.total_score}/100)</span>
                   <span className="text-[11px] text-[#A855F7] font-semibold">Configured 5-Factor Weights</span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs">
-                  <div className="p-2.5 rounded-xl bg-[#191925] border border-[#303047]">
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center text-xs">
+                  <div className="p-3.5 rounded-xl bg-[#191925] border border-[#303047]">
                     <div className="text-[10px] text-[#A1A1B5]">Product Match (35%)</div>
                     <div className="text-sm font-bold text-[#F8FAFC]">
                       {recommendedPlatform.score_breakdown.match_confidence_score}%
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-[#191925] border border-[#303047]">
+                  <div className="p-3.5 rounded-xl bg-[#191925] border border-[#303047]">
                     <div className="text-[10px] text-[#A1A1B5]">Rating/Volume (25%)</div>
                     <div className="text-sm font-bold text-[#F8FAFC]">
                       {recommendedPlatform.score_breakdown.rating_volume_score || recommendedPlatform.score_breakdown.rating_score}%
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-[#191925] border border-[#303047]">
+                  <div className="p-3.5 rounded-xl bg-[#191925] border border-[#303047]">
                     <div className="text-[10px] text-[#A1A1B5]">Seller Trust (20%)</div>
                     <div className="text-sm font-bold text-[#F8FAFC]">
                       {recommendedPlatform.score_breakdown.seller_trust_score}%
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-[#191925] border border-[#303047]">
+                  <div className="p-3.5 rounded-xl bg-[#191925] border border-[#303047]">
                     <div className="text-[10px] text-[#A1A1B5]">Price (10%)</div>
                     <div className="text-sm font-bold text-[#F8FAFC]">
                       {recommendedPlatform.score_breakdown.price_score || 85.0}%
                     </div>
                   </div>
-                  <div className="p-2.5 rounded-xl bg-[#191925] border border-[#303047]">
+                  <div className="p-3.5 rounded-xl bg-[#191925] border border-[#303047]">
                     <div className="text-[10px] text-[#A1A1B5]">Sentiment (10%)</div>
                     <div className="text-sm font-bold text-[#F8FAFC]">
                       {recommendedPlatform.score_breakdown.review_sentiment_score || 50.0}%
@@ -1162,7 +1212,7 @@ export default function VerificationResult({
               </div>
 
               {/* Rationale */}
-              <div className="pt-2 text-xs text-[#A1A1B5] flex items-start gap-2">
+              <div className="p-4 rounded-xl bg-[#191925] border border-[#303047] text-xs text-[#A1A1B5] flex items-start gap-2.5">
                 <TrendingUp className="w-4 h-4 text-[#EC4899] shrink-0 mt-0.5" />
                 <p className="leading-relaxed">
                   <strong className="text-[#F8FAFC]">Why this platform ranked highest:</strong>{" "}

@@ -197,16 +197,9 @@ def search_all_marketplaces(
         valid_raw = [r for r in raw_items if r.source_status == "available" and r.raw_title]
         has_scraper_error = any(r.status_code == "SCRAPER_ERROR" for r in raw_items)
 
-        if has_scraper_error and not valid_raw:
-            err_item = next(r for r in raw_items if r.status_code == "SCRAPER_ERROR")
-            final_listings.append(_build_unavailable_listing(
-                platform_name, product_identity, search_q, search_urls[platform_name], now_iso,
-                status_explanation=err_item.explanation or f"{platform_name} request failed.",
-                is_failed=True
-            ))
-        elif valid_raw:
+        matching_raw = None
+        if valid_raw:
             # Check multi-factor product match & URL validity
-            matching_raw = None
             for r in valid_raw:
                 match_status, confidence = match_product(
                     listing_title=r.raw_title,
@@ -218,19 +211,31 @@ def search_all_marketplaces(
                     matching_raw = (r, match_status, confidence)
                     break
 
-            if matching_raw:
-                best_raw, match_status, confidence = matching_raw
-                final_listings.append(_build_live_listing(
-                    best_raw, platform_name, product_identity, search_q, search_urls[platform_name], now_iso,
-                    match_status=match_status, match_confidence=confidence
-                ))
+        if matching_raw:
+            best_raw, match_status, confidence = matching_raw
+            final_listings.append(_build_live_listing(
+                best_raw, platform_name, product_identity, search_q, search_urls[platform_name], now_iso,
+                match_status=match_status, match_confidence=confidence
+            ))
+        elif demo_active:
+            # Demo mode active: load configured demonstration listing (Amazon / Daraz DEMO, Temu UNAVAILABLE)
+            sim_listing = get_simulated_marketplace_listing(demo_key, platform_name, search_q)
+            if sim_listing:
+                final_listings.append(sim_listing)
             else:
                 final_listings.append(_build_unavailable_listing(
                     platform_name, product_identity, search_q, search_urls[platform_name], now_iso,
-                    status_explanation=f"No matching verified listing found on {platform_name}."
+                    status_explanation=f"Live marketplace data unavailable."
                 ))
+        elif has_scraper_error and not valid_raw:
+            err_item = next(r for r in raw_items if r.status_code == "SCRAPER_ERROR")
+            final_listings.append(_build_unavailable_listing(
+                platform_name, product_identity, search_q, search_urls[platform_name], now_iso,
+                status_explanation=err_item.explanation or f"{platform_name} request failed.",
+                is_failed=True
+            ))
         else:
-            # Marketplace returned no product data, anti-bot challenge, or client-rendered HTML (e.g., Temu)
+            # Marketplace returned no product data, anti-bot challenge, or client-rendered HTML
             final_listings.append(_build_unavailable_listing(
                 platform_name, product_identity, search_q, search_urls[platform_name], now_iso,
                 status_explanation="Live marketplace data unavailable."

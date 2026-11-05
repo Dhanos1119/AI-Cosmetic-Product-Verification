@@ -89,7 +89,7 @@ def test_scenario_1_foundation_reviews_and_recommendation():
     plat_comp = res["platform_comparison"]
     assert len(plat_comp) >= 2
     top = plat_comp[0]
-    assert "insufficient comparable marketplace data" in top["recommendation_type"] or "Live Data Recommendation" in top["recommendation_type"]
+    assert any(k in top["recommendation_type"] for k in ("Demo Recommendation", "Live Data Recommendation", "insufficient comparable marketplace data"))
     assert "Amazon" in [p["platform"] for p in plat_comp]
 
 
@@ -126,7 +126,7 @@ def test_scenario_2_lipstick_reviews_and_recommendation():
     plat_comp = res["platform_comparison"]
     assert len(plat_comp) >= 2
     top = plat_comp[0]
-    assert "insufficient comparable marketplace data" in top["recommendation_type"] or "Live Data Recommendation" in top["recommendation_type"]
+    assert any(k in top["recommendation_type"] for k in ("Demo Recommendation", "Live Data Recommendation", "insufficient comparable marketplace data"))
 
 
 # ─────────────────────────────────────────────────────────────────────────────

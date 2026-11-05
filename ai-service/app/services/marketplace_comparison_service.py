@@ -59,8 +59,13 @@ def calculate_platform_score(
         and listing.passed_match_threshold
         and listing.match_status != "Not a Match"
     )
+    is_demo = (
+        listing.retrieval_status == "DEMO"
+        and listing.source_status == "available"
+        and listing.passed_match_threshold
+    )
 
-    if not is_live:
+    if not is_live and not is_demo:
         status_msg = listing.status_explanation or (
             "Marketplace access restricted or listing unavailable"
             if listing.source_status != "available"
@@ -128,14 +133,16 @@ def calculate_platform_score(
         price_score = 50.0  # Fair neutral baseline if price unavailable
 
     # 5. Platform-specific review sentiment (10% weight)
-    if platform_review_analysis is not None:
+    if is_demo and sentiment_positive_pct is not None and sentiment_positive_pct > 0.0:
+        sentiment_score = min(100.0, float(sentiment_positive_pct))
+    elif platform_review_analysis is not None:
         if platform_review_analysis.get("has_reviews"):
             pos_pct = platform_review_analysis.get("positive_percentage", 0.0)
             neg_pct = platform_review_analysis.get("negative_percentage", 0.0)
             # Positive sentiment penalized proportionally by high negative sentiment
             sentiment_score = max(0.0, min(100.0, float(pos_pct) - (float(neg_pct) * 0.2)))
         else:
-            # Rule: If platform review information is insufficient, do NOT assign fabricated sentiment score!
+            # Rule: If live platform review information is insufficient, do NOT assign fabricated sentiment score!
             sentiment_score = 0.0
     elif sentiment_positive_pct is not None and sentiment_positive_pct > 0.0:
         sentiment_score = min(100.0, float(sentiment_positive_pct))
@@ -171,18 +178,19 @@ def calculate_platform_score(
             recommendation_reason="Insufficient verified listing information to form a reliable recommendation.",
             listing=listing,
             recommendation_type="Recommendation unavailable: insufficient comparable marketplace data.",
-            is_demo=False,
+            is_demo=is_demo,
         )
 
-    # Recommendation category label (strictly Live Data Recommendation)
-    rec_type = "Live Data Recommendation"
+    # Recommendation category label
+    rec_type = "Demo Recommendation" if is_demo else "Live Data Recommendation"
 
     # Transparent Explanation of Ranking
+    prefix = "Demo Recommendation: " if is_demo else ""
     seller_label = f"verified '{listing.seller_name}'" if listing.seller_name else "vendor"
     rating_label = f"{listing.rating:.1f}/5.0 ({listing.review_count or 0} reviews)" if (listing.rating and listing.rating > 0) else "unrated"
     sentiment_label = f"{sentiment_score:.0f}% positive sentiment" if sentiment_score > 0 else "insufficient review sentiment"
     reason = (
-        f"Score {total_score}/100: High product match ({match_conf:.0f}%), "
+        f"{prefix}Score {total_score}/100: High product match ({match_conf:.0f}%), "
         f"{seller_label} (trust: {seller_trust:.0f}%), {rating_label}, "
         f"and {sentiment_label}."
     )
@@ -203,7 +211,7 @@ def calculate_platform_score(
         recommendation_reason=reason,
         listing=listing,
         recommendation_type=rec_type,
-        is_demo=False,
+        is_demo=is_demo,
     )
 
 
