@@ -471,8 +471,14 @@ export default function VerificationResult({
     return pReviews.length > 0;
   });
 
+  const is1Png = Boolean(
+    (isDemoProduct && aiAnalysisResult?.filename?.match(/(^|[/\\])1\.png$/i)) ||
+    (isDemoProduct && identity?.product_name?.toLowerCase().includes("maybelline")) ||
+    (isDemoProduct && temuListing?.retrieval_status === "UNAVAILABLE")
+  );
+
   const platformsToRender = isDemoProduct
-    ? (["Amazon", "Daraz LK", "Temu"] as const)
+    ? (is1Png ? (["Amazon", "Daraz LK"] as const) : (["Amazon", "Daraz LK", "Temu"] as const))
     : activeReviewPlatforms;
 
   const rankedComparisons = platformComparisons.filter(
@@ -1046,17 +1052,19 @@ export default function VerificationResult({
                         <span className="text-xs text-[#A1A1B5] font-semibold">
                           {totalAnalyzed.toLocaleString()} {isDemoProduct ? "demonstration reviews" : (totalAnalyzed === 1 ? "review" : "reviews")}
                         </span>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setModalPlatform(plat);
-                            setIsReviewModalOpen(true);
-                          }}
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#F8FAFC] bg-[#191925] hover:bg-[#202033] border border-[#303047] rounded-xl transition-colors cursor-pointer"
-                        >
-                          <FileText className="w-3.5 h-3.5 text-[#A855F7]" />
-                          <span>View Reviews</span>
-                        </button>
+                        {!is1Png && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setModalPlatform(plat);
+                              setIsReviewModalOpen(true);
+                            }}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#F8FAFC] bg-[#191925] hover:bg-[#202033] border border-[#303047] rounded-xl transition-colors cursor-pointer"
+                          >
+                            <FileText className="w-3.5 h-3.5 text-[#A855F7]" />
+                            <span>View Reviews</span>
+                          </button>
+                        )}
                       </div>
                     </div>
 
